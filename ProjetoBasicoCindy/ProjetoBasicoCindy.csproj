@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Controls\ButtonArea\ButtonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -58,6 +59,7 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItem.cs" />
+    <Compile Include="Controls\Funcionarios\Data\FuncionariosDataHandler.cs" />
     <Compile Include="Controls\Funcionarios\Funcionarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,6 +113,12 @@
     <Content Include="Imagens\content-save.png" />
     <Content Include="Imagens\delete.png" />
     <Content Include="Imagens\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CindyVT0.3\ConnectionClass SQL\ConnectionClass SQL.csproj">
+      <Project>{4c4d5025-dfb0-4924-a47e-d8c6dde79dca}</Project>
+      <Name>ConnectionClass SQL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
