@@ -57,12 +57,14 @@
     <Compile Include="Controls\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Funcionarios\Data\FuncionarioItem.cs" />
     <Compile Include="Controls\Funcionarios\Funcionarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\Funcionarios\Funcionarios.Designer.cs">
       <DependentUpon>Funcionarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Funcionarios\FuncionarioStructure.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

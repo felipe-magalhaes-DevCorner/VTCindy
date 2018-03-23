@@ -41,10 +41,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonContainer = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.container = new System.Windows.Forms.Panel();
-            this.buttonContainer = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -212,6 +212,14 @@
             this.panel2.Size = new System.Drawing.Size(1034, 60);
             this.panel2.TabIndex = 1;
             // 
+            // buttonContainer
+            // 
+            this.buttonContainer.BackColor = System.Drawing.Color.Transparent;
+            this.buttonContainer.Location = new System.Drawing.Point(0, 0);
+            this.buttonContainer.Name = "buttonContainer";
+            this.buttonContainer.Size = new System.Drawing.Size(555, 60);
+            this.buttonContainer.TabIndex = 2;
+            // 
             // button6
             // 
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -238,18 +246,11 @@
             // 
             // container
             // 
+            this.container.Dock = System.Windows.Forms.DockStyle.Fill;
             this.container.Location = new System.Drawing.Point(200, 60);
             this.container.Name = "container";
-            this.container.Size = new System.Drawing.Size(896, 601);
+            this.container.Size = new System.Drawing.Size(1034, 601);
             this.container.TabIndex = 2;
-            // 
-            // buttonContainer
-            // 
-            this.buttonContainer.BackColor = System.Drawing.Color.Transparent;
-            this.buttonContainer.Location = new System.Drawing.Point(0, 0);
-            this.buttonContainer.Name = "buttonContainer";
-            this.buttonContainer.Size = new System.Drawing.Size(555, 60);
-            this.buttonContainer.TabIndex = 2;
             // 
             // Form1
             // 
