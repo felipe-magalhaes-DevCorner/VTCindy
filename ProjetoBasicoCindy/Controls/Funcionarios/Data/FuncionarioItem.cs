@@ -15,6 +15,7 @@ namespace ProjetoBasicoCindy
         public int _idFuncionario { get; set; }
         public string _name { get; set; }
         public string _cpf { get; set; }
+        public string _identidade { get; set; }
         public string _sexo { get; set; }
         public DateTime _dataNascimento { get; set; }
         public string _rua { get; set; }

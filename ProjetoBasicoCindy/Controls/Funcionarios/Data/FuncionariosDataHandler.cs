@@ -14,18 +14,19 @@ namespace ProjetoBasicoCindy
             var Aux = new FuncionarioItem
             {
                 _idFuncionario = Convert.ToInt32(funcionarioInfo[0]),
-                _name = funcionarioInfo[1].ToString(),
-                _cpf = funcionarioInfo[2].ToString(),
-                _sexo = funcionarioInfo[3].ToString(),
-                _dataNascimento = Convert.ToDateTime(funcionarioInfo[4]),
-                _rua = funcionarioInfo[5].ToString(),
-                _numero = funcionarioInfo[6].ToString(),
-                _complemento = funcionarioInfo[7].ToString(),
-                _bairro = funcionarioInfo[8].ToString(),
-                _observacao = funcionarioInfo[9].ToString(),
-                _cidade = funcionarioInfo[10].ToString(),
-                _estado = funcionarioInfo[11].ToString(),
-                _cep = funcionarioInfo[12].ToString()
+                _identidade = funcionarioInfo[1].ToString(),
+                _name = funcionarioInfo[2].ToString(),
+                _cpf = funcionarioInfo[3].ToString(),                
+                _sexo = funcionarioInfo[4].ToString(),
+                _dataNascimento = Convert.ToDateTime(funcionarioInfo[5]),
+                _rua = funcionarioInfo[6].ToString(),
+                _numero = funcionarioInfo[7].ToString(),
+                _complemento = funcionarioInfo[8].ToString(),
+                _bairro = funcionarioInfo[9].ToString(),
+                _observacao = funcionarioInfo[10].ToString(),
+                _cidade = funcionarioInfo[11].ToString(),
+                _estado = funcionarioInfo[12].ToString(),
+                _cep = funcionarioInfo[13].ToString()
             };
 
             _lista.Add(Aux);
