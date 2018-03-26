@@ -50,6 +50,7 @@
             this.btSave.Text = "Salvar";
             this.btSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // btEdit
             // 
