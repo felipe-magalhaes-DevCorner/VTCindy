@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjetoBasicoCindy.Controls.ButtonArea
+namespace ProjetoBasicoCindy
 {
     public partial class ButtonControl : UserControl
     {

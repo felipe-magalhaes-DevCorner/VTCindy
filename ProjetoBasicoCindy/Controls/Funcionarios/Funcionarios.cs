@@ -36,6 +36,7 @@ namespace ProjetoBasicoCindy.Controls.Funcionarios
                 
 
                 StoreFuncionarioItem(_dt);
+               
 
 
 
@@ -70,7 +71,10 @@ namespace ProjetoBasicoCindy.Controls.Funcionarios
 
                 }
                 listBox1.Items.Add(funcionarioArray[1]);
-                ListOfFuncionarios = FuncionariosDataHandler.StoreInformation(funcionarioArray, ListOfFuncionarios);
+                
+
+
+                FuncionarioItemCollection.FuncionarioCollection = FuncionariosDataHandler.StoreInformation(funcionarioArray, ListOfFuncionarios);
 
                 
             }
@@ -83,6 +87,41 @@ namespace ProjetoBasicoCindy.Controls.Funcionarios
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            if (listBox1.SelectedIndex >= 0)
+            {
+                txtnome.Text = ListOfFuncionarios[listBox1.SelectedIndex]._name.ToString();
+                mskcpf.Text = ListOfFuncionarios[listBox1.SelectedIndex]._cpf.ToString();
+                txtsexo.Text = ListOfFuncionarios[listBox1.SelectedIndex]._sexo.ToString();
+
+                txtdn.Text = ListOfFuncionarios[listBox1.SelectedIndex]._dataNascimento.ToString("dd/MM/yyyy");
+                txtrua.Text = ListOfFuncionarios[listBox1.SelectedIndex]._rua.ToString();
+                txtxnumero.Text = ListOfFuncionarios[listBox1.SelectedIndex]._numero.ToString();
+                txtcomplemento.Text = ListOfFuncionarios[listBox1.SelectedIndex]._complemento.ToString();
+                txtbairro.Text = ListOfFuncionarios[listBox1.SelectedIndex]._bairro.ToString();
+                txtobs.Text = ListOfFuncionarios[listBox1.SelectedIndex]._observacao.ToString();
+                txtcidade.Text = ListOfFuncionarios[listBox1.SelectedIndex]._cidade.ToString();
+                txtestado.Text = ListOfFuncionarios[listBox1.SelectedIndex]._estado.ToString();
+                mskcep.Text = ListOfFuncionarios[listBox1.SelectedIndex]._cep.ToString();
+
+            }
+            
+
+
+      
+
+
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

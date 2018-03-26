@@ -59,6 +59,7 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItem.cs" />
+    <Compile Include="Controls\Funcionarios\Data\FuncionarioItemCollection.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionariosDataHandler.cs" />
     <Compile Include="Controls\Funcionarios\Funcionarios.cs">
       <SubType>UserControl</SubType>

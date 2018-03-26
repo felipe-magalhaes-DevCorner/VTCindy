@@ -21,10 +21,11 @@ namespace ProjetoBasicoCindy
                 _rua = funcionarioInfo[5].ToString(),
                 _numero = funcionarioInfo[6].ToString(),
                 _complemento = funcionarioInfo[7].ToString(),
-                _descricao = funcionarioInfo[8].ToString(),
-                _cidade = funcionarioInfo[9].ToString(),
-                _estado = funcionarioInfo[10].ToString(),
-                _cep = funcionarioInfo[11].ToString()
+                _bairro = funcionarioInfo[8].ToString(),
+                _observacao = funcionarioInfo[9].ToString(),
+                _cidade = funcionarioInfo[10].ToString(),
+                _estado = funcionarioInfo[11].ToString(),
+                _cep = funcionarioInfo[12].ToString()
             };
 
             _lista.Add(Aux);

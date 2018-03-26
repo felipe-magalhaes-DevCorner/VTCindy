@@ -1,4 +1,4 @@
-﻿namespace ProjetoBasicoCindy.Controls.ButtonArea
+﻿namespace ProjetoBasicoCindy
 {
     partial class ButtonControl
     {
@@ -32,6 +32,7 @@
             this.btSave = new System.Windows.Forms.Button();
             this.btEdit = new System.Windows.Forms.Button();
             this.btDelete = new System.Windows.Forms.Button();
+            this.btlimpar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btSave
@@ -82,11 +83,28 @@
             this.btDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btDelete.UseVisualStyleBackColor = true;
             // 
+            // btlimpar
+            // 
+            this.btlimpar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btlimpar.FlatAppearance.BorderSize = 0;
+            this.btlimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btlimpar.ForeColor = System.Drawing.Color.White;
+            this.btlimpar.Image = ((System.Drawing.Image)(resources.GetObject("btlimpar.Image")));
+            this.btlimpar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btlimpar.Location = new System.Drawing.Point(180, 0);
+            this.btlimpar.Name = "btlimpar";
+            this.btlimpar.Size = new System.Drawing.Size(60, 60);
+            this.btlimpar.TabIndex = 7;
+            this.btlimpar.Text = "Limpar";
+            this.btlimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btlimpar.UseVisualStyleBackColor = true;
+            // 
             // ButtonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.btlimpar);
             this.Controls.Add(this.btDelete);
             this.Controls.Add(this.btEdit);
             this.Controls.Add(this.btSave);
@@ -101,5 +119,6 @@
         public System.Windows.Forms.Button btSave;
         public System.Windows.Forms.Button btEdit;
         public System.Windows.Forms.Button btDelete;
+        public System.Windows.Forms.Button btlimpar;
     }
 }

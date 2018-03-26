@@ -47,14 +47,17 @@ namespace ProjetoBasicoCindy
 
             var objMainform = new Controls.Funcionarios.Funcionarios();
             container.Controls.Add(objMainform);
-
+            buttonContainer.Visible = true;
 
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            var buttoncontrol = new ButtonControl();
+
+            buttonContainer.Controls.Add(buttoncontrol);
+            buttonContainer.Visible = false;
         }
     }
 }

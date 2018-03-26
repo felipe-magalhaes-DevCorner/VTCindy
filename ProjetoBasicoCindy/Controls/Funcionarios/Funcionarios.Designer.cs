@@ -43,7 +43,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtnome = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtcpf = new System.Windows.Forms.TextBox();
             this.txtsexo = new System.Windows.Forms.TextBox();
             this.txtdn = new System.Windows.Forms.TextBox();
             this.txtrua = new System.Windows.Forms.TextBox();
@@ -52,8 +51,13 @@
             this.txtcidade = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.Complemento = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtestado = new System.Windows.Forms.TextBox();
+            this.txtcomplemento = new System.Windows.Forms.TextBox();
+            this.txtobs = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.mskcpf = new System.Windows.Forms.MaskedTextBox();
+            this.mskcep = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -170,13 +174,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // txtcpf
-            // 
-            this.txtcpf.Location = new System.Drawing.Point(530, 41);
-            this.txtcpf.Name = "txtcpf";
-            this.txtcpf.Size = new System.Drawing.Size(110, 20);
-            this.txtcpf.TabIndex = 13;
-            // 
             // txtsexo
             // 
             this.txtsexo.Location = new System.Drawing.Point(530, 67);
@@ -237,26 +234,74 @@
             this.Complemento.TabIndex = 21;
             this.Complemento.Text = "Complemento:";
             // 
-            // textBox1
+            // txtestado
             // 
-            this.textBox1.Location = new System.Drawing.Point(538, 181);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(42, 20);
-            this.textBox1.TabIndex = 22;
+            this.txtestado.Location = new System.Drawing.Point(538, 181);
+            this.txtestado.Name = "txtestado";
+            this.txtestado.Size = new System.Drawing.Size(42, 20);
+            this.txtestado.TabIndex = 22;
             // 
-            // textBox2
+            // txtcomplemento
             // 
-            this.textBox2.Location = new System.Drawing.Point(671, 181);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(239, 20);
-            this.textBox2.TabIndex = 23;
+            this.txtcomplemento.Location = new System.Drawing.Point(671, 181);
+            this.txtcomplemento.Name = "txtcomplemento";
+            this.txtcomplemento.Size = new System.Drawing.Size(168, 20);
+            this.txtcomplemento.TabIndex = 23;
+            // 
+            // txtobs
+            // 
+            this.txtobs.Location = new System.Drawing.Point(671, 234);
+            this.txtobs.Name = "txtobs";
+            this.txtobs.Size = new System.Drawing.Size(239, 20);
+            this.txtobs.TabIndex = 24;
+            this.txtobs.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(591, 237);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Observação: ";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(869, 181);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(31, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "CEP:";
+            // 
+            // mskcpf
+            // 
+            this.mskcpf.Location = new System.Drawing.Point(530, 41);
+            this.mskcpf.Mask = "999.999.999-99";
+            this.mskcpf.Name = "mskcpf";
+            this.mskcpf.Size = new System.Drawing.Size(100, 20);
+            this.mskcpf.TabIndex = 28;
+            // 
+            // mskcep
+            // 
+            this.mskcep.Location = new System.Drawing.Point(906, 177);
+            this.mskcep.Mask = "99.999-999";
+            this.mskcep.Name = "mskcep";
+            this.mskcep.Size = new System.Drawing.Size(100, 20);
+            this.mskcep.TabIndex = 29;
             // 
             // Funcionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.mskcep);
+            this.Controls.Add(this.mskcpf);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtobs);
+            this.Controls.Add(this.txtcomplemento);
+            this.Controls.Add(this.txtestado);
             this.Controls.Add(this.Complemento);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtcidade);
@@ -265,7 +310,6 @@
             this.Controls.Add(this.txtrua);
             this.Controls.Add(this.txtdn);
             this.Controls.Add(this.txtsexo);
-            this.Controls.Add(this.txtcpf);
             this.Controls.Add(this.txtnome);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -303,7 +347,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtnome;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.TextBox txtcpf;
         private System.Windows.Forms.TextBox txtsexo;
         private System.Windows.Forms.TextBox txtdn;
         private System.Windows.Forms.TextBox txtrua;
@@ -312,7 +355,12 @@
         private System.Windows.Forms.TextBox txtcidade;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label Complemento;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtestado;
+        private System.Windows.Forms.TextBox txtcomplemento;
+        private System.Windows.Forms.TextBox txtobs;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.MaskedTextBox mskcpf;
+        private System.Windows.Forms.MaskedTextBox mskcep;
     }
 }
