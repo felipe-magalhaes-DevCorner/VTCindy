@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,9 @@ namespace ProjetoBasicoCindy
         public string _cidade { get; set; }
         public string _estado { get; set; }
         public string _cep { get; set; }
+        public DocumentosPictureCollection _documentos { get; set; }
+
+
 
 
 
