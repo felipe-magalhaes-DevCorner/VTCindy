@@ -146,7 +146,7 @@ namespace ProjetoBasicoCindy
         {
             panelUploadControl.Visible = true;
             panelUploadControl.BringToFront();
-            var objUploadControl = new UploaderControl();
+            var objUploadControl = new CropController();
             panelUploadControl.Dock = DockStyle.Fill;
             objUploadControl.ParentPanel = panelUploadControl;
             panelUploadControl.Controls.Add(objUploadControl) ;

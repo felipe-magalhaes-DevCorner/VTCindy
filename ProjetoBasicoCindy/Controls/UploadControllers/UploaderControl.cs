@@ -45,7 +45,7 @@ namespace ProjetoBasicoCindy
         public UploaderControl()
         {
             InitializeComponent();
-            InitCtrl();
+            //InitCtrl();
         }
 
         #region Mouse events
@@ -72,7 +72,6 @@ namespace ProjetoBasicoCindy
 
         }
 
-
         /// <summary>
         /// Make sure that the PicBox have the focus, otherwise it doesn´t receive 
         /// mousewheel events !.
@@ -95,16 +94,15 @@ namespace ProjetoBasicoCindy
         /// </summary>
         private void InitCtrl()
         {
-            PicBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            PicBox.SizeMode = PictureBoxSizeMode.AutoSize;
             PicBox.Location = new Point(0, 0);
             OuterPanel.Dock = DockStyle.Fill;
             //OuterPanel.Cursor = System.Windows.Forms.Cursors.NoMove2D;
             OuterPanel.AutoScroll = true;
-            OuterPanel.MouseEnter += new EventHandler(PicBox_MouseEnter);
-            PicBox.MouseEnter += new EventHandler(PicBox_MouseEnter);
-            OuterPanel.MouseWheel += new MouseEventHandler(PicBox_MouseWheel);
+            //OuterPanel.MouseEnter += new EventHandler(PicBox_MouseEnter);
+            //PicBox.MouseEnter += new EventHandler(PicBox_MouseEnter);
+            //OuterPanel.MouseWheel += new MouseEventHandler(PicBox_MouseWheel);
         }
-
 
         /// <summary>
         /// Create a simple red cross as a bitmap and display it in the picturebox
@@ -123,7 +121,7 @@ namespace ProjetoBasicoCindy
 
         #endregion
 
-        #region event handlers
+
 
         private void btUpload_Click_1(object sender, EventArgs e)
         {
@@ -151,12 +149,7 @@ namespace ProjetoBasicoCindy
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            ParentPanel.Controls.Clear();
-            ParentPanel.Hide();
-        }
-        #endregion
+
 
 
         #region CropHandler
@@ -175,10 +168,14 @@ namespace ProjetoBasicoCindy
                 }
                 cropedImages.Add(cropedImage);
             }
-            cropedImages[0].Save(fileNames[0].Replace(".", "cr."));
+            pictureBox2.Visible = true;
+            pictureBox2.Image = cropedImages[0];          
+                cropedImages[0].Save(fileNames[0].Replace(".", "cr."));
             testeimage = cropedImages[0];
             pictureBox1.Image = testeimage;
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.Image = testeimage;
+            pictureBox2.Visible = true;
+            //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             //pictureBox2.Image = Foo(cropedImages[0]);
             //pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
@@ -274,7 +271,7 @@ namespace ProjetoBasicoCindy
 
 
         private const int BOXWIDTH = 450;
-        public static Bitmap Foo(Bitmap image)
+        public static Bitmap Foo(Bitmap image, int BOXWIDTH = 450)
         {
             Bitmap imagedone;
             try
@@ -346,5 +343,10 @@ namespace ProjetoBasicoCindy
             };
         }
         #endregion
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ParentPanel.Controls.Clear();
+            ParentPanel.Hide();
+        }
     }
 }

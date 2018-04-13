@@ -33,11 +33,13 @@
             this.button5 = new System.Windows.Forms.Button();
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.OuterPanel = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             this.OuterPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -90,12 +92,22 @@
             // OuterPanel
             // 
             this.OuterPanel.AutoScroll = true;
+            this.OuterPanel.Controls.Add(this.pictureBox2);
             this.OuterPanel.Controls.Add(this.PicBox);
             this.OuterPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.OuterPanel.Location = new System.Drawing.Point(0, 39);
             this.OuterPanel.Name = "OuterPanel";
             this.OuterPanel.Size = new System.Drawing.Size(459, 382);
             this.OuterPanel.TabIndex = 1;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(116, 23);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(445, 310);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
             // 
             // panel2
             // 
@@ -111,7 +123,6 @@
             this.pictureBox1.Location = new System.Drawing.Point(3, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(166, 210);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -129,6 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
             this.OuterPanel.ResumeLayout(false);
             this.OuterPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -144,5 +156,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

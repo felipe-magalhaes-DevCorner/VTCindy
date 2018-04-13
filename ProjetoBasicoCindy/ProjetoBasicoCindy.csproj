@@ -74,6 +74,12 @@
       <DependentUpon>Funcionarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Funcionarios\FuncionarioStructure.cs" />
+    <Compile Include="Controls\UploadControllers\CropController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UploadControllers\CropController.Designer.cs">
+      <DependentUpon>CropController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UploadControllers\Pictures\Data\PictureItem.cs" />
     <Compile Include="Controls\UploadControllers\Pictures\PictureUploadHandler.cs" />
     <Compile Include="Controls\UploadControllers\UploaderControl.cs">
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Funcionarios\Funcionarios.resx">
       <DependentUpon>Funcionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UploadControllers\CropController.resx">
+      <DependentUpon>CropController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UploadControllers\UploaderControl.resx">
       <DependentUpon>UploaderControl.cs</DependentUpon>
