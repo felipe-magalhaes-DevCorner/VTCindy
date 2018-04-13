@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjetoBasicoCindy.Controls.Funcionarios
+namespace ProjetoBasicoCindy
 {
     public partial class Funcionarios : UserControl
     {
@@ -25,6 +25,7 @@ namespace ProjetoBasicoCindy.Controls.Funcionarios
 
         private void Funcionarios_Load(object sender, EventArgs e)
         {
+            #region PopulateListView
             var db = new ConnectionClass_SQL.ConnectionClass();
             try
             {
@@ -33,19 +34,10 @@ namespace ProjetoBasicoCindy.Controls.Funcionarios
                 db.SqlQuery(query);
                 db.QueryRun();
                 var _dt = db.QueryDT();
-                
-
                 listViewFuncionarioView(_dt);
-               
-
-
-
-
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(string.Format("Erro" + ex));
                 throw;
             }
@@ -53,6 +45,32 @@ namespace ProjetoBasicoCindy.Controls.Funcionarios
             {
                 db.closeConnection();
             }
+            #endregion
+
+
+            #region ViewControls
+            #region ListViewConstructor
+            ColumnHeader header0 = new ColumnHeader();
+            ColumnHeader header1 = new ColumnHeader();
+            string[] columns = { "Documento", "Obrigatorio" };
+
+            header0.Text = "Documento";
+                header0.Width = 80;
+                header0.TextAlign = HorizontalAlignment.Center;
+                listviewDocuments.Columns.Add(header0);
+            header1.Text = "Obrigatorio";
+            header1.Width = 100;
+            header1.TextAlign = HorizontalAlignment.Center;
+            listviewDocuments.Columns.Add(header1);
+
+
+
+            listviewDocuments.View = View.Details;
+            #endregion
+
+            #endregion
+
+
 
 
         }
@@ -82,6 +100,7 @@ namespace ProjetoBasicoCindy.Controls.Funcionarios
 
         }
 
+
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -103,10 +122,12 @@ namespace ProjetoBasicoCindy.Controls.Funcionarios
                 mskcep.Text = ListOfFuncionarios[listBox1.SelectedIndex]._cep.ToString();
 
             }
-            
+            //ListOfFuncionarios[listBox1.SelectedIndex]
 
 
-      
+
+
+
 
 
         }
@@ -121,6 +142,17 @@ namespace ProjetoBasicoCindy.Controls.Funcionarios
 
         }
 
-       
+        private void btNewPic_Click(object sender, EventArgs e)
+        {
+            panelUploadControl.Visible = true;
+            panelUploadControl.BringToFront();
+            var objUploadControl = new UploaderControl();
+            panelUploadControl.Dock = DockStyle.Fill;
+            panelUploadControl.Controls.Add(objUploadControl) ;
+            
+
+
+
+        }
     }
 }

@@ -110,7 +110,7 @@
             this.Controls.Add(this.btEdit);
             this.Controls.Add(this.btSave);
             this.Name = "ButtonControl";
-            this.Size = new System.Drawing.Size(500, 60);
+            this.Size = new System.Drawing.Size(382, 60);
             this.ResumeLayout(false);
 
         }

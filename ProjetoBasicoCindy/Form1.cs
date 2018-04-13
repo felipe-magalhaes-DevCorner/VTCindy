@@ -45,7 +45,7 @@ namespace ProjetoBasicoCindy
         {
             
 
-            var objMainform = new Controls.Funcionarios.Funcionarios();
+            var objMainform = new Funcionarios();
             container.Controls.Add(objMainform);
             buttonContainer.Visible = true;
 
