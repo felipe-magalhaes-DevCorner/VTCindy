@@ -94,6 +94,12 @@
     <Compile Include="Controls\UploadControllers\UploaderControl.Designer.cs">
       <DependentUpon>UploaderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ViewControls\informacoesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ViewControls\informacoesControl.Designer.cs">
+      <DependentUpon>informacoesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UploadControllers\UploaderControl.resx">
       <DependentUpon>UploaderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ViewControls\informacoesControl.resx">
+      <DependentUpon>informacoesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

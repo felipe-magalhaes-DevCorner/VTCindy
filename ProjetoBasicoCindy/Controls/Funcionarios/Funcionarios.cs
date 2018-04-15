@@ -13,7 +13,14 @@ namespace ProjetoBasicoCindy
 {
     public partial class Funcionarios : UserControl
     {
+
+        //variables, main funcionarioitem collection
+        #region variables
         public List<FuncionarioItem> ListOfFuncionarios = FuncionarioItemCollection.GetFuncionariosList();
+        #endregion
+
+        //inicializes control
+        #region constructor
         public Funcionarios()
         {
 
@@ -22,10 +29,11 @@ namespace ProjetoBasicoCindy
 
 
         }
-        /// <summary>
-        /// LOAD AREA
-        /// </summary>
-        /// <param name="_dt"></param>
+
+        #endregion
+        
+
+        //loads funcionario data to permanent list of cuncionarios
         #region LOAD
         private void GetFuncionariosToList(DataTable _dt)
         {
@@ -61,13 +69,19 @@ namespace ProjetoBasicoCindy
                 //ADDS TO THE MAIN FUNCIONARIOITEMCOLLECION STATIC LIST
                 FuncionarioItemCollection.AddFuncionario(funcionario);
                 //add to listview now, why waste another variable later.
-                listBox1.Items.Add(nome);
-                
+                listViewFuncionarioView(funcionario);
+
+
             }
+        }
+        private void listViewFuncionarioView(FuncionarioItem _funcionario)
+        {
+            listBox1.Items.Add(_funcionario._name);
         }
         private void Funcionarios_Load(object sender, EventArgs e)
         {
-            #region PopulateListView
+            DataTable _dt;
+            #region getFUNCIONARIOS SQL
             var db = new ConnectionClass_SQL.ConnectionClass();
             try
             {
@@ -75,8 +89,8 @@ namespace ProjetoBasicoCindy
                 var query = "Select * from funcionario";
                 db.SqlQuery(query);
                 db.QueryRun();
-                var _dt = db.QueryDT();
-                GetFuncionariosToList(_dt);
+                _dt = db.QueryDT();
+                
 
                 
             }
@@ -89,32 +103,38 @@ namespace ProjetoBasicoCindy
             {
                 db.closeConnection();
             }
+
+            if (_dt.Rows.Count > 0)
+            {
+                GetFuncionariosToList(_dt);
+            }
+            
             #endregion
 
-            #region load row into funcionariolist
 
+
+            /// HAS TO BE MOVED TO ITS OWN CONTROLLER.
+
+            #region DOCUMENTO CONTROLLER TO
+            //ColumnHeader header0 = new ColumnHeader();
+            //ColumnHeader header1 = new ColumnHeader();
+            //string[] columns = { "Documento", "Obrigatorio" };
+
+            //header0.Text = "Documento";
+            //header0.Width = 80;
+            //header0.TextAlign = HorizontalAlignment.Center;
+            //listviewDocuments.Columns.Add(header0);
+            //header1.Text = "Obrigatorio";
+            //header1.Width = 100;
+            //header1.TextAlign = HorizontalAlignment.Center;
+            //listviewDocuments.Columns.Add(header1);
+
+
+
+            //listviewDocuments.View = View.Details;
             #endregion
-            #region ViewControls
-            #region ListViewConstructor
-            ColumnHeader header0 = new ColumnHeader();
-            ColumnHeader header1 = new ColumnHeader();
-            string[] columns = { "Documento", "Obrigatorio" };
-
-            header0.Text = "Documento";
-            header0.Width = 80;
-            header0.TextAlign = HorizontalAlignment.Center;
-            listviewDocuments.Columns.Add(header0);
-            header1.Text = "Obrigatorio";
-            header1.Width = 100;
-            header1.TextAlign = HorizontalAlignment.Center;
-            listviewDocuments.Columns.Add(header1);
 
 
-
-            listviewDocuments.View = View.Details;
-            #endregion
-
-            #endregion
 
 
 
@@ -126,56 +146,18 @@ namespace ProjetoBasicoCindy
 
 
 
-        private void listViewFuncionarioView(FuncionarioItem _funcionario)
-        {
 
-            listBox1.Items.Add(_funcionario._name);
-
-
-
-        }
 
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if (listBox1.SelectedIndex >= 0)
-            {
-                txtMatricula.Text = ListOfFuncionarios[listBox1.SelectedIndex]._idFuncionario.ToString();
-                txtIdentidade.Text = ListOfFuncionarios[listBox1.SelectedIndex]._identidade.ToString();
-                txtnome.Text = ListOfFuncionarios[listBox1.SelectedIndex]._name.ToString();
-                mskcpf.Text = ListOfFuncionarios[listBox1.SelectedIndex]._cpf.ToString();
-                cbSexo.Text = ListOfFuncionarios[listBox1.SelectedIndex]._sexo.ToString();
-                mskDataNasc.Text = ListOfFuncionarios[listBox1.SelectedIndex]._dataNascimento.ToString("dd/MM/yyyy");
-                txtrua.Text = ListOfFuncionarios[listBox1.SelectedIndex]._rua.ToString();
-                txtxnumero.Text = ListOfFuncionarios[listBox1.SelectedIndex]._numero.ToString();
-                txtcomplemento.Text = ListOfFuncionarios[listBox1.SelectedIndex]._complemento.ToString();
-                txtbairro.Text = ListOfFuncionarios[listBox1.SelectedIndex]._bairro.ToString();
-                rtxtObs.Text = ListOfFuncionarios[listBox1.SelectedIndex]._observacao.ToString();
-                txtcidade.Text = ListOfFuncionarios[listBox1.SelectedIndex]._cidade.ToString();
-                cbEstado.Text = ListOfFuncionarios[listBox1.SelectedIndex]._estado.ToString();
-                mskcep.Text = ListOfFuncionarios[listBox1.SelectedIndex]._cep.ToString();
-
-            }
-            //ListOfFuncionarios[listBox1.SelectedIndex]
-
-
-
-
-
-
-
+            var objInformacoes = new informacoesControl(ListOfFuncionarios[listBox1.SelectedIndex]);
+            panelInfo.Controls.Add(objInformacoes);
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void btNewPic_Click(object sender, EventArgs e)
         {
