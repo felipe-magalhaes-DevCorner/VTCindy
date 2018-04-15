@@ -96,7 +96,7 @@ namespace ProjetoBasicoCindy
 
 
 
-            //TargetPicBox.SizeMode = PictureBoxSizeMode.Zoom;
+            TargetPicBox.SizeMode = PictureBoxSizeMode.Zoom;
             //Good practice to dispose the System.Drawing objects when not in use.
             sourceBitmap.Dispose();
 

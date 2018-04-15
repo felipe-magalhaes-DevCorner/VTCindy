@@ -176,7 +176,7 @@ namespace ProjetoBasicoCindy
             pictureBox2.Image = testeimage;
             pictureBox2.Visible = true;
             //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            //pictureBox2.Image = Foo(cropedImages[0]);
+            pictureBox2.Image = Foo(cropedImages[0]);
             //pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
 

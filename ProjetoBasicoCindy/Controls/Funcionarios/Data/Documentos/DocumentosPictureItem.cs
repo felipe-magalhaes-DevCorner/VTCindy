@@ -4,11 +4,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjetoBasicoCindy
 {
     public class DocumentosPictureItem
     {
+        
         /// <summary>
         /// list of documents, 
         /// type of document _nomeDoc
@@ -17,9 +19,16 @@ namespace ProjetoBasicoCindy
         /// 
         /// 
         /// </summary>
-        public string _nomeDoc { get; set; }
-        public List<Bitmap> _documentos { get; set; }
+        public float _matricula { get; set; }
+        List<Image> _documentos = new List<Image>();
+        
         public int _paginas { get; set; }
 
+        public DocumentosPictureItem(float matricula, List<Image> documentos, int paginas)
+        {
+            _matricula = matricula;
+            _documentos = documentos;
+            _paginas = paginas;
+        }
     }
 }

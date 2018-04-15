@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ProjetoBasicoCindy
 {
     public partial class Funcionarios : UserControl
     {
-        public List<FuncionarioItem> ListOfFuncionarios = new List<FuncionarioItem>();
+        public List<FuncionarioItem> ListOfFuncionarios = FuncionarioItemCollection.GetFuncionariosList();
         public Funcionarios()
         {
 
@@ -21,8 +22,49 @@ namespace ProjetoBasicoCindy
 
 
         }
+        /// <summary>
+        /// LOAD AREA
+        /// </summary>
+        /// <param name="_dt"></param>
+        #region LOAD
+        private void GetFuncionariosToList(DataTable _dt)
+        {
 
-
+            foreach (DataRow rows in _dt.Rows)
+            {
+                //helper less conversions
+                int row = Convert.ToInt32(rows);
+                //matricula
+                int matricula = Convert.ToInt32(_dt.Rows[row][0]);
+                //deal if date is a picture
+                Byte[] data = new Byte[0];
+                data = (Byte[])(_dt.Rows[row][1]);
+                MemoryStream mem = new MemoryStream(data);
+                Image picture;
+                picture = Image.FromStream(mem);
+                //nome.... etc
+                string nome = _dt.Rows[row][2].ToString();
+                string cpf = _dt.Rows[row][3].ToString();
+                string identidade = _dt.Rows[row][4].ToString();
+                string sexo = _dt.Rows[row][5].ToString();
+                DateTime DN = Convert.ToDateTime(_dt.Rows[row][6]);
+                string rua = _dt.Rows[row][7].ToString();
+                string numero = _dt.Rows[row][8].ToString();
+                string complemento = _dt.Rows[row][9].ToString();
+                string bairro = _dt.Rows[row][10].ToString();
+                string observacao = _dt.Rows[row][11].ToString();
+                string cidade = _dt.Rows[row][12].ToString();
+                string estado = _dt.Rows[row][13].ToString();
+                string cep = _dt.Rows[row][14].ToString();
+                //GENERATES FUNCIONARIO ITEM WITH ALL INFO COLLECTED
+                var funcionario = new FuncionarioItem(matricula, picture, nome, cpf, identidade, sexo, DN, rua, numero, complemento, bairro, observacao, cidade, estado, cep);
+                //ADDS TO THE MAIN FUNCIONARIOITEMCOLLECION STATIC LIST
+                FuncionarioItemCollection.AddFuncionario(funcionario);
+                //add to listview now, why waste another variable later.
+                listBox1.Items.Add(nome);
+                
+            }
+        }
         private void Funcionarios_Load(object sender, EventArgs e)
         {
             #region PopulateListView
@@ -34,7 +76,9 @@ namespace ProjetoBasicoCindy
                 db.SqlQuery(query);
                 db.QueryRun();
                 var _dt = db.QueryDT();
-                listViewFuncionarioView(_dt);
+                GetFuncionariosToList(_dt);
+
+                
             }
             catch (Exception ex)
             {
@@ -47,7 +91,9 @@ namespace ProjetoBasicoCindy
             }
             #endregion
 
+            #region load row into funcionariolist
 
+            #endregion
             #region ViewControls
             #region ListViewConstructor
             ColumnHeader header0 = new ColumnHeader();
@@ -55,9 +101,9 @@ namespace ProjetoBasicoCindy
             string[] columns = { "Documento", "Obrigatorio" };
 
             header0.Text = "Documento";
-                header0.Width = 80;
-                header0.TextAlign = HorizontalAlignment.Center;
-                listviewDocuments.Columns.Add(header0);
+            header0.Width = 80;
+            header0.TextAlign = HorizontalAlignment.Center;
+            listviewDocuments.Columns.Add(header0);
             header1.Text = "Obrigatorio";
             header1.Width = 100;
             header1.TextAlign = HorizontalAlignment.Center;
@@ -74,29 +120,18 @@ namespace ProjetoBasicoCindy
 
 
         }
-        private void listViewFuncionarioView(DataTable _dados)
+        #endregion
+
+
+
+
+
+        private void listViewFuncionarioView(FuncionarioItem _funcionario)
         {
-            //ADICIONA FUNCIONARIOS À LISTVIEW
-            foreach (DataRow row in _dados.Rows)
-            {
-                var funcionarioArray = new List<string>();
-                foreach (DataColumn column in _dados.Columns)
-                {
-                    funcionarioArray.Add(row[column].ToString());
+
+            listBox1.Items.Add(_funcionario._name);
 
 
-                }
-                listBox1.Items.Add(funcionarioArray[2]);
-                
-
-
-                FuncionarioItemCollection.FuncionarioCollection = FuncionariosDataHandler.StoreInformation(funcionarioArray, ListOfFuncionarios);
-
-                
-            }
-
-
-            
 
         }
 
@@ -146,12 +181,13 @@ namespace ProjetoBasicoCindy
         {
             panelUploadControl.Visible = true;
             panelUploadControl.BringToFront();
-            var objUploadControl = new CropController();
+            var objUploadControl = new DocumentUploaderControl();
+            //objUploadControl. = 
             panelUploadControl.Dock = DockStyle.Fill;
-            objUploadControl.ParentPanel = panelUploadControl;
-            panelUploadControl.Controls.Add(objUploadControl) ;
+            //objUploadControl.ParentPanel = panelUploadControl;
+            panelUploadControl.Controls.Add(objUploadControl);
 
-            
+
 
 
 

@@ -64,6 +64,12 @@
     <Compile Include="Controls\Funcionarios\ContentEditors\SaveContentFuncionario.cs" />
     <Compile Include="Controls\Funcionarios\Data\Documentos\DocumentosPictureCollection.cs" />
     <Compile Include="Controls\Funcionarios\Data\Documentos\DocumentosPictureItem.cs" />
+    <Compile Include="Controls\Funcionarios\Data\Documentos\DocumentUploaderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Funcionarios\Data\Documentos\DocumentUploaderControl.Designer.cs">
+      <DependentUpon>DocumentUploaderControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItem.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItemCollection.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionariosDataHandler.cs" />
@@ -101,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Funcionarios\Data\Documentos\DocumentUploaderControl.resx">
+      <DependentUpon>DocumentUploaderControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Funcionarios\Funcionarios.resx">
       <DependentUpon>Funcionarios.cs</DependentUpon>

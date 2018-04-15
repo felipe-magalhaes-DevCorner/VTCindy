@@ -12,8 +12,28 @@ namespace ProjetoBasicoCindy
     /// </summary>
     public class FuncionarioItem
     {
+        public FuncionarioItem(int idFuncionario, Image funcPic, string name, string cpf, string identidade, string sexo, DateTime dataNascimento, string rua, string numero, string complemento, string bairro, string observacao, string cidade, string estado, string cep, DocumentosPictureCollection documentos = null)
+        {
+            _idFuncionario = idFuncionario;
+            _funcPic = funcPic;
+            _name = name;
+            _cpf = cpf;
+            _identidade = identidade;
+            _sexo = sexo;
+            _dataNascimento = dataNascimento;
+            _rua = rua;
+            _numero = numero;
+            _complemento = complemento;
+            _bairro = bairro;
+            _observacao = observacao;
+            _cidade = cidade;
+            _estado = estado;
+            _cep = cep;
+            _documentos = documentos;
+        }
 
         public int _idFuncionario { get; set; }
+        public Image _funcPic { get; set; }
         public string _name { get; set; }
         public string _cpf { get; set; }
         public string _identidade { get; set; }
@@ -28,11 +48,6 @@ namespace ProjetoBasicoCindy
         public string _estado { get; set; }
         public string _cep { get; set; }
         public DocumentosPictureCollection _documentos { get; set; }
-
-
-
-
-
     }   
 
 

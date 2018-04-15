@@ -9,5 +9,6 @@ namespace ProjetoBasicoCindy
     public class DocumentosPictureCollection
     {
         public List<DocumentosPictureItem> DocumentoCollection { get; set; }
+
 }
 }
