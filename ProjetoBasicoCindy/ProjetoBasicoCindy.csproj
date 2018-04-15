@@ -100,6 +100,7 @@
     <Compile Include="Controls\ViewControls\informacoesControl.Designer.cs">
       <DependentUpon>informacoesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataBaseHandlers\DataBaseHandler.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

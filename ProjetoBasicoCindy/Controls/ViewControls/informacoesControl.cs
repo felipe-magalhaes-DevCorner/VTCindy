@@ -20,7 +20,8 @@ namespace ProjetoBasicoCindy
         }
         private void loadFunc(FuncionarioItem _funcionario)
         {
-            txtMatricula.Text = _funcionario._idFuncionario.ToString();
+            string matricula = _funcionario._idFuncionario.ToString().Trim();
+            txtMatricula.Text = matricula;
             txtIdentidade.Text = _funcionario._identidade.ToString();
             txtnome.Text = _funcionario._name.ToString();
             mskcpf.Text = _funcionario._cpf.ToString();
@@ -35,5 +36,10 @@ namespace ProjetoBasicoCindy
             cbEstado.Text = _funcionario._estado.ToString();
             mskcep.Text = _funcionario._cep.ToString();
         }
+        public void ListViewBus(DataTable _onibus)
+        {
+            dtBus.DataSource = _onibus;
+        }
+
     }
 }

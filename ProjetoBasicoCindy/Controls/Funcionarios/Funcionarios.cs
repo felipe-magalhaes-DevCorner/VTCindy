@@ -16,8 +16,12 @@ namespace ProjetoBasicoCindy
 
         //variables, main funcionarioitem collection
         #region variables
+            //lista principal funcionarios
         public List<FuncionarioItem> ListOfFuncionarios = FuncionarioItemCollection.GetFuncionariosList();
+        //variable de para uma unica conexcao sql por funcionario.
+        DataBaseHandler DataSQL = new DataBaseHandler();
         #endregion
+
 
         //inicializes control
         #region constructor
@@ -40,6 +44,7 @@ namespace ProjetoBasicoCindy
 
             foreach (DataRow rows in _dt.Rows)
             {
+
                 //helper less conversions
                 int row = Convert.ToInt32(rows);
                 //matricula
@@ -72,6 +77,7 @@ namespace ProjetoBasicoCindy
                 listViewFuncionarioView(funcionario);
 
 
+
             }
         }
         private void listViewFuncionarioView(FuncionarioItem _funcionario)
@@ -81,34 +87,16 @@ namespace ProjetoBasicoCindy
         private void Funcionarios_Load(object sender, EventArgs e)
         {
             DataTable _dt;
-            #region getFUNCIONARIOS SQL
-            var db = new ConnectionClass_SQL.ConnectionClass();
-            try
-            {
-                db.SqlConnection();
-                var query = "Select * from funcionario";
-                db.SqlQuery(query);
-                db.QueryRun();
-                _dt = db.QueryDT();
-                
-
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(string.Format("Erro" + ex));
-                throw;
-            }
-            finally
-            {
-                db.closeConnection();
-            }
-
+            
+            _dt = DataSQL.GetFuncionariosList();
             if (_dt.Rows.Count > 0)
             {
                 GetFuncionariosToList(_dt);
-            }
+            }  
             
+
+
+
             #endregion
 
 
@@ -140,7 +128,7 @@ namespace ProjetoBasicoCindy
 
 
         }
-        #endregion
+        
 
 
 
@@ -151,8 +139,13 @@ namespace ProjetoBasicoCindy
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            panelInfo.Controls.Clear();
             var objInformacoes = new informacoesControl(ListOfFuncionarios[listBox1.SelectedIndex]);
             panelInfo.Controls.Add(objInformacoes);
+            var getBUS = new DataBaseHandler();
+            DataTable dtb = getBUS.GetBus(ListOfFuncionarios[listBox1.SelectedIndex]._idFuncionario.ToString());
+
         }
 
 
