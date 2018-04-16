@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjetoBasicoCindy
 {
@@ -43,7 +44,7 @@ namespace ProjetoBasicoCindy
             try
             {
                 db2.SqlConnection();
-                var query = string.Format("Select onibus.numero, onibus.preco from onibus where onibus.matricula = '{0}'", _matricula);
+                var query = string.Format("Select onibus.onibus, onibus.preco from onibus where onibus.matricula = '{0}'", _matricula);
                 db2.SqlQuery(query);
                 db2.QueryRun();
                 _dtb = db2.QueryDT();
@@ -55,7 +56,7 @@ namespace ProjetoBasicoCindy
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(string.Format("Erro" + ex));
+                MessageBox.Show(string.Format("Erro" + ex));
                 throw;
             }
             finally

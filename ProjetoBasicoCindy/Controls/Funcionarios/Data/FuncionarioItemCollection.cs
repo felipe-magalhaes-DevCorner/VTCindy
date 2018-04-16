@@ -6,19 +6,26 @@ using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy
 {
-    public static class FuncionarioItemCollection
+    public class FuncionarioItemCollection        
     {
-        private static List<FuncionarioItem> FuncionarioCollection { get; set; }
 
-        public static  void AddFuncionario(FuncionarioItem _funcionario)
+        public static List<FuncionarioItem> FuncionarioCollection { get; set; }
+
+
+        public void SetList(List<FuncionarioItem> _list)
         {
+            FuncionarioCollection = _list;
+        }
+        public void AddFuncionario(FuncionarioItem _funcionario)
+        {
+
             FuncionarioCollection.Add(_funcionario);
         }
-        public static void RemoveFuncionario(FuncionarioItem _funcionario)
+        public void RemoveFuncionario(FuncionarioItem _funcionario)
         {
             FuncionarioCollection.Remove(_funcionario);
         }
-        public static List<FuncionarioItem> GetFuncionariosList()
+        public List<FuncionarioItem> GetFuncionariosList()
         {
             List<FuncionarioItem> list = FuncionarioCollection;
             return list;
