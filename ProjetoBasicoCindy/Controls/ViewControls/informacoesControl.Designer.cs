@@ -35,8 +35,8 @@
             this.txtMatricula = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.ckboxInactive = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btRemoveBus = new System.Windows.Forms.Button();
+            this.btAddBus = new System.Windows.Forms.Button();
             this.rtxtObs = new System.Windows.Forms.RichTextBox();
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.lbTelefone = new System.Windows.Forms.Label();
@@ -64,6 +64,7 @@
             this.dtBus = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panelAddBus = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dtBus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -122,27 +123,28 @@
             this.ckboxInactive.Text = "Inativo";
             this.ckboxInactive.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btRemoveBus
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(459, 451);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(20, 20);
-            this.button2.TabIndex = 84;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btRemoveBus.FlatAppearance.BorderSize = 0;
+            this.btRemoveBus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRemoveBus.Image = ((System.Drawing.Image)(resources.GetObject("btRemoveBus.Image")));
+            this.btRemoveBus.Location = new System.Drawing.Point(459, 451);
+            this.btRemoveBus.Name = "btRemoveBus";
+            this.btRemoveBus.Size = new System.Drawing.Size(20, 20);
+            this.btRemoveBus.TabIndex = 84;
+            this.btRemoveBus.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btAddBus
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(459, 425);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(20, 20);
-            this.button1.TabIndex = 83;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btAddBus.FlatAppearance.BorderSize = 0;
+            this.btAddBus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btAddBus.Image = ((System.Drawing.Image)(resources.GetObject("btAddBus.Image")));
+            this.btAddBus.Location = new System.Drawing.Point(459, 425);
+            this.btAddBus.Name = "btAddBus";
+            this.btAddBus.Size = new System.Drawing.Size(20, 20);
+            this.btAddBus.TabIndex = 83;
+            this.btAddBus.UseVisualStyleBackColor = true;
+            this.btAddBus.Click += new System.EventHandler(this.btAddBus_Click);
             // 
             // rtxtObs
             // 
@@ -376,6 +378,9 @@
             // 
             // dtBus
             // 
+            this.dtBus.AllowUserToAddRows = false;
+            this.dtBus.AllowUserToDeleteRows = false;
+            this.dtBus.AllowUserToResizeRows = false;
             this.dtBus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtBus.Location = new System.Drawing.Point(221, 425);
             this.dtBus.Name = "dtBus";
@@ -401,6 +406,13 @@
             this.pictureBox1.TabIndex = 85;
             this.pictureBox1.TabStop = false;
             // 
+            // panelAddBus
+            // 
+            this.panelAddBus.Location = new System.Drawing.Point(266, 130);
+            this.panelAddBus.Name = "panelAddBus";
+            this.panelAddBus.Size = new System.Drawing.Size(315, 200);
+            this.panelAddBus.TabIndex = 103;
+            // 
             // informacoesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,8 +423,8 @@
             this.Controls.Add(this.txtMatricula);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.ckboxInactive);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btRemoveBus);
+            this.Controls.Add(this.btAddBus);
             this.Controls.Add(this.rtxtObs);
             this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.lbTelefone);
@@ -440,6 +452,7 @@
             this.Controls.Add(this.dtBus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panelAddBus);
             this.Name = "informacoesControl";
             this.Size = new System.Drawing.Size(779, 575);
             ((System.ComponentModel.ISupportInitialize)(this.dtBus)).EndInit();
@@ -457,8 +470,8 @@
         private System.Windows.Forms.TextBox txtMatricula;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox ckboxInactive;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btRemoveBus;
+        private System.Windows.Forms.Button btAddBus;
         private System.Windows.Forms.RichTextBox rtxtObs;
         private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Label lbTelefone;
@@ -486,5 +499,6 @@
         private System.Windows.Forms.DataGridView dtBus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panelAddBus;
     }
 }

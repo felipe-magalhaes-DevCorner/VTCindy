@@ -19,8 +19,8 @@ namespace ConnectionClass_SQL
             /////------------------------- AKI DIZEMOS AONDE ESTA O SQL-------------------------------
 
 
-            //_conn = new SqlConnection("Data Source=gmn-bancodados;Initial Catalog=valetransporte;Persist Security Info=True;User ID=sa;Password=n3fr0d@t@");
-            _conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VtCindy;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            _conn = new SqlConnection("Data Source=gmn-bancodados;Initial Catalog=valetransporte;Persist Security Info=True;User ID=sa;Password=n3fr0d@t@");
+            //_conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VtCindy;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             /////------------------------- ABRO A CONEXAO-------------------------------
             if (_conn.State == ConnectionState.Closed)
             {

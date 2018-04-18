@@ -70,9 +70,13 @@
     <Compile Include="Controls\Funcionarios\Data\Documentos\DocumentUploaderControl.Designer.cs">
       <DependentUpon>DocumentUploaderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Funcionarios\Data\FuncionarioCollectionPreview.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItem.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItemCollection.cs" />
+    <Compile Include="Controls\Funcionarios\Data\FuncionarioItemPreview.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionariosDataHandler.cs" />
+    <Compile Include="Controls\Funcionarios\Data\Onibus\onibusItem.cs" />
+    <Compile Include="Controls\Funcionarios\Data\Onibus\OnibusItemCollection.cs" />
     <Compile Include="Controls\Funcionarios\Funcionarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,6 +97,12 @@
     </Compile>
     <Compile Include="Controls\UploadControllers\UploaderControl.Designer.cs">
       <DependentUpon>UploaderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewControls\AddBussViewModel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ViewControls\AddBussViewModel.Designer.cs">
+      <DependentUpon>AddBussViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ViewControls\informacoesControl.cs">
       <SubType>UserControl</SubType>
@@ -126,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UploadControllers\UploaderControl.resx">
       <DependentUpon>UploaderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ViewControls\AddBussViewModel.resx">
+      <DependentUpon>AddBussViewModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ViewControls\informacoesControl.resx">
       <DependentUpon>informacoesControl.cs</DependentUpon>
