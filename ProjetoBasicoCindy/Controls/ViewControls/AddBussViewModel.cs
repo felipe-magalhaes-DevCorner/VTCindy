@@ -20,7 +20,7 @@ namespace ProjetoBasicoCindy
         private void btAddBus_Click(object sender, EventArgs e)
         {
             int id = 2;
-            var onibus = new OnibusItem(id, cbLinhas.Text.Trim(), cbCartao.Text.Trim(), richTXTobs.Text.Trim());
+            var onibus = new OnibusItem(id, cbLinhas.Text.Trim(), cbCartao.Text.Trim(),Convert.ToDouble(txtPreco.Text.Trim()));
         }
         private void LoadBasicInformation(OnibusItem _onibus)
         {

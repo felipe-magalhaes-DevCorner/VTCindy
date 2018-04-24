@@ -8,18 +8,29 @@ namespace ProjetoBasicoCindy
 {
     public class OnibusItem
     {
-        public OnibusItem(int idonibus, string linha, string cartao, string descricao)
+
+        
+        public int _idonibus { get; set; }
+        public string _linha { get; set; }
+        public string _cartao { get; set; }
+        public double _preco { get; set; }
+        
+
+        //contrutor
+        public OnibusItem(int idonibus, string linha, string cartao, double preco)
         {
             _idonibus = idonibus;
             _linha = linha;
             _cartao = cartao;
-            _descricao = descricao;
+            _preco = preco;
+
+
         }
 
-        private int _idonibus { get; set; }
-        private string _linha { get; set; }
-        private string _cartao { get; set; }
-        private string _descricao { get; set; }
+
+
+        
+
 
     }
 }

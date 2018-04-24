@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy
 {
-    public class FuncionarioCollectionPreview
+    public class FuncionarioCollectionPreview : List<OnibusItem>
     {
 
         private static List<FuncionarioItemPreview> FuncionarioColPreview { get; set; }

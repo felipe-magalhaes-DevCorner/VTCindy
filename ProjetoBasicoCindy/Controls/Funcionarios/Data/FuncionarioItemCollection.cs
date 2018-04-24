@@ -45,15 +45,22 @@ namespace ProjetoBasicoCindy
 
             return null;
         }
+        public FuncionarioItem GetFuncFromList(int _index)
+        {
+            FuncionarioItem currentFunc = FuncionarioCollection[_index];
+
+            return currentFunc;
+
+        }
 
 
-            
 
-            
 
-            
 
-        
+
+
+
+
 
 
     }

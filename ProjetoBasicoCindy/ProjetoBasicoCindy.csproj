@@ -74,7 +74,6 @@
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItem.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItemCollection.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItemPreview.cs" />
-    <Compile Include="Controls\Funcionarios\Data\FuncionariosDataHandler.cs" />
     <Compile Include="Controls\Funcionarios\Data\Onibus\onibusItem.cs" />
     <Compile Include="Controls\Funcionarios\Data\Onibus\OnibusItemCollection.cs" />
     <Compile Include="Controls\Funcionarios\Funcionarios.cs">
@@ -111,6 +110,7 @@
       <DependentUpon>informacoesControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBaseHandlers\DataBaseHandler.cs" />
+    <Compile Include="DataBaseHandlers\SQLToSharpHandler.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

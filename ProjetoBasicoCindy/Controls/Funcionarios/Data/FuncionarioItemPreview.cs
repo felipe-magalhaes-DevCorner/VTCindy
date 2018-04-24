@@ -10,7 +10,7 @@ namespace ProjetoBasicoCindy
     {
         public int _idfuncionario { get; set; }
         public string _name { get; set; }
-        public FuncionarioItemPreview(int idfuncionario, string name)
+        public FuncionarioItemPreview(int idfuncionario = 1, string name = null)
         {
             _idfuncionario = idfuncionario;
             _name = name;

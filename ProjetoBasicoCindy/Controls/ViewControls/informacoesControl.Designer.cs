@@ -34,7 +34,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtMatricula = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.ckboxInactive = new System.Windows.Forms.CheckBox();
+            this.checkInativo = new System.Windows.Forms.CheckBox();
             this.btRemoveBus = new System.Windows.Forms.Button();
             this.btAddBus = new System.Windows.Forms.Button();
             this.rtxtObs = new System.Windows.Forms.RichTextBox();
@@ -61,11 +61,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dtBus = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelAddBus = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.dtBus)).BeginInit();
+            this.listView1 = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,15 +112,15 @@
             this.label12.TabIndex = 101;
             this.label12.Text = "Mat:";
             // 
-            // ckboxInactive
+            // checkInativo
             // 
-            this.ckboxInactive.AutoSize = true;
-            this.ckboxInactive.Location = new System.Drawing.Point(678, 61);
-            this.ckboxInactive.Name = "ckboxInactive";
-            this.ckboxInactive.Size = new System.Drawing.Size(58, 17);
-            this.ckboxInactive.TabIndex = 100;
-            this.ckboxInactive.Text = "Inativo";
-            this.ckboxInactive.UseVisualStyleBackColor = true;
+            this.checkInativo.AutoSize = true;
+            this.checkInativo.Location = new System.Drawing.Point(678, 61);
+            this.checkInativo.Name = "checkInativo";
+            this.checkInativo.Size = new System.Drawing.Size(58, 17);
+            this.checkInativo.TabIndex = 100;
+            this.checkInativo.Text = "Inativo";
+            this.checkInativo.UseVisualStyleBackColor = true;
             // 
             // btRemoveBus
             // 
@@ -203,7 +202,7 @@
             // mskTel
             // 
             this.mskTel.Location = new System.Drawing.Point(266, 111);
-            this.mskTel.Mask = "(99) 99999-9999";
+            this.mskTel.Mask = "(999) 99999-9999";
             this.mskTel.Name = "mskTel";
             this.mskTel.Size = new System.Drawing.Size(100, 20);
             this.mskTel.TabIndex = 73;
@@ -376,17 +375,6 @@
             this.label2.TabIndex = 88;
             this.label2.Text = "CPF: ";
             // 
-            // dtBus
-            // 
-            this.dtBus.AllowUserToAddRows = false;
-            this.dtBus.AllowUserToDeleteRows = false;
-            this.dtBus.AllowUserToResizeRows = false;
-            this.dtBus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtBus.Location = new System.Drawing.Point(221, 425);
-            this.dtBus.Name = "dtBus";
-            this.dtBus.Size = new System.Drawing.Size(220, 116);
-            this.dtBus.TabIndex = 87;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -413,16 +401,26 @@
             this.panelAddBus.Size = new System.Drawing.Size(315, 200);
             this.panelAddBus.TabIndex = 103;
             // 
+            // listView1
+            // 
+            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView1.Location = new System.Drawing.Point(221, 425);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(271, 125);
+            this.listView1.TabIndex = 104;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // informacoesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.mskDataNasc);
             this.Controls.Add(this.txtIdentidade);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtMatricula);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.ckboxInactive);
+            this.Controls.Add(this.checkInativo);
             this.Controls.Add(this.btRemoveBus);
             this.Controls.Add(this.btAddBus);
             this.Controls.Add(this.rtxtObs);
@@ -449,13 +447,11 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dtBus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panelAddBus);
             this.Name = "informacoesControl";
             this.Size = new System.Drawing.Size(779, 575);
-            ((System.ComponentModel.ISupportInitialize)(this.dtBus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -469,7 +465,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtMatricula;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.CheckBox ckboxInactive;
+        private System.Windows.Forms.CheckBox checkInativo;
         private System.Windows.Forms.Button btRemoveBus;
         private System.Windows.Forms.Button btAddBus;
         private System.Windows.Forms.RichTextBox rtxtObs;
@@ -496,9 +492,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dtBus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelAddBus;
+        private System.Windows.Forms.ListView listView1;
     }
 }

@@ -38,9 +38,6 @@ namespace ProjetoBasicoCindy
 
             return _dt;
         }
-
-
-
         #endregion
 
 
@@ -49,7 +46,7 @@ namespace ProjetoBasicoCindy
         /// PEGA INFORMACOES DO FUNCIONARIO
         /// </summary>
         /// <returns>RETORNA DATATABLE COMPLETA FUNCIONARIOS</returns>
-        public DataTable GetFuncionariosList()
+        public DataTable GetFuncionariosToList()
         {
             DataTable _dt;
 
@@ -64,7 +61,32 @@ namespace ProjetoBasicoCindy
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(string.Format("Erro" + ex));
+                MessageBox.Show(string.Format("Erro" + ex));
+                throw;
+            }
+            finally
+            {
+                db.closeConnection();
+            }
+
+            return _dt;
+        }
+        public DataTable GetFuncionariosInfo(string _idfuncionario)
+        {
+            DataTable _dt;
+
+            var db = new ConnectionClass_SQL.ConnectionClass();
+            try
+            {
+                db.SqlConnection();
+                var query = "Select * from funcionario where funcionario.idfuncionario = '" + _idfuncionario + "'";
+                db.SqlQuery(query);
+                db.QueryRun();
+                _dt = db.QueryDT();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Erro" + ex));
                 throw;
             }
             finally
@@ -78,7 +100,8 @@ namespace ProjetoBasicoCindy
 
 
         #region sql onibus
-        public DataTable GetBus(string _matricula)
+
+        public DataTable GetBus(int _matricula)
         {
             DataTable _dtb;
 
@@ -87,7 +110,7 @@ namespace ProjetoBasicoCindy
             {
                 db2.SqlConnection();
                 var query = string.Format(
-                    "select RTRIM(onibus.linha) AS LINHA, RTRIM(onibus.cartao) AS CARTAO, RTRIM(onibus.preco) AS PRECO " +
+                    "select onibus.idonibus, RTRIM(onibus.linha) AS LINHA, RTRIM(onibus.cartao) AS CARTAO, RTRIM(onibus.preco) AS PRECO " +
                     "from onibus " +
                     "inner join onibuscliente on onibuscliente.idonibus = onibus.idonibus " +
                     "inner join funcionario on funcionario.idfuncionario = onibuscliente.idcliente " +
@@ -109,8 +132,6 @@ namespace ProjetoBasicoCindy
             return _dtb;
 
         }
-
-
         public void AddBus(string _matricula, string idlinha, string linha, string cartao, string descricao)
         {
             var db = new ConnectionClass_SQL.ConnectionClass();
@@ -140,11 +161,7 @@ namespace ProjetoBasicoCindy
         }
 
         #endregion
-        /// <summary>
-        /// PEGA TODAS AS INFORMACOES DE ONIBUS DA MATRICULA REQUERIDA
-        /// </summary>
-        /// <param name="_matricula"></param>
-        /// <returns>DATATABLE COM OS ONIBUS, CARTAO, E PRECOS DO MESMO</returns>
+
 
     }
 }

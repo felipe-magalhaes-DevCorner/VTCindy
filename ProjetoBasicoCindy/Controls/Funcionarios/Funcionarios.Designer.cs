@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Funcionarios));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabInfo = new System.Windows.Forms.TabPage();
+            this.panelInfo = new System.Windows.Forms.Panel();
             this.tabDoc = new System.Windows.Forms.TabPage();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -44,13 +46,11 @@
             this.DataVacina = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.proximaVacina = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabExames = new System.Windows.Forms.TabPage();
-            this.tabInfo = new System.Windows.Forms.TabPage();
-            this.panelInfo = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
+            this.tabInfo.SuspendLayout();
             this.tabDoc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabVacinas.SuspendLayout();
-            this.tabInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox1
@@ -77,6 +77,25 @@
             this.tabControl1.Size = new System.Drawing.Size(787, 601);
             this.tabControl1.TabIndex = 1;
             // 
+            // tabInfo
+            // 
+            this.tabInfo.Controls.Add(this.panelInfo);
+            this.tabInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabInfo.Name = "tabInfo";
+            this.tabInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabInfo.Size = new System.Drawing.Size(779, 575);
+            this.tabInfo.TabIndex = 0;
+            this.tabInfo.Text = "Informações";
+            this.tabInfo.UseVisualStyleBackColor = true;
+            // 
+            // panelInfo
+            // 
+            this.panelInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelInfo.Location = new System.Drawing.Point(3, 3);
+            this.panelInfo.Name = "panelInfo";
+            this.panelInfo.Size = new System.Drawing.Size(773, 569);
+            this.panelInfo.TabIndex = 0;
+            // 
             // tabDoc
             // 
             this.tabDoc.Controls.Add(this.pictureBox2);
@@ -90,7 +109,7 @@
             this.tabDoc.TabIndex = 3;
             this.tabDoc.Text = "Documentos";
             this.tabDoc.UseVisualStyleBackColor = true;
-            this.tabDoc.Click += new System.EventHandler(this.tabDoc_Click);
+            
             // 
             // pictureBox2
             // 
@@ -192,25 +211,6 @@
             this.tabExames.Text = "Exames";
             this.tabExames.UseVisualStyleBackColor = true;
             // 
-            // tabInfo
-            // 
-            this.tabInfo.Controls.Add(this.panelInfo);
-            this.tabInfo.Location = new System.Drawing.Point(4, 22);
-            this.tabInfo.Name = "tabInfo";
-            this.tabInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInfo.Size = new System.Drawing.Size(779, 575);
-            this.tabInfo.TabIndex = 0;
-            this.tabInfo.Text = "Informações";
-            this.tabInfo.UseVisualStyleBackColor = true;
-            // 
-            // panelInfo
-            // 
-            this.panelInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelInfo.Location = new System.Drawing.Point(3, 3);
-            this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(773, 569);
-            this.panelInfo.TabIndex = 0;
-            // 
             // Funcionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,10 +221,10 @@
             this.Size = new System.Drawing.Size(1082, 601);
             this.Load += new System.EventHandler(this.Funcionarios_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabInfo.ResumeLayout(false);
             this.tabDoc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabVacinas.ResumeLayout(false);
-            this.tabInfo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -234,7 +234,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabFerias;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        
         private System.Windows.Forms.TabPage tabVacinas;
         private System.Windows.Forms.TabPage tabExames;
         private System.Windows.Forms.ListView listView2;
