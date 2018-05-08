@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ButtonControl));
             this.btSave = new System.Windows.Forms.Button();
             this.btEdit = new System.Windows.Forms.Button();
-            this.btDelete = new System.Windows.Forms.Button();
             this.btlimpar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -68,22 +67,6 @@
             this.btEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btEdit.UseVisualStyleBackColor = true;
             // 
-            // btDelete
-            // 
-            this.btDelete.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btDelete.FlatAppearance.BorderSize = 0;
-            this.btDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btDelete.ForeColor = System.Drawing.Color.White;
-            this.btDelete.Image = ((System.Drawing.Image)(resources.GetObject("btDelete.Image")));
-            this.btDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btDelete.Location = new System.Drawing.Point(120, 0);
-            this.btDelete.Name = "btDelete";
-            this.btDelete.Size = new System.Drawing.Size(60, 60);
-            this.btDelete.TabIndex = 6;
-            this.btDelete.Text = "Excluir";
-            this.btDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btDelete.UseVisualStyleBackColor = true;
-            // 
             // btlimpar
             // 
             this.btlimpar.Dock = System.Windows.Forms.DockStyle.Left;
@@ -92,7 +75,7 @@
             this.btlimpar.ForeColor = System.Drawing.Color.White;
             this.btlimpar.Image = ((System.Drawing.Image)(resources.GetObject("btlimpar.Image")));
             this.btlimpar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btlimpar.Location = new System.Drawing.Point(180, 0);
+            this.btlimpar.Location = new System.Drawing.Point(120, 0);
             this.btlimpar.Name = "btlimpar";
             this.btlimpar.Size = new System.Drawing.Size(60, 60);
             this.btlimpar.TabIndex = 7;
@@ -106,11 +89,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.btlimpar);
-            this.Controls.Add(this.btDelete);
             this.Controls.Add(this.btEdit);
             this.Controls.Add(this.btSave);
             this.Name = "ButtonControl";
-            this.Size = new System.Drawing.Size(382, 60);
+            this.Size = new System.Drawing.Size(279, 60);
             this.ResumeLayout(false);
 
         }
@@ -119,7 +101,6 @@
 
         public System.Windows.Forms.Button btSave;
         public System.Windows.Forms.Button btEdit;
-        public System.Windows.Forms.Button btDelete;
         public System.Windows.Forms.Button btlimpar;
     }
 }

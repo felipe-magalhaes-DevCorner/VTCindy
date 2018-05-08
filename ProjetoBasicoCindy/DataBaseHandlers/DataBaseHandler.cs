@@ -162,6 +162,83 @@ namespace ProjetoBasicoCindy
 
         #endregion
 
+        #region EditHandler
+        /// <summary>
+        /// compares funcionario items for change
+        /// </summary>
+        /// <param name="_funcionario"></param>
+        /// <returns>returns true if anything changed, or false if nothing changed</returns>
+        public bool CompareFuncionario(FuncionarioItem _funcionario)
+        {
+            List<string> changedValues = new List<string>();
+            var objFuncCollection = new FuncionarioItemCollection();
+
+            List<FuncionarioItem> mainList = objFuncCollection.GetFuncionariosList();
+            foreach (FuncionarioItem func in mainList)
+            {
+                //searches funcionario collection for funcionario currently being edited.
+                if (func._idFuncionario == _funcionario._idFuncionario)
+                {
+                    //if found, compare all fields, text datetime and bool.
+                    //does not check documentos or onibus
+                    if ((func._name == _funcionario._name) & (func._funcPic == _funcionario._funcPic) & (func._cpf == _funcionario._cpf) & (func._identidade == _funcionario._identidade) & (func._sexo == _funcionario._sexo) & (func._dataNascimento == _funcionario._dataNascimento) & (func._rua == _funcionario._rua) & (func._numero == _funcionario._numero) & (func._complemento == _funcionario._complemento) & (func._bairro == _funcionario._bairro) & (func._observacao == _funcionario._observacao) & (func._cidade == _funcionario._cidade) & (func._estado == _funcionario._estado) & (func._cep == _funcionario._cep) & (func._telefone == _funcionario._telefone) & (func._inativo == _funcionario._inativo) & (CheckBus(func._onibus, _funcionario._onibus)))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            //for c# to stop complaining about return parameter.
+            return false;
+        }
+        /// <summary>
+        /// compares onibus item for changes on onibus collection
+        /// </summary>
+        /// <param name="_buscollectionOrigem"></param>
+        /// <param name="_buscollectionEdit"></param>
+        /// <returns>returns true if changed, or false if nothing changed.</returns>
+        private bool CheckBus (OnibusItemCollection _buscollectionOrigem, OnibusItemCollection _buscollectionEdit)
+        {
+            List<OnibusItem> originalBus = _buscollectionOrigem.GetFuncionarioOnibusCollection();
+            List<OnibusItem> EditBus = _buscollectionEdit.GetFuncionarioOnibusCollection();
+            if (originalBus.Count() == EditBus.Count())
+            {
+                //count elements is the same
+                for (int i = 0; i < originalBus.Count(); i++)
+                {
+                    //check all onibusitems in collection
+                    if ((originalBus[i]._linha == EditBus[i]._linha) & (originalBus[i]._preco == EditBus[i]._preco) & (originalBus[i]._cartao == EditBus[i]._cartao))
+                    {
+                        //passed testes, all busses linhas and prices are the same
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            //count is different
+            else
+            {
+                return false;
+            }
+            return false;
+        }
+
+
+
+        #endregion
+
 
     }
 }

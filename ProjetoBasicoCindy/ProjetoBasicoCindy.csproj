@@ -73,6 +73,7 @@
     <Compile Include="Controls\Funcionarios\Data\FuncionarioCollectionPreview.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItem.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItemCollection.cs" />
+    <Compile Include="Controls\Funcionarios\Data\FuncionarioItemEdit.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItemPreview.cs" />
     <Compile Include="Controls\Funcionarios\Data\Onibus\onibusItem.cs" />
     <Compile Include="Controls\Funcionarios\Data\Onibus\OnibusItemCollection.cs" />
@@ -156,6 +157,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

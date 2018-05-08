@@ -14,6 +14,8 @@ namespace ProjetoBasicoCindy
     {
         public static string matricula = "0";
         public DataTable _dtb = new DataTable();
+        public OnibusItem onibus = new OnibusItem();
+
         
         public informacoesControl(FuncionarioItem _funcionario = null)
         {
@@ -25,6 +27,7 @@ namespace ProjetoBasicoCindy
         #region UI Handlers
         private void OnibusTableHandler(List<OnibusItem> _onibus)
         {
+            listView1.Items.Clear();
             listView1.View = View.Details;
             listView1.Columns.Add("");
             listView1.Columns.Add("Linha");
@@ -36,7 +39,7 @@ namespace ProjetoBasicoCindy
                 ListViewItem lvi = new ListViewItem();
                 
                 lvi.SubItems.Add(item._linha.Trim());
-                lvi.SubItems.Add(item._preco.ToString().Trim());
+                lvi.SubItems.Add(String.Format("{0:0.00}", item._preco));
                 lvi.SubItems.Add(item._cartao.Trim());
                 listView1.Items.Add(lvi);
                 
@@ -56,12 +59,15 @@ namespace ProjetoBasicoCindy
         #endregion
 
 
-
+        #region MatiChange
         public void setMatricula(string _matricula)
         {
-            matricula = (Convert.ToInt32(_matricula) + 1).ToString() ;
+            matricula = (Convert.ToInt32(_matricula) + 1).ToString();
             txtMatricula.Text = matricula.ToString().Trim();
         }
+
+        #endregion
+        #region Load
         public void loadFunc(FuncionarioItem _funcionario = null)
         {
             if (_funcionario != null)
@@ -90,31 +96,59 @@ namespace ProjetoBasicoCindy
                 var Getonibus_list = new OnibusItemCollection();
                 List<OnibusItem> onibus_list = Getonibus_list.GetFuncionarioOnibusCollection();
                 OnibusTableHandler(onibus_list);
-
-
-
-
-
-
-
-
-                
             }
-            
-
-
-
-
         }
+        #endregion
 
+        #region addbuss
+        /// <summary>
+        /// handler for bus (onibus) handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void btAddBus_Click(object sender, EventArgs e)
         {
-
+            //opens pannel to add bus
             var objAddBus = new AddBussViewModel();
+            //pass parent panel to be brought to back later on close button
+            objAddBus.ParentPanel = panelAddBus;
+            objAddBus.ParentPanel.Visible = true;
+            //add to control
+
             panelAddBus.Controls.Add(objAddBus);
+            //bring panel to front
             panelAddBus.BringToFront();
+            var Getonibus_list = new OnibusItemCollection();
+
+            List<OnibusItem> onibus_list = Getonibus_list.GetFuncionarioOnibusCollection();
+
+            OnibusTableHandler(onibus_list);
+
+            //always good to dispose
+
         }
+        #endregion
+        #region testeshandler
+
+
+        private void AddVisibleChangedEventHandler()
+        {
+            panelAddBus.VisibleChanged += new EventHandler(this.Label_VisibleChanged);
+        }
+
+        private void Label_VisibleChanged(object sender, EventArgs e)
+        {
+            if (panelAddBus.Visible == false)
+            {
+                var Getonibus_list = new OnibusItemCollection();
+                OnibusTableHandler(Getonibus_list.GetFuncionarioOnibusCollection());
+            }
+            
+        }
+        #endregion
+
+
 
 
     }

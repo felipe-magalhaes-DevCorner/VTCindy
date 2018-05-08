@@ -67,11 +67,12 @@ namespace ProjetoBasicoCindy
                     var SQlDataHandler = new SQLToSharpHandler();
                     OnibusItemCollection funcList = new OnibusItemCollection();
                     funcList.SetList(SQlDataHandler.ConvertSQlToBusCollectionItem(SQLOnibusColletion.GetBus(matricula)));
-                        
+                    OnibusItemCollection teste = funcList.MakeListTOCollection();
+
 
 
                     //GENERATES FUNCIONARIO ITEM WITH ALL INFO COLLECTED                
-                    funcionario = new FuncionarioItem(matricula, picture, nome, cpf, identidade, sexo, DN, rua, numero, complemento, bairro, observacao, cidade, estado, cep, telefone, inativo, null, funcList);
+                    funcionario = new FuncionarioItem(matricula, picture, nome, cpf, identidade, sexo, DN, rua, numero, complemento, bairro, observacao, cidade, estado, cep, telefone, inativo, null, teste);
                     row++;
                 }
 
@@ -99,6 +100,36 @@ namespace ProjetoBasicoCindy
 
         }
         #endregion
+
+
+        #region Save Handlers
+
+        public void SaveToSQL(FuncionarioItem _funcionario)
+        {
+            //instance connection class
+            ConnectionClass_SQL.ConnectionClass db = new ConnectionClass_SQL.ConnectionClass();
+            //prepare query for sql iinjection
+            //string query = "insert"
+
+            db.SqlConnection();
+            //db.SqlQuery();
+
+
+
+
+
+        }
+
+
+
+
+        #endregion
+        #region equality controllers
+
+    
+
+        #endregion
+
 
 
     }

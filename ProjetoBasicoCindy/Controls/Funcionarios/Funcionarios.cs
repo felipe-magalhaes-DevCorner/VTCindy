@@ -188,7 +188,10 @@ namespace ProjetoBasicoCindy
             if (listBox1.SelectedIndex >= 0)
             {
                 FuncionarioItem _Funcionario = objHandler.ConvertoFromSqlTo_1_FuncionarioItem(objSQL.GetFuncionariosInfo(previewList[listBox1.SelectedIndex]._idfuncionario.ToString()));
-                var objInformacoes = new informacoesControl(_Funcionario);
+                var FuncionarioSelected = new FuncionarioItemEdit();
+                FuncionarioSelected.SetFuncionarioEdit(_Funcionario);
+                var objInformacoes = new informacoesControl(FuncionarioSelected.GetFuncionarioEdit());
+                
                 panelInfo.Controls.Add(objInformacoes);
             }
         }

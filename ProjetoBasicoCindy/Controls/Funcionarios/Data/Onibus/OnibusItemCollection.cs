@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy
 {
-    public class OnibusItemCollection
+    public class OnibusItemCollection : List<OnibusItem>
     {
         private static List<OnibusItem> OnibusCollection { get; set; }
 
@@ -14,6 +14,15 @@ namespace ProjetoBasicoCindy
         {
             OnibusCollection = _list;
         }
+
+        public int COuntList()
+        {
+            return OnibusCollection.Count();
+        }
+
+
+
+
         public void AddBus(OnibusItem _funcionario)
         {
 
@@ -27,6 +36,22 @@ namespace ProjetoBasicoCindy
         {
             List<OnibusItem> list = OnibusCollection;
             return list;
+        }
+        public OnibusItemCollection GetFuncionarioOnibusCollectionToList()
+        {
+
+            return this;
+        }
+        public OnibusItemCollection MakeListTOCollection()
+        {
+            OnibusItemCollection collection = new OnibusItemCollection();
+            foreach (OnibusItem onibus in OnibusCollection)
+            {
+                collection.Add(onibus);
+
+            }
+            return collection;
+
         }
     }
 }

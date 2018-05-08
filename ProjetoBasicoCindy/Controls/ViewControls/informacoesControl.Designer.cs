@@ -65,7 +65,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelAddBus = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mskDataNasc
@@ -127,7 +129,7 @@
             this.btRemoveBus.FlatAppearance.BorderSize = 0;
             this.btRemoveBus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btRemoveBus.Image = ((System.Drawing.Image)(resources.GetObject("btRemoveBus.Image")));
-            this.btRemoveBus.Location = new System.Drawing.Point(459, 451);
+            this.btRemoveBus.Location = new System.Drawing.Point(246, 48);
             this.btRemoveBus.Name = "btRemoveBus";
             this.btRemoveBus.Size = new System.Drawing.Size(20, 20);
             this.btRemoveBus.TabIndex = 84;
@@ -138,7 +140,7 @@
             this.btAddBus.FlatAppearance.BorderSize = 0;
             this.btAddBus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btAddBus.Image = ((System.Drawing.Image)(resources.GetObject("btAddBus.Image")));
-            this.btAddBus.Location = new System.Drawing.Point(459, 425);
+            this.btAddBus.Location = new System.Drawing.Point(246, 22);
             this.btAddBus.Name = "btAddBus";
             this.btAddBus.Size = new System.Drawing.Size(20, 20);
             this.btAddBus.TabIndex = 83;
@@ -400,29 +402,40 @@
             this.panelAddBus.Name = "panelAddBus";
             this.panelAddBus.Size = new System.Drawing.Size(315, 200);
             this.panelAddBus.TabIndex = 103;
+            this.panelAddBus.VisibleChanged += new System.EventHandler(this.Label_VisibleChanged);
             // 
             // listView1
             // 
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.Location = new System.Drawing.Point(221, 425);
+            this.listView1.Location = new System.Drawing.Point(6, 21);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(271, 125);
+            this.listView1.Size = new System.Drawing.Size(232, 125);
             this.listView1.TabIndex = 104;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.listView1);
+            this.groupBox1.Controls.Add(this.btRemoveBus);
+            this.groupBox1.Controls.Add(this.btAddBus);
+            this.groupBox1.Location = new System.Drawing.Point(222, 395);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(284, 152);
+            this.groupBox1.TabIndex = 105;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Onibus";
             // 
             // informacoesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.mskDataNasc);
             this.Controls.Add(this.txtIdentidade);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtMatricula);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.checkInativo);
-            this.Controls.Add(this.btRemoveBus);
-            this.Controls.Add(this.btAddBus);
             this.Controls.Add(this.rtxtObs);
             this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.lbTelefone);
@@ -453,6 +466,7 @@
             this.Name = "informacoesControl";
             this.Size = new System.Drawing.Size(779, 575);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -496,5 +510,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelAddBus;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
