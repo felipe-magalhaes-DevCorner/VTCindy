@@ -10,7 +10,7 @@ namespace ProjetoBasicoCindy
 {
     public class DocumentosPictureItem
     {
-        
+
         /// <summary>
         /// list of documents, 
         /// type of document _nomeDoc
@@ -19,16 +19,18 @@ namespace ProjetoBasicoCindy
         /// 
         /// 
         /// </summary>
-        public float _matricula { get; set; }
-        List<Image> _documentos = new List<Image>();
-        
-        public int _paginas { get; set; }
 
-        public DocumentosPictureItem(float matricula, List<Image> documentos, int paginas)
+        Image _documentos { get; set; }
+        public int _tipo { get; set; }
+
+        public int _pagina { get; set; }
+
+        public DocumentosPictureItem(Image documentos,int  tipo, int pagina)
         {
-            _matricula = matricula;
+            
             _documentos = documentos;
-            _paginas = paginas;
+            _tipo = tipo;
+            _pagina = pagina;
         }
     }
 }

@@ -7,22 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace ProjetoBasicoCindy
 {
     public partial class informacoesControl : UserControl
     {
+        #region Variables
         public static string matricula = "0";
         public DataTable _dtb = new DataTable();
         public OnibusItem onibus = new OnibusItem();
+        private int buslistviewIndexHelper = 0;
+        #endregion
 
-        
+        #region Constructor
         public informacoesControl(FuncionarioItem _funcionario = null)
         {
             InitializeComponent();
-            
+
             loadFunc(_funcionario);
         }
+
+        #endregion
 
         #region UI Handlers
         private void OnibusTableHandler(List<OnibusItem> _onibus)
@@ -58,7 +64,6 @@ namespace ProjetoBasicoCindy
 
         #endregion
 
-
         #region MatiChange
         public void setMatricula(string _matricula)
         {
@@ -67,6 +72,7 @@ namespace ProjetoBasicoCindy
         }
 
         #endregion
+
         #region Load
         public void loadFunc(FuncionarioItem _funcionario = null)
         {
@@ -74,6 +80,11 @@ namespace ProjetoBasicoCindy
             {
                 matricula = _funcionario._idFuncionario.ToString().Trim();
                 txtMatricula.Text = matricula;
+                if (_funcionario._funcPic != null)
+                {
+                    pictureBox1.Image = _funcionario._funcPic;
+
+                }
                 txtIdentidade.Text = _funcionario._identidade.ToString().Trim();
                 mskTel.Text = _funcionario._telefone.ToString().Trim();
                 txtnome.Text = _funcionario._name.ToString().Trim();
@@ -89,9 +100,14 @@ namespace ProjetoBasicoCindy
                 txtcidade.Text = _funcionario._cidade.ToString().Trim();
                 cbEstado.Text = _funcionario._estado.ToString().Trim();
                 mskcep.Text = _funcionario._cep.ToString().Trim();
+                CultureInfo cult = new CultureInfo("pt-BR");
+                mskAdmissao.Text = _funcionario._adimissao.ToString("dd/MM/yyyy", cult);
+
                 if (_funcionario._inativo == true)
                 {
                     checkInativo.Checked = true;
+                    
+                    mskInativoData.Text = _funcionario._inativacao.ToString("dd/MM/yyyy", cult);
                 }
                 var Getonibus_list = new OnibusItemCollection();
                 List<OnibusItem> onibus_list = Getonibus_list.GetFuncionarioOnibusCollection();
@@ -129,6 +145,54 @@ namespace ProjetoBasicoCindy
 
         }
         #endregion
+
+        #region RemoveBus
+        private void btRemoveBus_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0 )
+            {
+                var _getFun = new FuncionarioItemEdit();
+                var _funcionario = _getFun.GetFuncionarioEdit();
+                var GetBus = new OnibusItemCollection();
+                GetBus.SetList(_funcionario._onibus);
+                var listonibusEdit = new List<OnibusItem>();
+                var testelist = new List<OnibusItem>();
+                for (int i = 0; i < listView1.SelectedItems.Count; i++)
+                {
+                    ListViewItem _onibusItem = listView1.SelectedItems[i];
+                    var onibusTodelete = new OnibusItem(buslistviewIndexHelper, _onibusItem.SubItems[0].Text, _onibusItem.SubItems[1].Text,Convert.ToDouble( _onibusItem.SubItems[2].Text));
+                    listonibusEdit.Add(onibusTodelete);
+                }
+                foreach (OnibusItem onibusItem in listonibusEdit)
+                {
+                    testelist = GetBus.GetFuncionarioOnibusCollection();
+                    GetBus.RemoveBusbyID(0);
+                    testelist = GetBus.GetFuncionarioOnibusCollection();
+
+                }
+
+                //final list for visualization testes
+                listonibusEdit = GetBus.GetFuncionarioOnibusCollection();
+                OnibusTableHandler(listonibusEdit);
+                _funcionario._onibus = GetBus.MakeListTOCollection();
+                _getFun.SetFuncionarioEdit(_funcionario);
+
+
+
+
+                //OnibusItem onibus = new OnibusItem(listView1.SelectedItems[0]);
+
+
+            }
+
+
+
+
+
+
+        }
+        #endregion
+
         #region testeshandler
 
 
@@ -146,6 +210,34 @@ namespace ProjetoBasicoCindy
             }
             
         }
+
+
+
+
+        #endregion
+        
+        #region HelperClasses
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            buslistviewIndexHelper = e.ItemIndex;
+        }
+        private void checkInativo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkInativo.Checked == true)
+            {
+                lbinativo.Visible = true;
+                mskInativoData.Visible = true;
+            }
+            else
+            {
+                lbinativo.Visible = false;
+                mskInativoData.Visible = false;
+
+            }
+        }
+
+
+
         #endregion
 
 

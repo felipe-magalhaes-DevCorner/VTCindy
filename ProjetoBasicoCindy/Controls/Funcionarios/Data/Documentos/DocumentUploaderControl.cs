@@ -27,18 +27,18 @@ namespace ProjetoBasicoCindy
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 filename = openFileDialog1.FileName;
-                LoadImage(filename);
+                LoadImage(filename, 1, 1);
 
             }
         }
-        private void LoadImage(string file)
+        private void LoadImage(string file, int tipo, int pagina)
         {
             
             
             ImageList.Add(Image.FromFile(file));
             pictureBox1.Image = ImageList[ImageList.Count - 1];
 
-            DocumentosPictureItem documentosPictureItem = new DocumentosPictureItem(_matricula, ImageList, ImageList.Count);
+            DocumentosPictureItem documentosPictureItem = new DocumentosPictureItem(ImageList[0], tipo, pagina);
             
             
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;

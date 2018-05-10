@@ -124,7 +124,8 @@ namespace ProjetoBasicoCindy
         /// <param name="e"></param>
         private void Funcionarios_Load(object sender, EventArgs e)
         {
-            
+            var LoadBankInformaacoaoControle = new informacoesControl();
+            panelInfo.Controls.Add(LoadBankInformaacoaoControle);
             //DataTable _dt;
 
             //_dt = DataSQL.GetFuncionariosToList();
@@ -182,18 +183,34 @@ namespace ProjetoBasicoCindy
         #region ListView click
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadSelectedFuncionarioInfo();
+
+        }
+        private void LoadSelectedFuncDocs()
+        {
+            var objSQL = new DataBaseHandler();
+            var objHandler = new SQLToSharpHandler();
+
+
+
+        }
+
+        private void LoadSelectedFuncionarioInfo()
+        {
             var objSQL = new DataBaseHandler();
             var objHandler = new SQLToSharpHandler();
             //buscar informacoes do funcionario
             if (listBox1.SelectedIndex >= 0)
             {
                 FuncionarioItem _Funcionario = objHandler.ConvertoFromSqlTo_1_FuncionarioItem(objSQL.GetFuncionariosInfo(previewList[listBox1.SelectedIndex]._idfuncionario.ToString()));
+                objSQL.GetDocuments(_Funcionario._idFuncionario);
                 var FuncionarioSelected = new FuncionarioItemEdit();
                 FuncionarioSelected.SetFuncionarioEdit(_Funcionario);
                 var objInformacoes = new informacoesControl(FuncionarioSelected.GetFuncionarioEdit());
-                
+                panelInfo.Controls.Clear();
                 panelInfo.Controls.Add(objInformacoes);
             }
+            
         }
         #endregion
 

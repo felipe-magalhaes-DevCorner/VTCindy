@@ -162,6 +162,43 @@ namespace ProjetoBasicoCindy
 
         #endregion
 
+        #region SQL Documentos
+        public DataTable GetDocuments(int _matricula)
+        {
+            DataTable _dt = new DataTable();
+            var db2 = new ConnectionClass_SQL.ConnectionClass();
+            try
+            {
+                db2.SqlConnection();
+                var query = string.Format(
+                    "select documento.image, documento.pagina, tipo_documento.id " +
+                    "from documento " +
+                    "inner join documento_funcionario on documento_funcionario.iddoc = documento.ID " +
+                    "inner join tipo_documento on tipo_documento.id = documento_funcionario.tipo " +
+                     "where documento_funcionario.idfunc = '{0}'", _matricula);
+
+                db2.SqlQuery(query);
+                db2.QueryRun();
+                _dt = db2.QueryDT();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                db2.closeConnection();
+            }
+
+
+
+
+            return _dt;
+        }
+        #endregion
+
         #region EditHandler
         /// <summary>
         /// compares funcionario items for change

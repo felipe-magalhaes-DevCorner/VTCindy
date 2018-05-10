@@ -49,6 +49,8 @@ namespace ProjetoBasicoCindy
             ParentPanel.Visible = false;
             ParentPanel.SendToBack();
             ParentPanel.Controls.Clear();
+            int[] a = new int[5];
+            
 
 
 

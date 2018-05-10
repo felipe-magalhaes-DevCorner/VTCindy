@@ -32,6 +32,10 @@ namespace ProjetoBasicoCindy
         {
             OnibusCollection.Remove(_funcionario);
         }
+        public void RemoveBusbyID(int _idList)
+        {
+            OnibusCollection.RemoveAt(_idList);
+        }
         public List<OnibusItem> GetFuncionarioOnibusCollection()
         {
             List<OnibusItem> list = OnibusCollection;

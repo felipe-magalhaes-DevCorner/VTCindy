@@ -66,6 +66,10 @@
             this.panelAddBus = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mskAdmissao = new System.Windows.Forms.MaskedTextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.mskInativoData = new System.Windows.Forms.MaskedTextBox();
+            this.lbinativo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +85,7 @@
             // txtIdentidade
             // 
             this.txtIdentidade.ForeColor = System.Drawing.Color.Red;
-            this.txtIdentidade.Location = new System.Drawing.Point(502, 34);
+            this.txtIdentidade.Location = new System.Drawing.Point(502, 8);
             this.txtIdentidade.Name = "txtIdentidade";
             this.txtIdentidade.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtIdentidade.Size = new System.Drawing.Size(156, 20);
@@ -90,7 +94,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(445, 37);
+            this.label13.Location = new System.Drawing.Point(445, 11);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(60, 13);
             this.label13.TabIndex = 102;
@@ -99,7 +103,7 @@
             // txtMatricula
             // 
             this.txtMatricula.ForeColor = System.Drawing.Color.Red;
-            this.txtMatricula.Location = new System.Drawing.Point(266, 34);
+            this.txtMatricula.Location = new System.Drawing.Point(266, 8);
             this.txtMatricula.Name = "txtMatricula";
             this.txtMatricula.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtMatricula.Size = new System.Drawing.Size(100, 20);
@@ -108,7 +112,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(236, 37);
+            this.label12.Location = new System.Drawing.Point(236, 11);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 13);
             this.label12.TabIndex = 101;
@@ -117,12 +121,13 @@
             // checkInativo
             // 
             this.checkInativo.AutoSize = true;
-            this.checkInativo.Location = new System.Drawing.Point(678, 61);
+            this.checkInativo.Location = new System.Drawing.Point(444, 35);
             this.checkInativo.Name = "checkInativo";
             this.checkInativo.Size = new System.Drawing.Size(58, 17);
             this.checkInativo.TabIndex = 100;
             this.checkInativo.Text = "Inativo";
             this.checkInativo.UseVisualStyleBackColor = true;
+            this.checkInativo.CheckedChanged += new System.EventHandler(this.checkInativo_CheckedChanged);
             // 
             // btRemoveBus
             // 
@@ -134,6 +139,7 @@
             this.btRemoveBus.Size = new System.Drawing.Size(20, 20);
             this.btRemoveBus.TabIndex = 84;
             this.btRemoveBus.UseVisualStyleBackColor = true;
+            this.btRemoveBus.Click += new System.EventHandler(this.btRemoveBus_Click);
             // 
             // btAddBus
             // 
@@ -406,12 +412,15 @@
             // 
             // listView1
             // 
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.Location = new System.Drawing.Point(6, 21);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(232, 125);
             this.listView1.TabIndex = 104;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             // 
             // groupBox1
             // 
@@ -425,10 +434,50 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Onibus";
             // 
+            // mskAdmissao
+            // 
+            this.mskAdmissao.Location = new System.Drawing.Point(266, 33);
+            this.mskAdmissao.Mask = "99/99/9999";
+            this.mskAdmissao.Name = "mskAdmissao";
+            this.mskAdmissao.Size = new System.Drawing.Size(78, 20);
+            this.mskAdmissao.TabIndex = 106;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(212, 37);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(55, 13);
+            this.label14.TabIndex = 107;
+            this.label14.Text = "Admissão:";
+            // 
+            // mskInativoData
+            // 
+            this.mskInativoData.Location = new System.Drawing.Point(580, 34);
+            this.mskInativoData.Mask = "99/99/9999";
+            this.mskInativoData.Name = "mskInativoData";
+            this.mskInativoData.Size = new System.Drawing.Size(78, 20);
+            this.mskInativoData.TabIndex = 108;
+            this.mskInativoData.Visible = false;
+            // 
+            // lbinativo
+            // 
+            this.lbinativo.AutoSize = true;
+            this.lbinativo.Location = new System.Drawing.Point(518, 37);
+            this.lbinativo.Name = "lbinativo";
+            this.lbinativo.Size = new System.Drawing.Size(60, 13);
+            this.lbinativo.TabIndex = 109;
+            this.lbinativo.Text = "Inativação:";
+            this.lbinativo.Visible = false;            
+            // 
             // informacoesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.mskInativoData);
+            this.Controls.Add(this.lbinativo);
+            this.Controls.Add(this.mskAdmissao);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.mskDataNasc);
             this.Controls.Add(this.txtIdentidade);
@@ -511,5 +560,9 @@
         private System.Windows.Forms.Panel panelAddBus;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.MaskedTextBox mskAdmissao;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.MaskedTextBox mskInativoData;
+        private System.Windows.Forms.Label lbinativo;
     }
 }

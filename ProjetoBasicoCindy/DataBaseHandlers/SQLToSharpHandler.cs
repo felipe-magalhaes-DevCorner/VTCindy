@@ -63,6 +63,18 @@ namespace ProjetoBasicoCindy
                     string observacao = _dt.Rows[row][14].ToString();
                     bool inativo = Convert.ToBoolean(_dt.Rows[row][15]);
                     string telefone = _dt.Rows[row][16].ToString();
+                    DateTime admissao = Convert.ToDateTime(_dt.Rows[row][17]);
+                    CultureInfo cult = new CultureInfo("pt-BR");
+                    DateTime inativacao;
+                    if (Convert.IsDBNull(_dt.Rows[row][18]) == false)
+                    {
+                         inativacao = Convert.ToDateTime(_dt.Rows[row][18], cult);
+                    }
+                    else
+                    {
+                         inativacao = Convert.ToDateTime( "01/01/1900", cult);
+                    }
+                    
                     var SQLOnibusColletion = new DataBaseHandler();
                     var SQlDataHandler = new SQLToSharpHandler();
                     OnibusItemCollection funcList = new OnibusItemCollection();
@@ -72,7 +84,7 @@ namespace ProjetoBasicoCindy
 
 
                     //GENERATES FUNCIONARIO ITEM WITH ALL INFO COLLECTED                
-                    funcionario = new FuncionarioItem(matricula, picture, nome, cpf, identidade, sexo, DN, rua, numero, complemento, bairro, observacao, cidade, estado, cep, telefone, inativo, null, teste);
+                    funcionario = new FuncionarioItem(matricula, picture, nome, cpf, identidade, sexo, DN, rua, numero, complemento, bairro, observacao, cidade, estado, cep, telefone, inativo, admissao, inativacao, null, teste);
                     row++;
                 }
 
@@ -91,14 +103,55 @@ namespace ProjetoBasicoCindy
             var ListOnibus = new List<OnibusItem>();
             foreach (DataRow item in _dt.Rows)
             {
-                
-                var onibusItem = new OnibusItem(Convert.ToInt32( _dt.Rows[row][0].ToString()), _dt.Rows[row][1].ToString(), _dt.Rows[row][2].ToString(), Convert.ToDouble( _dt.Rows[row][3], new CultureInfo("en-US")));
+
+                var onibusItem = new OnibusItem(Convert.ToInt32(_dt.Rows[row][0].ToString()), _dt.Rows[row][1].ToString(), _dt.Rows[row][2].ToString(), Convert.ToDouble(_dt.Rows[row][3], new CultureInfo("en-US")));
                 ListOnibus.Add(onibusItem);
             }
 
             return ListOnibus;
 
         }
+        #endregion
+        #region Documento Handlers
+        public List<DocumentosPictureItem> ConvertSQlToDOCCollectionItem(DataTable _dt)
+        {
+
+            int row = 0;
+            var listDoc = new List<DocumentosPictureItem>();
+            foreach (DataRow item in _dt.Rows)
+            {
+                Image picture = null;
+
+                if (Convert.IsDBNull(_dt.Rows[row][0]) == false)
+                {
+                    Byte[] data = new Byte[0];
+                    data = (Byte[])(_dt.Rows[row][0]);
+                    MemoryStream mem = new MemoryStream(data);
+                    picture = Image.FromStream(mem);
+                }
+                int pagina = Convert.ToInt32(_dt.Rows[row][1]);
+                int tipoDoc = Convert.ToInt32(_dt.Rows[row][2]);
+
+
+
+
+
+
+                var DocItem = new DocumentosPictureItem(picture, tipoDoc, pagina);
+                listDoc.Add(DocItem);
+            }
+
+            return listDoc;
+
+        }
+
+
+
+
+
+
+
+
         #endregion
 
 
@@ -109,21 +162,13 @@ namespace ProjetoBasicoCindy
             //instance connection class
             ConnectionClass_SQL.ConnectionClass db = new ConnectionClass_SQL.ConnectionClass();
             //prepare query for sql iinjection
-            //string query = "insert"
-
-            db.SqlConnection();
-            //db.SqlQuery();
-
-
-
-
-
         }
 
 
 
 
         #endregion
+
         #region equality controllers
 
     
