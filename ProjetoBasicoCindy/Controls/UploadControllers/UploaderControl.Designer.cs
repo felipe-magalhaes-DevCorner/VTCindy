@@ -69,7 +69,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(622, 3);
-            this.button5.Name = "button5";
+            this.button5.Name = "button5"; 
             this.button5.Size = new System.Drawing.Size(20, 20);
             this.button5.TabIndex = 1;
             this.button5.Text = "X";

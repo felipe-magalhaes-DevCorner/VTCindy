@@ -17,11 +17,13 @@ namespace ProjetoBasicoCindy
         //variables, main funcionarioitem collection
         #region variables
         //lista principal funcionarios
-
+        AutoCompleteStringCollection source = new AutoCompleteStringCollection();
         public List<FuncionarioItem> ListOfFuncionarios = null;
         //variable de para uma unica conexcao sql por funcionario.
         DataBaseHandler DataSQL = new DataBaseHandler();
         //variavel auxiliar para controle de ultimo numero de matricula funcionario;
+
+        public Control buttonCOntrol { get; set; }
         
 
 
@@ -214,5 +216,129 @@ namespace ProjetoBasicoCindy
         }
         #endregion
 
+        private void txFuncNameFilter_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                listBox1.Items.Clear();
+                txFuncNameFilter.AutoCompleteMode = AutoCompleteMode.Suggest;
+                source.Clear();
+                string filter = txFuncNameFilter.Text;
+
+
+
+
+                foreach (FuncionarioItemPreview _funcionario in previewList)
+                {
+                    if (_funcionario._name.ToLower().Contains((filter).ToLower()))
+                    {
+                        source.Add(_funcionario._name);
+                        listBox1.Items.Add(_funcionario._name);
+                    }
+
+
+
+
+                }
+
+                txFuncNameFilter.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                txFuncNameFilter.AutoCompleteCustomSource = source;
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+        public string RemoverAcentos(string texto)
+        {
+            if (string.IsNullOrEmpty(texto))
+                return String.Empty;
+
+            byte[] bytes = System.Text.Encoding.GetEncoding("iso-8859-8").GetBytes(texto);
+            return System.Text.Encoding.UTF8.GetString(bytes);
+        }
+
+        /// <summary>
+        /// Method to press enter and load funcionario info from textbox filter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txFuncNameFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            //key enter event
+            if (e.KeyCode == Keys.Enter)
+            {
+                //checks if the listview has the name on textbox
+                if (listBox1.Items.Count > 0)
+                {
+                    int index = listBox1.FindStringExact(txFuncNameFilter.Text);
+                    listBox1.SelectedIndex = index;
+                }
+                //display message case it doesnt
+                else
+                {
+                    MessageBox.Show("Nao existe tal funcionario");
+                }
+                
+
+            }
+
+        }
+
+
+        //TAB CONTROLLERS FOR HANDLERS OF TAB FUNCIONARIO
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItems.Count > 0)
+            {
+                switch (tabControl1.SelectedIndex)
+                {
+                    //INFORMATION
+                    case 0:
+
+                        break;
+
+                    //DOCUMENTOS
+                    case 1:
+
+                        break;
+
+                    //FERIAS
+                    case 2:
+
+                        Ferias.FeriasHandler objFerias = new Ferias.FeriasHandler(flowFerias);
+
+
+                        break;
+                    //VACINA
+                    case 3:
+                        Vacina.VaccineHandler objVacina = new Vacina.VaccineHandler(flowPVacina);
+                        //                    objVacina.vacinaPanel = flowPVacina;
+
+
+
+
+
+                        break;
+                    //EXAMES
+                    case 4:
+
+                        break;
+                    //FERIAS
+
+
+                    default:
+                        break;
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("è nescessario escolher 1 funcionario antes");
+            }
+            
+        }
     }
 }

@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Controls\ButtonArea\ButtonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -61,7 +60,11 @@
     <Compile Include="Controls\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Ferias\FeriasColletionItem.cs" />
+    <Compile Include="Controls\Ferias\FeriasHandler.cs" />
+    <Compile Include="Controls\Ferias\FeriasItem.cs" />
     <Compile Include="Controls\Funcionarios\ContentEditors\SaveContentFuncionario.cs" />
+    <Compile Include="Controls\Funcionarios\Data\Documentos\DocExistsRelationControl.cs" />
     <Compile Include="Controls\Funcionarios\Data\Documentos\DocumentosPictureCollection.cs" />
     <Compile Include="Controls\Funcionarios\Data\Documentos\DocumentosPictureItem.cs" />
     <Compile Include="Controls\Funcionarios\Data\Documentos\DocumentUploaderControl.cs">
@@ -70,6 +73,7 @@
     <Compile Include="Controls\Funcionarios\Data\Documentos\DocumentUploaderControl.Designer.cs">
       <DependentUpon>DocumentUploaderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Funcionarios\Data\Documentos\FuncDocumentList.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioCollectionPreview.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItem.cs" />
     <Compile Include="Controls\Funcionarios\Data\FuncionarioItemCollection.cs" />
@@ -98,6 +102,10 @@
     <Compile Include="Controls\UploadControllers\UploaderControl.Designer.cs">
       <DependentUpon>UploaderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Vacina\Data\VaccineHandler.cs" />
+    <Compile Include="Controls\Vacina\Data\Vacina.cs" />
+    <Compile Include="Controls\Vacina\Data\FuncionarioVaccinaColletion.cs" />
+    <Compile Include="Controls\Vacina\Data\VacinaInfo.cs" />
     <Compile Include="Controls\ViewControls\AddBussViewModel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,11 +186,17 @@
     <Content Include="Imagens\pencil.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Calendar\MonthCalendar.csproj">
+      <Project>{898ecb12-d464-4514-ae2e-45fe430fe04e}</Project>
+      <Name>MonthCalendar</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConnectionClass SQL\ConnectionClass SQL.csproj">
       <Project>{4c4d5025-dfb0-4924-a47e-d8c6dde79dca}</Project>
       <Name>ConnectionClass SQL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controls\ViewControls\Vacinas\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

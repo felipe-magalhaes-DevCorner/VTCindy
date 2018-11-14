@@ -30,8 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ButtonControl));
             this.btSave = new System.Windows.Forms.Button();
-            this.btEdit = new System.Windows.Forms.Button();
             this.btlimpar = new System.Windows.Forms.Button();
+            this.btEdit = new System.Windows.Forms.Button();
+            this.btNewFunc = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btSave
@@ -51,22 +52,6 @@
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
-            // btEdit
-            // 
-            this.btEdit.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btEdit.FlatAppearance.BorderSize = 0;
-            this.btEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btEdit.ForeColor = System.Drawing.Color.White;
-            this.btEdit.Image = ((System.Drawing.Image)(resources.GetObject("btEdit.Image")));
-            this.btEdit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btEdit.Location = new System.Drawing.Point(60, 0);
-            this.btEdit.Name = "btEdit";
-            this.btEdit.Size = new System.Drawing.Size(60, 60);
-            this.btEdit.TabIndex = 5;
-            this.btEdit.Text = "Editar";
-            this.btEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btEdit.UseVisualStyleBackColor = true;
-            // 
             // btlimpar
             // 
             this.btlimpar.Dock = System.Windows.Forms.DockStyle.Left;
@@ -75,21 +60,55 @@
             this.btlimpar.ForeColor = System.Drawing.Color.White;
             this.btlimpar.Image = ((System.Drawing.Image)(resources.GetObject("btlimpar.Image")));
             this.btlimpar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btlimpar.Location = new System.Drawing.Point(120, 0);
+            this.btlimpar.Location = new System.Drawing.Point(60, 0);
             this.btlimpar.Name = "btlimpar";
             this.btlimpar.Size = new System.Drawing.Size(60, 60);
-            this.btlimpar.TabIndex = 7;
+            this.btlimpar.TabIndex = 10;
             this.btlimpar.Text = "Limpar";
             this.btlimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btlimpar.UseVisualStyleBackColor = true;
+            // 
+            // btEdit
+            // 
+            this.btEdit.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btEdit.FlatAppearance.BorderSize = 0;
+            this.btEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btEdit.ForeColor = System.Drawing.Color.White;
+            this.btEdit.Image = ((System.Drawing.Image)(resources.GetObject("btEdit.Image")));
+            this.btEdit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btEdit.Location = new System.Drawing.Point(120, 0);
+            this.btEdit.Name = "btEdit";
+            this.btEdit.Size = new System.Drawing.Size(60, 60);
+            this.btEdit.TabIndex = 11;
+            this.btEdit.Text = "Editar";
+            this.btEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btEdit.UseVisualStyleBackColor = true;
+            // 
+            // btNewFunc
+            // 
+            this.btNewFunc.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btNewFunc.FlatAppearance.BorderSize = 0;
+            this.btNewFunc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btNewFunc.ForeColor = System.Drawing.Color.White;
+            this.btNewFunc.Image = ((System.Drawing.Image)(resources.GetObject("btNewFunc.Image")));
+            this.btNewFunc.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btNewFunc.Location = new System.Drawing.Point(180, 0);
+            this.btNewFunc.Name = "btNewFunc";
+            this.btNewFunc.Size = new System.Drawing.Size(60, 60);
+            this.btNewFunc.TabIndex = 12;
+            this.btNewFunc.Text = "Novo";
+            this.btNewFunc.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btNewFunc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btNewFunc.UseVisualStyleBackColor = true;
             // 
             // ButtonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.btlimpar);
+            this.Controls.Add(this.btNewFunc);
             this.Controls.Add(this.btEdit);
+            this.Controls.Add(this.btlimpar);
             this.Controls.Add(this.btSave);
             this.Name = "ButtonControl";
             this.Size = new System.Drawing.Size(279, 60);
@@ -100,7 +119,8 @@
         #endregion
 
         public System.Windows.Forms.Button btSave;
-        public System.Windows.Forms.Button btEdit;
         public System.Windows.Forms.Button btlimpar;
+        public System.Windows.Forms.Button btEdit;
+        public System.Windows.Forms.Button btNewFunc;
     }
 }

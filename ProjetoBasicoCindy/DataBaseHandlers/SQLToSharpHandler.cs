@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoBasicoCindy;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -75,16 +76,34 @@ namespace ProjetoBasicoCindy
                          inativacao = Convert.ToDateTime( "01/01/1900", cult);
                     }
                     
-                    var SQLOnibusColletion = new DataBaseHandler();
+                    var DataBaseHandler = new DataBaseHandler();
                     var SQlDataHandler = new SQLToSharpHandler();
-                    OnibusItemCollection funcList = new OnibusItemCollection();
-                    funcList.SetList(SQlDataHandler.ConvertSQlToBusCollectionItem(SQLOnibusColletion.GetBus(matricula)));
-                    OnibusItemCollection teste = funcList.MakeListTOCollection();
+
+                    //Get func information bus
+                    OnibusItemCollection funcListOnibus = new OnibusItemCollection();
+                    funcListOnibus.SetList(SQlDataHandler.ConvertSQlToBusCollectionItem(DataBaseHandler.GetBus(matricula)));
+
+                    //get information about Vaccine
+
+                    Vacina.FuncionarioVaccinaColletion funcVaccineList = new Vacina.FuncionarioVaccinaColletion();
+                    funcVaccineList.SetList(SQlDataHandler.ConvertSQLVaccineToColletion(DataBaseHandler.GetVacinas(matricula)));
+
+
+
+
+
+
+                    //get func information about ferias
+                    Ferias.FeriasColletionItem listFerias = new Ferias.FeriasColletionItem();
+                    listFerias.SetList(SQlDataHandler.ConvertSQLtoFeriasItem(DataBaseHandler.GetFerias(matricula)));
+
 
 
 
                     //GENERATES FUNCIONARIO ITEM WITH ALL INFO COLLECTED                
-                    funcionario = new FuncionarioItem(matricula, picture, nome, cpf, identidade, sexo, DN, rua, numero, complemento, bairro, observacao, cidade, estado, cep, telefone, inativo, admissao, inativacao, null, teste);
+                    funcionario = new FuncionarioItem(matricula, picture, nome, cpf, identidade, sexo, DN, rua, numero, complemento, bairro, observacao, cidade, estado, cep, telefone, inativo, admissao, inativacao, null, funcListOnibus, funcVaccineList, listFerias);
+                    var FuncionarioSelected = new FuncionarioItemEdit();
+                    FuncionarioSelected.SetFuncionarioEdit(funcionario);
                     row++;
                 }
 
@@ -110,6 +129,26 @@ namespace ProjetoBasicoCindy
 
             return ListOnibus;
 
+        }
+        #endregion
+
+        #region Ferias Handlers
+
+        public List<Ferias.FeriasItem> ConvertSQLtoFeriasItem (DataTable _dt)
+        {
+            var ListFerias = new List<Ferias.FeriasItem>();
+            for (int i = 0; i < _dt.Rows.Count; i++)
+            {
+                Ferias.FeriasItem feriasItem = new Ferias.FeriasItem(Convert.ToDateTime(_dt.Rows[i][1].ToString()), Convert.ToDateTime(_dt.Rows[i][2].ToString()));
+                ListFerias.Add(feriasItem);
+
+            }
+            foreach (DataRow item in _dt.Rows)
+            {
+
+                
+            }
+            return ListFerias;
         }
         #endregion
         #region Documento Handlers
@@ -153,7 +192,25 @@ namespace ProjetoBasicoCindy
 
 
         #endregion
+        #region Vaccine Handlers
+        public List<Vacina.Vacina> ConvertSQLVaccineToColletion(DataTable _dt)
+        {
+            var ListVaccine = new List<Vacina.Vacina>();
+            for (int i = 0; i < _dt.Rows.Count; i++)
+            {
 
+                Vacina.VacinaInfo information = new Vacina.VacinaInfo(Convert.ToDateTime(_dt.Rows[i][4].ToString()), _dt.Rows[i][3].ToString(), _dt.Rows[i][2].ToString());
+                Vacina.Vacina vacina = new Vacina.Vacina(_dt.Rows[i][0].ToString(), information, (Convert.ToInt32(_dt.Rows[i][1].ToString())));
+                ListVaccine.Add(vacina);
+
+            }
+            
+           
+
+            return ListVaccine;
+        }
+
+        #endregion
 
         #region Save Handlers
 

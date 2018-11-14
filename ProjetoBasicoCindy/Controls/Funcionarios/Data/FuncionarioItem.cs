@@ -12,7 +12,7 @@ namespace ProjetoBasicoCindy
     /// </summary>
     public class FuncionarioItem
     {
-        public FuncionarioItem(int idFuncionario, Image funcPic, string name, string cpf, string identidade, string sexo, DateTime dataNascimento, string rua, string numero, string complemento, string bairro, string observacao, string cidade, string estado, string cep, string telefone, bool inativo, DateTime adimissao, DateTime inativacao,DocumentosPictureCollection documentos = null, OnibusItemCollection onibus = null)
+        public FuncionarioItem(int idFuncionario, Image funcPic, string name, string cpf, string identidade, string sexo, DateTime dataNascimento, string rua, string numero, string complemento, string bairro, string observacao, string cidade, string estado, string cep, string telefone, bool inativo, DateTime adimissao, DateTime inativacao,DocumentosPictureCollection documentos = null, OnibusItemCollection onibus = null, Vacina.FuncionarioVaccinaColletion vacinas = null, Ferias.FeriasColletionItem ferias = null )
         {
             _idFuncionario = idFuncionario;
             _funcPic = funcPic;
@@ -35,7 +35,10 @@ namespace ProjetoBasicoCindy
             _inativacao = inativacao;
             _documentos = documentos;
             _onibus = onibus;
-            
+            _vacinas = vacinas;
+            _ferias = ferias;
+
+
 
 
         }
@@ -62,7 +65,10 @@ namespace ProjetoBasicoCindy
         public DocumentosPictureCollection _documentos { get; set; }
         public string _telefone { get; set; }
         public OnibusItemCollection _onibus { get; set; }
+        public Vacina.FuncionarioVaccinaColletion _vacinas { get; set; }
         public bool _inativo { get; set; }
+        public Ferias.FeriasColletionItem _ferias { get; set; }
+
 
     }   
 

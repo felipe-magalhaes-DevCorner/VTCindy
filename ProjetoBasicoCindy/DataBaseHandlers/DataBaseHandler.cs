@@ -162,10 +162,96 @@ namespace ProjetoBasicoCindy
 
         #endregion
 
+        #region SQL Ferias
+
+        /// <summary>
+        /// busca no bando de dados informacoes sobre ferias apra devido funcionario. BASEADO EM NUMERO DE IDFUNCIONARIO.        
+        /// </summary>
+        /// <param name="_idfuncionario"></param>
+        public DataTable GetFerias(int _idfuncionario)
+        {
+            var _dt = new DataTable();
+            var db2 = new ConnectionClass_SQL.ConnectionClass();
+            try
+            {
+                db2.SqlConnection();
+                var query = string.Format(
+                    "select ferias.idferias, ferias.datainicio, ferias.datafim from ferias "+
+                    "inner join func_ferias on (func_ferias.idferias = ferias.idferias) " + 
+                    "inner join funcionario on (funcionario.idfuncionario = func_ferias.idfunc) " + 
+                    "where idfuncionario = '{0}'", _idfuncionario);
+
+                db2.SqlQuery(query);
+                db2.QueryRun();
+                _dt = db2.QueryDT();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                db2.closeConnection();
+            }
+
+
+
+
+            return _dt;
+
+
+
+        }
+
+
+        #endregion
+
+        #region SQL Vacine
+        public DataTable GetVacinas(int _idfuncionario)
+        {
+            var _dt = new DataTable();
+            var db2 = new ConnectionClass_SQL.ConnectionClass();
+            try
+            {
+                db2.SqlConnection();
+                var query = string.Format(
+                    "select vacina.descricao, vacina_dose.dosenumero, vacina_dose.unidade, vacina_dose.lote," +
+                    "vacina_funcionario.data, vacina_funcionario.dataexpiracao, vacina_funcionario.proximadose from vacina " +
+                    "INNER JOIN vacina_funcionario on (vacina_funcionario.idvacina = vacina.id) " +
+                    "inner join vacina_dose on (vacina_dose.idvacina_funcionario = vacina_funcionario.idfuncionario) " +
+                    "inner join funcionario on (funcionario.idfuncionario = vacina_funcionario.idfuncionario) " +
+                    "where funcionario.idfuncionario = '{0}'", _idfuncionario);
+                db2.SqlQuery(query);
+                db2.QueryRun();
+                _dt = db2.QueryDT();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                db2.closeConnection();
+            }
+
+
+
+
+            return _dt;
+
+
+
+        }
+        #endregion
+
         #region SQL Documentos
         public DataTable GetDocuments(int _matricula)
         {
-            DataTable _dt = new DataTable();
+            var _dt = new DataTable();
             var db2 = new ConnectionClass_SQL.ConnectionClass();
             try
             {

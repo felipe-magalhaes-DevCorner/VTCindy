@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MonthCalendar = Pabo.Calendar.MonthCalendar;
 
 namespace ProjetoBasicoCindy
 {
     public partial class Form1 : Form
     {
+        private Control buttoncontrol;
         public Form1()
         {
             InitializeComponent();
 
-            
+
+
 
 
 
@@ -47,6 +50,7 @@ namespace ProjetoBasicoCindy
 
             var objMainform = new Funcionarios();
             container.Controls.Add(objMainform);
+            objMainform.buttonCOntrol = buttoncontrol;
             buttonContainer.Visible = true;
 
 
@@ -54,7 +58,7 @@ namespace ProjetoBasicoCindy
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var buttoncontrol = new ButtonControl();
+            buttoncontrol = new ButtonControl();
 
             buttonContainer.Controls.Add(buttoncontrol);
             buttonContainer.Visible = false;

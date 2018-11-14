@@ -19,6 +19,7 @@ namespace ProjetoBasicoCindy
         //contrutor
         public OnibusItem(int idonibus = 1, string linha = null, string cartao = null, double preco = 1)
         {
+
             _idonibus = idonibus;
             _linha = linha;
             _cartao = cartao;
