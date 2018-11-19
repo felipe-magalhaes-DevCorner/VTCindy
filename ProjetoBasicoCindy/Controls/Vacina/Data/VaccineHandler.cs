@@ -10,34 +10,173 @@ namespace ProjetoBasicoCindy.Vacina
 {
     public class VaccineHandler
     {
+        #region Variables
+        private Size[] ColumDimentions = new Size[3];
+        public Panel VacinaPanel { get; set; }
+
+        #endregion
+
         public VaccineHandler(Panel vacinaPanel)
         {
-            this.vacinaPanel = vacinaPanel;
+            this.VacinaPanel = vacinaPanel;
             vacinaPanel.Controls.Clear();
             FuncionarioVaccinaColletion funcionariodata = new FuncionarioVaccinaColletion();
+
             var objFunc = new FuncionarioItemEdit();
-            
+
+
+
             Columnbuilder();
-            PopulateColumns(objFunc.GetFuncionarioEdit()._vacinas);
+
+            ShowVaccineInfo(objFunc.GetFuncionarioEdit()._vacinas, VacinaPanel);
+
+            //PopulateColumns(objFunc.GetFuncionarioEdit()._vacinas);
         }
 
-        public Panel vacinaPanel { get; set; }
+
+
+        #region Starting a new
+
+
+
+        private void ShowVaccineInfo(FuncionarioVaccinaColletion _vacina, Panel _panelToshow)
+        {
+            int squares = 1;
+            foreach (Vacina vacinainfo in _vacina.listaVacinas)
+            {
+                FlowLayoutPanel pn1Dose = new FlowLayoutPanel();
+
+                pn1Dose.MaximumSize = new Size((VacinaPanel.Size.Width - 6) / 6, (VacinaPanel.Size.Height - 46) / 3);
+                pn1Dose.MinimumSize = new Size((VacinaPanel.Size.Width - 6) / 6, (VacinaPanel.Size.Height - 46) / 3);
+                var margim = pn1Dose.Margin;
+                margim.All = 1;
+                pn1Dose.Margin = margim;
+                pn1Dose.BackColor = Color.LightGray;
+
+
+
+                Label lbData = new Label();
+                Label lbLote = new Label();
+                Label lbUnid = new Label();
+                lbData.Text = String.Format("Data:" + vacinainfo._dados.Data.ToString("dd/MM/yyyy"));
+                lbLote.Text = String.Format("Lote:" + vacinainfo._dados.Lote);
+                lbUnid.Text = String.Format("Unid:" + vacinainfo._dados.Unidade);
+                Controls.ViewControls.Vacinas.VaccineViewer vacineInfo = new Controls.ViewControls.Vacinas.VaccineViewer(vacinainfo._nome, vacinainfo._dados.Data.ToString("dd/MM/yyyy"), vacinainfo._dados.Lote, vacinainfo._dados.Unidade);
+
+
+
+
+                margim.All = 1;
+                vacineInfo.Margin = margim;
+                //lbData.Dock = DockStyle.Top;
+                lbData.Margin = margim;
+                lbData.Left = (pn1Dose.ClientSize.Width - lbData.Width) / 2;
+                lbData.Top = (pn1Dose.ClientSize.Height - lbData.Height) / 5;
+                //pn1Dose.Controls.Add(lbData);
+                //pn1Dose.Controls.Add(lbLote);
+                lbLote.Left = lbData.Left;
+                lbLote.Top = lbData.Top + 25;
+                //lbLote.Dock = DockStyle.Top;
+                lbLote.Margin = margim;
+
+
+
+                //lbUnid.Dock = DockStyle.Top;
+                lbUnid.Margin = margim;
+                //pn1Dose.Controls.Add(lbUnid);
+                lbUnid.Left = lbData.Left;
+                
+                string nomevacina = "";
+                switch (vacinainfo._nome)
+                {
+
+                    case "HEPATITE B":
+                        {
+                            nomevacina = "Heb B";
+                            squares = 3;
+                        }
+
+                        break;
+                    case "DUPLA ADULTA":
+                        {
+                            nomevacina = "Dupla Adulta";
+                            squares = 1;
+                        }
+                        break;
+                    case "RUBEOLA":
+                        {
+                            nomevacina = "Rubeola";
+                            squares = 1;
+                        }
+                        break;
+                    case "FEBREAMARELA":
+                        {
+                            nomevacina = "Febre Amar.";
+                            squares = 2;
+                        }
+                        break;
+                    case "TRIPLICE VIRAL":
+                        {
+                            nomevacina = "Trip. Viral";
+                            squares = 2;
+                        }
+                        break;
+                    default:
+                        nomevacina = "nao deu";
+                        break;
+                }
+
+
+
+
+                //finds flowpanel with vaccine name
+                Control PanelToadd = HelperClass.FindTag(VacinaPanel.Controls, nomevacina);
+
+
+                Size sizetose = pn1Dose.Size;
+                PanelToadd.Controls.Add(vacineInfo);
+
+            }
+            var helper =  HelperClass.FindTag(VacinaPanel.Controls, "teste");
+            if (helper != null && helper.Controls != null && helper.Controls.Count >= squares) 
+            {
+
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+        #endregion
+
+
+
+
+
+
+
 
         #region Vaccine methods
         public void PopulateColumns(FuncionarioVaccinaColletion _func)
         {
-            
-            if (_func.listaVacinas !=null)
+
+            if (_func.listaVacinas != null)
             {
                 if (_func.listaVacinas.Count > 0)
                 {
 
                     foreach (Vacina vacina in _func.listaVacinas)
                     {
-                        if (true)
-                        {
 
-                        }
 
                         //insert column
 
@@ -48,7 +187,7 @@ namespace ProjetoBasicoCindy.Vacina
                         //pnlegendaDose.Name = "nome";
                         var margim = pnlegendaDose.Margin;
                         margim.All = 1;
-                        pnlegendaDose.MaximumSize = new Size((vacinaPanel.Size.Width - 6) / 6, 40);
+                        pnlegendaDose.MaximumSize = new Size((VacinaPanel.Size.Width - 6) / 6, 40);
                         pnlegendaDose.Margin = margim;
                         pnlegendaDose.BackColor = Color.LightGray;
 
@@ -92,8 +231,8 @@ namespace ProjetoBasicoCindy.Vacina
                             margin.Right = 1;
 
                             Column2.Margin = margin;
-                            Column2.MaximumSize = new Size((vacinaPanel.Size.Width - 6) / 6, vacinaPanel.Size.Height);
-                            Column2.MinimumSize = new Size((vacinaPanel.Size.Width - 6) / 6, vacinaPanel.Size.Height);
+                            Column2.MaximumSize = new Size((VacinaPanel.Size.Width - 6) / 6, VacinaPanel.Size.Height);
+                            Column2.MinimumSize = new Size((VacinaPanel.Size.Width - 6) / 6, VacinaPanel.Size.Height);
 
                         }
 
@@ -104,8 +243,8 @@ namespace ProjetoBasicoCindy.Vacina
 
 
                         Panel pn1Dose = new Panel();
-                        pn1Dose.MaximumSize = new Size((vacinaPanel.Size.Width - 6) / 6, (vacinaPanel.Size.Height - 46) / 3);
-                        pn1Dose.MinimumSize = new Size((vacinaPanel.Size.Width - 6) / 6, (vacinaPanel.Size.Height - 46) / 3);
+                        pn1Dose.MaximumSize = new Size((VacinaPanel.Size.Width - 6) / 6, (VacinaPanel.Size.Height - 46) / 3);
+                        pn1Dose.MinimumSize = new Size((VacinaPanel.Size.Width - 6) / 6, (VacinaPanel.Size.Height - 46) / 3);
                         margim = pnlegendaDose.Margin;
                         margim.All = 1;
                         pn1Dose.Margin = margim;
@@ -143,7 +282,7 @@ namespace ProjetoBasicoCindy.Vacina
                         {
                             aux1.Controls.Add(pn1Dose);
                         }
-                        foreach (Control c in vacinaPanel.Controls)
+                        foreach (Control c in VacinaPanel.Controls)
                         {
                             if (vacina._nome == c.Tag)
                             {
@@ -155,9 +294,9 @@ namespace ProjetoBasicoCindy.Vacina
                                     c.BackColor = Color.Red;
                                     auxControl = false;
 
-                                    vacinaPanel.Controls.Remove(c);
+                                    VacinaPanel.Controls.Remove(c);
                                     c.Controls.Add(pn1Dose);
-                                    vacinaPanel.Controls.Add(c);
+                                    VacinaPanel.Controls.Add(c);
                                 }
 
                             }
@@ -169,21 +308,21 @@ namespace ProjetoBasicoCindy.Vacina
                         if (auxControl)
                         {
                             Column2.Controls.Add(pnlegendaDose);
-                            vacinaPanel.Controls.Add(Column2);
+                            VacinaPanel.Controls.Add(Column2);
 
                         }
                         else
                         {
-                            vacinaPanel.Controls.Remove(aux1);
+                            VacinaPanel.Controls.Remove(aux1);
                             aux1.Controls.Add(teste);
-                            vacinaPanel.Controls.Add(aux1);
+                            VacinaPanel.Controls.Add(aux1);
 
                         }
                     }
 
                 }
             }
-           
+
 
 
 
@@ -207,17 +346,18 @@ namespace ProjetoBasicoCindy.Vacina
             margin.Right = 1;
 
             Column2.Margin = margin;
-            Column2.MaximumSize = new Size((vacinaPanel.Size.Width - 6) / 6, vacinaPanel.Size.Height);
-            Column2.MinimumSize = new Size((vacinaPanel.Size.Width - 6) / 6, vacinaPanel.Size.Height);
+            Column2.MaximumSize = new Size((VacinaPanel.Size.Width - 6) / 6, VacinaPanel.Size.Height);
+            Column2.MinimumSize = new Size((VacinaPanel.Size.Width - 6) / 6, VacinaPanel.Size.Height);
+            ColumDimentions[0] = Column2.Size;
             bool aux = true;
             foreach (var item in leftlabels)
             {
                 //deal with square containing labels
                 Panel pnlegendaDose = new Panel();
-                var margim = pnlegendaDose.Margin;
-                margim.All = 1;
+                //var margim = pnlegendaDose.Margin;
+                margin.All = 1;
 
-                pnlegendaDose.Margin = margim;
+                pnlegendaDose.Margin = margin;
                 pnlegendaDose.BackColor = Color.LightGray;
 
 
@@ -239,16 +379,20 @@ namespace ProjetoBasicoCindy.Vacina
                 //deal with first square that has smaller size
                 if (aux)
                 {
-                    pnlegendaDose.MaximumSize = new Size((vacinaPanel.Size.Width - 6) / 6, 40);
-                    pnlegendaDose.MinimumSize = new Size((vacinaPanel.Size.Width - 6) / 6, 40);
+                    pnlegendaDose.MaximumSize = new Size((VacinaPanel.Size.Width - 6) / 6, 40);
+                    pnlegendaDose.MinimumSize = new Size((VacinaPanel.Size.Width - 6) / 6, 40);
                     //code to centralize text into panel
+                    ColumDimentions[1] = pnlegendaDose.Size;
 
                     aux = false;
                 }
                 else
                 {
-                    pnlegendaDose.MaximumSize = new Size((vacinaPanel.Size.Width - 6) / 6, (vacinaPanel.Size.Height - 46) / 3);
-                    pnlegendaDose.MinimumSize = new Size((vacinaPanel.Size.Width - 6) / 6, (vacinaPanel.Size.Height - 46) / 3);
+                    //other size legens
+                    pnlegendaDose.MaximumSize = new Size((VacinaPanel.Size.Width - 6) / 6, (VacinaPanel.Size.Height - 46) / 3);
+                    pnlegendaDose.MinimumSize = new Size((VacinaPanel.Size.Width - 6) / 6, (VacinaPanel.Size.Height - 46) / 3);
+
+                    ColumDimentions[2] = pnlegendaDose.Size;
 
                 }
 
@@ -262,11 +406,85 @@ namespace ProjetoBasicoCindy.Vacina
                 dosevacina.Top = (pnlegendaDose.ClientSize.Height - dosevacina.Height) / 2;
                 Column2.Controls.Add(pnlegendaDose);
                 //vacinaPanel.Controls.Add(Column);
-
+                
             }
 
-            vacinaPanel.Controls.Add(Column2);
+            VacinaPanel.Controls.Add(Column2);
             #endregion
+
+
+            string[] vaccinenames = { "Heb B", "Trip. Viral", "Febre Amar.", "Rubeola", "Dupla Adulta" };
+            //creates the 5 colums for vaccines
+            Color[] colors = { Color.Red, Color.Blue, Color.Yellow, Color.Green, Color.Red, Color.Red };
+            var controlcolor = true;
+            for (int i = 0; i < vaccinenames.Count(); i++)
+            {
+
+                //creates the 5 panels for vaccines
+                FlowLayoutPanel panelVaccines = new FlowLayoutPanel();
+                panelVaccines.Tag = vaccinenames[i];
+                panelVaccines.AutoSize = false;
+                margin.All = 0;
+                panelVaccines.Margin = margin;
+                panelVaccines.Padding = new Padding(0, 0, 0, 0);
+                //sets size by previously stored variables
+                panelVaccines.Size = new Size((((ColumDimentions[0].Width * 4) / 5)), ColumDimentions[0].Height);
+                panelVaccines.FlowDirection = FlowDirection.TopDown;
+                panelVaccines.BackColor = colors[i];
+
+
+                //------------STARTS INSERT OF DATE INSIDE COLUMN
+                Panel PanelVacinaName = new Panel();
+
+                PanelVacinaName.Size = new Size(panelVaccines.Width, ColumDimentions[1].Height);
+                ColumDimentions[1].Width = panelVaccines.Width;
+                ColumDimentions[2].Width = ColumDimentions[1].Width;
+                //sets color interhange
+
+                if (controlcolor)
+                {
+                    PanelVacinaName.BackColor = Color.LightGray;
+                    controlcolor = false;
+                }
+                else
+                {
+                    PanelVacinaName.BackColor = Color.White;
+                    controlcolor = true;
+                }
+
+
+                //add label with anme of vaccine
+                Label vacinaa = new Label();
+                vacinaa.Text = vaccinenames[i];
+                PanelVacinaName.Controls.Add(vacinaa);
+                vacinaa.Left = 15;
+                vacinaa.Top = (PanelVacinaName.ClientSize.Height - vacinaa.Height) / 2;
+
+                //inserts panel with label inside colum with vaccine name
+                PanelVacinaName.Controls.Add(vacinaa);
+
+
+                //setsup objects at right margins and paddings
+                var margim = panelVaccines.Margin;
+                margim.All = 1;
+                panelVaccines.Margin = margim;
+                PanelVacinaName.Margin = margim;
+
+
+
+
+
+                //insert colum
+                panelVaccines.Controls.Add(PanelVacinaName);
+                VacinaPanel.Controls.Add(panelVaccines);
+
+
+
+
+
+            }
+            var teste = VacinaPanel;
+
 
 
 

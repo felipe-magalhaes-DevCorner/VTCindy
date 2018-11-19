@@ -222,7 +222,7 @@ namespace ProjetoBasicoCindy
                     "INNER JOIN vacina_funcionario on (vacina_funcionario.idvacina = vacina.id) " +
                     "inner join vacina_dose on (vacina_dose.idvacina_funcionario = vacina_funcionario.idfuncionario) " +
                     "inner join funcionario on (funcionario.idfuncionario = vacina_funcionario.idfuncionario) " +
-                    "where funcionario.idfuncionario = '{0}'", _idfuncionario);
+                    "where funcionario.idfuncionario = '{0}' order by 1, 2", _idfuncionario);
                 db2.SqlQuery(query);
                 db2.QueryRun();
                 _dt = db2.QueryDT();

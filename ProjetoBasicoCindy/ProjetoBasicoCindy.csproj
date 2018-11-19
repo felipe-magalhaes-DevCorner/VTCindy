@@ -88,6 +88,7 @@
       <DependentUpon>Funcionarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Funcionarios\FuncionarioStructure.cs" />
+    <Compile Include="Controls\Static Handler\HelperClass.cs" />
     <Compile Include="Controls\UploadControllers\CropController.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +118,12 @@
     </Compile>
     <Compile Include="Controls\ViewControls\informacoesControl.Designer.cs">
       <DependentUpon>informacoesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewControls\Vacinas\VaccineViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ViewControls\Vacinas\VaccineViewer.Designer.cs">
+      <DependentUpon>VaccineViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBaseHandlers\DataBaseHandler.cs" />
     <Compile Include="DataBaseHandlers\SQLToSharpHandler.cs" />
@@ -151,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ViewControls\informacoesControl.resx">
       <DependentUpon>informacoesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ViewControls\Vacinas\VaccineViewer.resx">
+      <DependentUpon>VaccineViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -195,8 +205,6 @@
       <Name>ConnectionClass SQL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\ViewControls\Vacinas\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
