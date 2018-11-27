@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjetoBasicoCindy.Controls.ViewControls.Vacinas
+namespace ProjetoBasicoCindy.ViewControls.Vacinas
 {
     public partial class VaccineViewer : UserControl
     {
@@ -20,6 +20,14 @@ namespace ProjetoBasicoCindy.Controls.ViewControls.Vacinas
             label1.Text = String.Format("Data:" + data);
             label2.Text = String.Format("Lote:" + lote);
             label3.Text = String.Format("Unid:" + unidade);
+        }
+        public VaccineViewer()
+        {
+            InitializeComponent();
+            
+            label1.Text = String.Format("Data:__/__/____" );
+            label2.Text = String.Format("Lote:" );
+            label3.Text = String.Format("Unid:" );
         }
     }
 }

@@ -220,7 +220,7 @@ namespace ProjetoBasicoCindy
                     "select vacina.descricao, vacina_dose.dosenumero, vacina_dose.unidade, vacina_dose.lote," +
                     "vacina_funcionario.data, vacina_funcionario.dataexpiracao, vacina_funcionario.proximadose from vacina " +
                     "INNER JOIN vacina_funcionario on (vacina_funcionario.idvacina = vacina.id) " +
-                    "inner join vacina_dose on (vacina_dose.idvacina_funcionario = vacina_funcionario.idfuncionario) " +
+                    "inner join vacina_dose on (vacina_dose.idvacina_funcionario = vacina_funcionario.idvacina) " +
                     "inner join funcionario on (funcionario.idfuncionario = vacina_funcionario.idfuncionario) " +
                     "where funcionario.idfuncionario = '{0}' order by 1, 2", _idfuncionario);
                 db2.SqlQuery(query);

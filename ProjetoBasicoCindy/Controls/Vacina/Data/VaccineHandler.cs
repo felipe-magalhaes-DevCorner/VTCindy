@@ -27,8 +27,8 @@ namespace ProjetoBasicoCindy.Vacina
 
 
             Columnbuilder();
-
-            ShowVaccineInfo(objFunc.GetFuncionarioEdit()._vacinas, VacinaPanel);
+            NewBuild(objFunc.GetFuncionarioEdit()._vacinas, VacinaPanel);
+            //ShowVaccineInfo(objFunc.GetFuncionarioEdit()._vacinas);
 
             //PopulateColumns(objFunc.GetFuncionarioEdit()._vacinas);
         }
@@ -37,9 +37,38 @@ namespace ProjetoBasicoCindy.Vacina
 
         #region Starting a new
 
+        private void NewBuild(FuncionarioVaccinaColletion _vacinas, Panel _panelToshow)
+        {
 
 
-        private void ShowVaccineInfo(FuncionarioVaccinaColletion _vacina, Panel _panelToshow)
+            foreach (Vacina vacina in _vacinas.listaVacinas)
+            {
+                Control PanelToadd = HelperClass.FindTag(_panelToshow.Controls, DealWithVaccineNames(vacina));                
+                ViewControls.Vacinas.VaccineViewer VacinaPanel = new ViewControls.Vacinas.VaccineViewer(vacina._nome, vacina._dados.Data.ToString("dd/MM/yyyy"), vacina._dados.Lote, vacina._dados.Unidade);
+                PanelToadd.Controls.RemoveAt(vacina._dose);
+                var margim = VacinaPanel.Margin;
+                margim.All = 0;
+                margim.Top = 1;
+                VacinaPanel.Margin = margim;
+                VacinaPanel.Size = VacineViewerSizeHandler(VacinaPanel, PanelToadd);
+                PanelToadd.Controls.Add(VacinaPanel);
+                PanelToadd.Controls.SetChildIndex(VacinaPanel, (vacina._dose));
+            }
+        }
+        private Size VacineViewerSizeHandler(ViewControls.Vacinas.VaccineViewer _vacina, Control _panelreceived)
+        {
+            int VaccineNameControl = _panelreceived.Controls[0].Size.Height + 1;
+            int AuxHeight = _panelreceived.Height - VaccineNameControl;
+            AuxHeight = (AuxHeight / 3);
+            AuxHeight -= 1;
+
+
+            Size controlsize = new Size(_panelreceived.Controls[0].Size.Width + 1, AuxHeight);
+            return controlsize;
+
+        } 
+
+        private void ShowVaccineInfo(FuncionarioVaccinaColletion _vacina)
         {
             int squares = 1;
             foreach (Vacina vacinainfo in _vacina.listaVacinas)
@@ -61,7 +90,7 @@ namespace ProjetoBasicoCindy.Vacina
                 lbData.Text = String.Format("Data:" + vacinainfo._dados.Data.ToString("dd/MM/yyyy"));
                 lbLote.Text = String.Format("Lote:" + vacinainfo._dados.Lote);
                 lbUnid.Text = String.Format("Unid:" + vacinainfo._dados.Unidade);
-                Controls.ViewControls.Vacinas.VaccineViewer vacineInfo = new Controls.ViewControls.Vacinas.VaccineViewer(vacinainfo._nome, vacinainfo._dados.Data.ToString("dd/MM/yyyy"), vacinainfo._dados.Lote, vacinainfo._dados.Unidade);
+                ViewControls.Vacinas.VaccineViewer vacineInfo = new ViewControls.Vacinas.VaccineViewer(vacinainfo._nome, vacinainfo._dados.Data.ToString("dd/MM/yyyy"), vacinainfo._dados.Lote, vacinainfo._dados.Unidade);
 
 
 
@@ -85,7 +114,7 @@ namespace ProjetoBasicoCindy.Vacina
                 lbUnid.Margin = margim;
                 //pn1Dose.Controls.Add(lbUnid);
                 lbUnid.Left = lbData.Left;
-                
+
                 string nomevacina = "";
                 switch (vacinainfo._nome)
                 {
@@ -133,24 +162,66 @@ namespace ProjetoBasicoCindy.Vacina
                 Control PanelToadd = HelperClass.FindTag(VacinaPanel.Controls, nomevacina);
 
 
-                Size sizetose = pn1Dose.Size;
+
+                int dose = vacinainfo._dose;
+                //Size sizetose = pn1Dose.Size;
+                vacineInfo.Size = new Size(ColumDimentions[2].Width, (ColumDimentions[2].Height -1));
+
+                PanelToadd.Controls.RemoveAt(dose);
+                
                 PanelToadd.Controls.Add(vacineInfo);
+                PanelToadd.Controls.SetChildIndex(vacineInfo, (dose));
+
 
             }
             var helper =  HelperClass.FindTag(VacinaPanel.Controls, "teste");
-            if (helper != null && helper.Controls != null && helper.Controls.Count >= squares) 
-            {
 
-
-
-
-            }
 
 
 
         }
 
 
+        private string DealWithVaccineNames(Vacina _Vacina)
+        {
+
+            switch (_Vacina._nome)
+            {
+
+                case "HEPATITE B":
+                    {
+                        return "Heb B";
+                        
+                    }
+                    
+                case "DUPLA ADULTA":
+                    {
+                        return "Dupla Adulta";
+                        
+                    }
+                case "RUBEOLA":
+                    {
+                        return "Rubeola";
+                        
+                    }
+
+                case "FEBREAMARELA":
+                    {
+                        return "Febre Amar.";
+                        
+                    }
+
+                case "TRIPLICE VIRAL":
+                    {
+                        return "Trip. Viral";
+                        
+                    }
+
+                default:
+                    return "nao deu";
+
+            }
+        }
 
 
 
@@ -469,13 +540,62 @@ namespace ProjetoBasicoCindy.Vacina
                 margim.All = 1;
                 panelVaccines.Margin = margim;
                 PanelVacinaName.Margin = margim;
+                panelVaccines.Controls.Add(PanelVacinaName);
+                //add dummy items to keep vaccinelist full
+                int dosestotake = 0;
+                switch (vaccinenames[i])
+                {
+                    
 
+                    case "Heb B":
+                        {
+                            dosestotake = 3;
+
+                        }
+
+                        break;
+                    case "Dupla Adulta":
+                        {
+                            dosestotake = 1;
+                        }
+                        break;
+                    case "Rubeola":
+                        {
+                            dosestotake = 1;
+                        }
+                        break;
+                    case "Febre Amar.":
+                        {
+                            dosestotake = 2;
+                        }
+                        break;
+                    case "Trip. Viral" :
+                        {
+                            dosestotake = 2;
+                        }
+                        break;
+                    default:
+                       
+                        break;
+                }
+                for (int j = 0; j < dosestotake; j++)
+                {
+                    ViewControls.Vacinas.VaccineViewer objClearVaccine = new ViewControls.Vacinas.VaccineViewer();
+                    objClearVaccine.BackColor = Color.LightGray;
+                    objClearVaccine.Margin = margim;
+                    objClearVaccine.Size = new Size((VacinaPanel.Size.Width - 6) / 6, (VacinaPanel.Size.Height - 48) / 3);
+                    objClearVaccine.Padding = new Padding(0, 0, 0, 0);
+                    objClearVaccine.Tag = (j + 1);
+                    panelVaccines.Controls.Add(objClearVaccine);
+
+
+                }
 
 
 
 
                 //insert colum
-                panelVaccines.Controls.Add(PanelVacinaName);
+
                 VacinaPanel.Controls.Add(panelVaccines);
 
 
@@ -484,6 +604,7 @@ namespace ProjetoBasicoCindy.Vacina
 
             }
             var teste = VacinaPanel;
+
 
 
 

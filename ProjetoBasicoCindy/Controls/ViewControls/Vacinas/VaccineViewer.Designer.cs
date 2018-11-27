@@ -1,4 +1,4 @@
-﻿namespace ProjetoBasicoCindy.Controls.ViewControls.Vacinas
+﻿namespace ProjetoBasicoCindy.ViewControls.Vacinas
 {
     partial class VaccineViewer
     {
@@ -75,9 +75,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label1;
     }
 }
