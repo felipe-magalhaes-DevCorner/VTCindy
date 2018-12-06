@@ -193,6 +193,7 @@
   <ItemGroup>
     <Content Include="Imagens\content-save.png" />
     <Content Include="Imagens\delete.png" />
+    <Content Include="Imagens\ferias.png" />
     <Content Include="Imagens\pencil.png" />
   </ItemGroup>
   <ItemGroup>

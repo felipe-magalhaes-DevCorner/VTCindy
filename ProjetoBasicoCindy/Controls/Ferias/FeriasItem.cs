@@ -12,11 +12,11 @@ namespace ProjetoBasicoCindy.Ferias
         public DateTime InicioFerias { get; set; }
         public DateTime fimFerias { get; set; }
 
-        public FeriasItem(DateTime inicioFerias, DateTime fimFerias)
+        public FeriasItem(DateTime inicioFerias, DateTime FimFerias)
         {
 
             InicioFerias = inicioFerias;
-            this.fimFerias = fimFerias;
+            fimFerias = FimFerias;
         }
 
     }

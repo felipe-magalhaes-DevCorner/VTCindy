@@ -16,22 +16,19 @@ namespace ProjetoBasicoCindy.Vacina
 
         #endregion
 
+        #region Constructor
         public VaccineHandler(Panel vacinaPanel)
         {
             this.VacinaPanel = vacinaPanel;
             vacinaPanel.Controls.Clear();
-            FuncionarioVaccinaColletion funcionariodata = new FuncionarioVaccinaColletion();
-
+            //FuncionarioVaccinaColletion funcionariodata = new FuncionarioVaccinaColletion();
             var objFunc = new FuncionarioItemEdit();
-
-
-
             Columnbuilder();
             NewBuild(objFunc.GetFuncionarioEdit()._vacinas, VacinaPanel);
-            //ShowVaccineInfo(objFunc.GetFuncionarioEdit()._vacinas);
 
-            //PopulateColumns(objFunc.GetFuncionarioEdit()._vacinas);
         }
+        #endregion
+
 
 
 
@@ -39,8 +36,6 @@ namespace ProjetoBasicoCindy.Vacina
 
         private void NewBuild(FuncionarioVaccinaColletion _vacinas, Panel _panelToshow)
         {
-
-
             foreach (Vacina vacina in _vacinas.listaVacinas)
             {
                 Control PanelToadd = HelperClass.FindTag(_panelToshow.Controls, DealWithVaccineNames(vacina));                
@@ -411,7 +406,7 @@ namespace ProjetoBasicoCindy.Vacina
 
 
             FlowLayoutPanel Column2 = new FlowLayoutPanel();
-            Column2.BackColor = Color.Yellow;
+            Column2.BackColor = Color.White;
             var margin = Column2.Margin;
             margin.All = 0;
             margin.Right = 1;
@@ -429,7 +424,7 @@ namespace ProjetoBasicoCindy.Vacina
                 margin.All = 1;
 
                 pnlegendaDose.Margin = margin;
-                pnlegendaDose.BackColor = Color.LightGray;
+                pnlegendaDose.BackColor = Color.DarkGray;
 
 
                 //create labels to be added to control
@@ -501,7 +496,7 @@ namespace ProjetoBasicoCindy.Vacina
                 //sets size by previously stored variables
                 panelVaccines.Size = new Size((((ColumDimentions[0].Width * 4) / 5)), ColumDimentions[0].Height);
                 panelVaccines.FlowDirection = FlowDirection.TopDown;
-                panelVaccines.BackColor = colors[i];
+                //panelVaccines.BackColor = colors[i];
 
 
                 //------------STARTS INSERT OF DATE INSIDE COLUMN
@@ -581,7 +576,7 @@ namespace ProjetoBasicoCindy.Vacina
                 for (int j = 0; j < dosestotake; j++)
                 {
                     ViewControls.Vacinas.VaccineViewer objClearVaccine = new ViewControls.Vacinas.VaccineViewer();
-                    objClearVaccine.BackColor = Color.LightGray;
+
                     objClearVaccine.Margin = margim;
                     objClearVaccine.Size = new Size((VacinaPanel.Size.Width - 6) / 6, (VacinaPanel.Size.Height - 48) / 3);
                     objClearVaccine.Padding = new Padding(0, 0, 0, 0);

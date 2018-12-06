@@ -83,6 +83,7 @@
             this.btEdit.Text = "Editar";
             this.btEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btEdit.UseVisualStyleBackColor = true;
+            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
             // 
             // btNewFunc
             // 

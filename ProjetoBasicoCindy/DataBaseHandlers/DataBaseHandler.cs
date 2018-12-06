@@ -180,7 +180,7 @@ namespace ProjetoBasicoCindy
                     "inner join func_ferias on (func_ferias.idferias = ferias.idferias) " + 
                     "inner join funcionario on (funcionario.idfuncionario = func_ferias.idfunc) " + 
                     "where idfuncionario = '{0}'", _idfuncionario);
-
+                Clipboard.SetText(query);
                 db2.SqlQuery(query);
                 db2.QueryRun();
                 _dt = db2.QueryDT();

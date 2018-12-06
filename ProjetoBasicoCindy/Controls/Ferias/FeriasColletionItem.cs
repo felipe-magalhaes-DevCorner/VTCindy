@@ -13,7 +13,7 @@ namespace ProjetoBasicoCindy.Ferias
     public class FeriasColletionItem : List<Ferias.FeriasItem>
     {
         //main list of ferias item
-        private List<FeriasItem> ListaFerias = new List<FeriasItem>();
+        public List<FeriasItem> ListaFerias = new List<FeriasItem>();
         //return the list
         public List<FeriasItem> getListFerias() => ListaFerias;
         //adds to list of ferias item

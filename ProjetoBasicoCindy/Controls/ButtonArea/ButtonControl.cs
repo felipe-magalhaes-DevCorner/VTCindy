@@ -31,8 +31,20 @@ namespace ProjetoBasicoCindy
 
         private void btSave_Click(object sender, EventArgs e)
         {
+            if (btEdit.BackColor != Color.Transparent)
+            {
+                btEdit.BackColor = Color.Transparent;
+            }
 
 
+        }
+
+        private void btEdit_Click(object sender, EventArgs e)
+        {
+            if (btEdit.BackColor == Color.Transparent)
+            {
+                btEdit.BackColor = ColorTranslator.FromHtml("#E7EFF2");
+            }
         }
     }
 }

@@ -307,7 +307,7 @@ namespace ProjetoBasicoCindy
 
                     //FERIAS
                     case 2:
-
+                        flowFerias.AutoSize = false;
                         Ferias.FeriasHandler objFerias = new Ferias.FeriasHandler(flowFerias);
 
 

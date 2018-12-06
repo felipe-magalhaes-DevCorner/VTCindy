@@ -17,9 +17,14 @@ namespace ProjetoBasicoCindy.ViewControls.Vacinas
             InitializeComponent();
             this.BackColor = Color.LightGray;
             this.Tag = nome;
+
             label1.Text = String.Format("Data:" + data);
             label2.Text = String.Format("Lote:" + lote);
             label3.Text = String.Format("Unid:" + unidade);
+            
+            LabelWrap(label1);
+            LabelWrap(label2);                      
+            LabelWrap(label3);
         }
         public VaccineViewer()
         {
@@ -28,6 +33,16 @@ namespace ProjetoBasicoCindy.ViewControls.Vacinas
             label1.Text = String.Format("Data:__/__/____" );
             label2.Text = String.Format("Lote:" );
             label3.Text = String.Format("Unid:" );
+            LabelWrap(label1);
+            LabelWrap(label2);
+            LabelWrap(label3);
+            this.BackColor = Color.Red;
+        }
+        public void LabelWrap(Label _label)
+        {
+            _label.MaximumSize = new Size(100, 0);
+            _label.AutoSize = true;
+            
         }
     }
 }
