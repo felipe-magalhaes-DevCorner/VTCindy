@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy
 {
@@ -11,33 +8,33 @@ namespace ProjetoBasicoCindy
         public List<DocumentosPictureItem> DocumentoCollection { get; set; }
 
 
-        public void SetList(List<DocumentosPictureItem> _list)
+        public void SetList(List<DocumentosPictureItem> list)
         {
-            DocumentoCollection = _list;
+            DocumentoCollection = list;
         }
         public int COuntList()
         {
             return DocumentoCollection.Count();
         }
-        public void AddDOC(DocumentosPictureItem _doc)
+        public void AddDoc(DocumentosPictureItem doc)
         {
 
-            DocumentoCollection.Add(_doc);
+            DocumentoCollection.Add(doc);
         }
-        public void RemoveDOC(DocumentosPictureItem _doc)
+        public void RemoveDoc(DocumentosPictureItem doc)
         {
-            DocumentoCollection.Remove(_doc);
+            DocumentoCollection.Remove(doc);
         }
-        public void RemoveDOCbyID(int _idList)
+        public void RemoveDoCbyId(int idList)
         {
-            DocumentoCollection.RemoveAt(_idList);
+            DocumentoCollection.RemoveAt(idList);
         }
         public List<DocumentosPictureItem> GetFuncionarioOnibusCollection()
         {
             List<DocumentosPictureItem> list = DocumentoCollection;
             return list;
         }
-        public DocumentosPictureCollection MakeListTOCollection()
+        public DocumentosPictureCollection MakeListToCollection()
         {
             DocumentosPictureCollection collection = new DocumentosPictureCollection();
             foreach (DocumentosPictureItem onibus in DocumentoCollection)

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace ProjetoBasicoCindy
 {
@@ -17,13 +12,13 @@ namespace ProjetoBasicoCindy
         //variables, main funcionarioitem collection
         #region variables
         //lista principal funcionarios
-        AutoCompleteStringCollection source = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection _source = new AutoCompleteStringCollection();
         public List<FuncionarioItem> ListOfFuncionarios = null;
         //variable de para uma unica conexcao sql por funcionario.
-        DataBaseHandler DataSQL = new DataBaseHandler();
+        private DataBaseHandler _dataSql = new DataBaseHandler();
         //variavel auxiliar para controle de ultimo numero de matricula funcionario;
 
-        public Control buttonCOntrol { get; set; }
+        public Control ButtonCOntrol { get; set; }
         
 
 
@@ -31,7 +26,7 @@ namespace ProjetoBasicoCindy
         /// list to store funcionario item previews.
         /// an array with (matricula, nome_funcionario)
         /// </summary>
-        List<FuncionarioItemPreview> previewList = new List<FuncionarioItemPreview>();
+        private List<FuncionarioItemPreview> _previewList = new List<FuncionarioItemPreview>();
         #endregion
 
 
@@ -74,11 +69,11 @@ namespace ProjetoBasicoCindy
         {
             DataTable dtNomes = new DataTable();
             
-            DataBaseHandler DBHandler = new DataBaseHandler();
-            dtNomes = DBHandler.PreviewGetFuncionariosTolist();
+            DataBaseHandler dbHandler = new DataBaseHandler();
+            dtNomes = dbHandler.PreviewGetFuncionariosTolist();
             string nome = "";
             int matricula = 0;
-            FuncionarioItemPreview AddFuncPreview = new FuncionarioItemPreview();
+            FuncionarioItemPreview addFuncPreview = new FuncionarioItemPreview();
             
             
                 for (int x = 0; x < dtNomes.Rows.Count; x++)
@@ -98,14 +93,14 @@ namespace ProjetoBasicoCindy
 
 
                     }
-                    FuncionarioItemPreview AddFuncPr = new FuncionarioItemPreview(matricula, nome);
-                    previewList.Add(AddFuncPr);
+                    FuncionarioItemPreview addFuncPr = new FuncionarioItemPreview(matricula, nome);
+                    _previewList.Add(addFuncPr);
                 }
-                var Realist = new FuncionarioCollectionPreview();
+                var realist = new FuncionarioCollectionPreview();
                 //Adiciona nomes à list view
-                foreach (FuncionarioItemPreview funcionario in previewList)
+                foreach (FuncionarioItemPreview funcionario in _previewList)
                 {
-                    listBox1.Items.Add(funcionario._name);
+                    listBox1.Items.Add(funcionario.Name);
 
                 }
 
@@ -126,8 +121,8 @@ namespace ProjetoBasicoCindy
         /// <param name="e"></param>
         private void Funcionarios_Load(object sender, EventArgs e)
         {
-            var LoadBankInformaacoaoControle = new informacoesControl();
-            panelInfo.Controls.Add(LoadBankInformaacoaoControle);
+            var loadBankInformaacoaoControle = new InformacoesControl();
+            panelInfo.Controls.Add(loadBankInformaacoaoControle);
             //DataTable _dt;
 
             //_dt = DataSQL.GetFuncionariosToList();
@@ -190,8 +185,8 @@ namespace ProjetoBasicoCindy
         }
         private void LoadSelectedFuncDocs()
         {
-            var objSQL = new DataBaseHandler();
-            var objHandler = new SQLToSharpHandler();
+            var objSql = new DataBaseHandler();
+            var objHandler = new SqlToSharpHandler();
 
 
 
@@ -199,16 +194,19 @@ namespace ProjetoBasicoCindy
 
         private void LoadSelectedFuncionarioInfo()
         {
-            var objSQL = new DataBaseHandler();
-            var objHandler = new SQLToSharpHandler();
+            var objSql = new DataBaseHandler();
+            var objHandler = new SqlToSharpHandler();
             //buscar informacoes do funcionario
             if (listBox1.SelectedIndex >= 0)
             {
-                FuncionarioItem _Funcionario = objHandler.ConvertoFromSqlTo_1_FuncionarioItem(objSQL.GetFuncionariosInfo(previewList[listBox1.SelectedIndex]._idfuncionario.ToString()));
-                objSQL.GetDocuments(_Funcionario._idFuncionario);
-                var FuncionarioSelected = new FuncionarioItemEdit();
-                FuncionarioSelected.SetFuncionarioEdit(_Funcionario);
-                var objInformacoes = new informacoesControl(FuncionarioSelected.GetFuncionarioEdit());
+                FuncionarioItem funcionario = objHandler.ConvertoFromSqlTo_1_FuncionarioItem(objSql.GetFuncionariosInfo(_previewList[listBox1.SelectedIndex].Idfuncionario.ToString()));
+                objSql.GetDocuments(funcionario.IdFuncionario);
+                var functesteequals = funcionario;
+                var funcionarioSelected = new FuncionarioItemEdit();
+                
+                funcionarioSelected.SetFuncionarioEdit(functesteequals);
+                bool teste = funcionario.Equals(funcionarioSelected.GetFuncionarioEdit());
+                var objInformacoes = new InformacoesControl(funcionarioSelected.GetFuncionarioEdit());
                 panelInfo.Controls.Clear();
                 panelInfo.Controls.Add(objInformacoes);
             }
@@ -223,18 +221,18 @@ namespace ProjetoBasicoCindy
             {
                 listBox1.Items.Clear();
                 txFuncNameFilter.AutoCompleteMode = AutoCompleteMode.Suggest;
-                source.Clear();
+                _source.Clear();
                 string filter = txFuncNameFilter.Text;
 
 
 
 
-                foreach (FuncionarioItemPreview _funcionario in previewList)
+                foreach (FuncionarioItemPreview funcionario in _previewList)
                 {
-                    if (_funcionario._name.ToLower().Contains((filter).ToLower()))
+                    if (funcionario.Name.ToLower().Contains((filter).ToLower()))
                     {
-                        source.Add(_funcionario._name);
-                        listBox1.Items.Add(_funcionario._name);
+                        _source.Add(funcionario.Name);
+                        listBox1.Items.Add(funcionario.Name);
                     }
 
 
@@ -243,7 +241,7 @@ namespace ProjetoBasicoCindy
                 }
 
                 txFuncNameFilter.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                txFuncNameFilter.AutoCompleteCustomSource = source;
+                txFuncNameFilter.AutoCompleteCustomSource = _source;
             }
             catch (Exception)
             {
@@ -256,8 +254,8 @@ namespace ProjetoBasicoCindy
             if (string.IsNullOrEmpty(texto))
                 return String.Empty;
 
-            byte[] bytes = System.Text.Encoding.GetEncoding("iso-8859-8").GetBytes(texto);
-            return System.Text.Encoding.UTF8.GetString(bytes);
+            byte[] bytes = Encoding.GetEncoding("iso-8859-8").GetBytes(texto);
+            return Encoding.UTF8.GetString(bytes);
         }
 
         /// <summary>
@@ -324,9 +322,10 @@ namespace ProjetoBasicoCindy
                         break;
                     //EXAMES
                     case 4:
+                        Exames.ExamViewHandler examViewHandler = new Exames.ExamViewHandler(pnExames);
 
                         break;
-                    //FERIAS
+                    
 
 
                     default:

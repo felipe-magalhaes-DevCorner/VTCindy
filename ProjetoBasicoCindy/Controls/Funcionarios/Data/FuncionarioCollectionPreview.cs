@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ProjetoBasicoCindy
 {
@@ -11,18 +7,18 @@ namespace ProjetoBasicoCindy
 
         private static List<FuncionarioItemPreview> FuncionarioColPreview { get; set; }
 
-        public void SetList(List<FuncionarioItemPreview> _list)
+        public void SetList(List<FuncionarioItemPreview> list)
         {
-            FuncionarioColPreview = _list;
+            FuncionarioColPreview = list;
         }
-        public void AddFuncionario(FuncionarioItemPreview _funcionario)
+        public void AddFuncionario(FuncionarioItemPreview funcionario)
         {
 
-            FuncionarioColPreview.Add(_funcionario);
+            FuncionarioColPreview.Add(funcionario);
         }
-        public void RemoveFuncionario(FuncionarioItemPreview _funcionario)
+        public void RemoveFuncionario(FuncionarioItemPreview funcionario)
         {
-            FuncionarioColPreview.Remove(_funcionario);
+            FuncionarioColPreview.Remove(funcionario);
         }
         public List<FuncionarioItemPreview> GetFuncionariosList()
         {

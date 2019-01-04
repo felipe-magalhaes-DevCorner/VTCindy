@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjetoBasicoCindy
+﻿namespace ProjetoBasicoCindy
 {
     public class FuncionarioItemPreview
     {
-        public int _idfuncionario { get; set; }
-        public string _name { get; set; }
+        public int Idfuncionario { get; set; }
+        public string Name { get; set; }
         public FuncionarioItemPreview(int idfuncionario = 1, string name = null)
         {
-            _idfuncionario = idfuncionario;
-            _name = name;
+            Idfuncionario = idfuncionario;
+            Name = name;
         }
 
 
-        public void GetPreview(FuncionarioItem _funcionario)
+        public void GetPreview(FuncionarioItem funcionario)
         {
-            string[] PreviewArray = { _funcionario._idFuncionario.ToString(), _funcionario._name };
+            string[] previewArray = { funcionario.IdFuncionario.ToString(), funcionario.Name };
         }
 
     }

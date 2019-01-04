@@ -1,9 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ProjetoBasicoCindy
 {
@@ -11,14 +6,17 @@ namespace ProjetoBasicoCindy
     {
         private static FuncionarioItem  FuncionarioEdit { get; set; }
 
-        public void SetFuncionarioEdit(FuncionarioItem _funcionario) => FuncionarioEdit = _funcionario;
-        public FuncionarioItem GetFuncionarioEdit()
+        public void SetFuncionarioEdit(FuncionarioItem funcionario)
         {
-            return FuncionarioEdit;
+            FuncionarioEdit = funcionario;
+            FuncionarioEdit.Name = "felipe";
         }
 
-        public List<OnibusItem> GetBusEdit() => FuncionarioEdit._onibus;
-        public List<Ferias.FeriasItem> GetFeriasEdit() => FuncionarioEdit._ferias;
+        public FuncionarioItem GetFuncionarioEdit() => FuncionarioEdit;
+
+        public List<OnibusItem> GetBusEdit() => FuncionarioEdit.Onibus;
+        public List<Ferias.FeriasItem> GetFeriasEdit() => FuncionarioEdit.Ferias;
+
 
 
 

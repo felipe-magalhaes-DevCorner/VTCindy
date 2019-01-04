@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Drawing;
 
 namespace ProjetoBasicoCindy
 {
@@ -20,17 +14,17 @@ namespace ProjetoBasicoCindy
         /// 
         /// </summary>
 
-        Image _documentos { get; set; }
-        public int _tipo { get; set; }
+        private Image Documentos { get; set; }
+        public int Tipo { get; set; }
 
-        public int _pagina { get; set; }
+        public int Pagina { get; set; }
 
         public DocumentosPictureItem(Image documentos,int  tipo, int pagina)
         {
             
-            _documentos = documentos;
-            _tipo = tipo;
-            _pagina = pagina;
+            Documentos = documentos;
+            Tipo = tipo;
+            Pagina = pagina;
         }
     }
 }

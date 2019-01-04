@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Controls\ButtonArea\ButtonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -60,6 +61,10 @@
     <Compile Include="Controls\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Exames\Data\ExameItemColletion.cs" />
+    <Compile Include="Controls\Exames\Data\Examitem.cs" />
+    <Compile Include="Controls\Exames\Data\ExamList.cs" />
+    <Compile Include="Controls\Exames\ExamViewHandler.cs" />
     <Compile Include="Controls\Ferias\FeriasColletionItem.cs" />
     <Compile Include="Controls\Ferias\FeriasHandler.cs" />
     <Compile Include="Controls\Ferias\FeriasItem.cs" />
@@ -103,7 +108,7 @@
     <Compile Include="Controls\UploadControllers\UploaderControl.Designer.cs">
       <DependentUpon>UploaderControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Vacina\Data\VaccineHandler.cs" />
+    <Compile Include="Controls\Vacina\VaccineHandler.cs" />
     <Compile Include="Controls\Vacina\Data\Vacina.cs" />
     <Compile Include="Controls\Vacina\Data\FuncionarioVaccinaColletion.cs" />
     <Compile Include="Controls\Vacina\Data\VacinaInfo.cs" />
@@ -112,6 +117,12 @@
     </Compile>
     <Compile Include="Controls\ViewControls\AddBussViewModel.Designer.cs">
       <DependentUpon>AddBussViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewControls\Exames\ExameView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ViewControls\Exames\ExameView.Designer.cs">
+      <DependentUpon>ExameView.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ViewControls\informacoesControl.cs">
       <SubType>UserControl</SubType>
@@ -127,6 +138,8 @@
     </Compile>
     <Compile Include="DataBaseHandlers\DataBaseHandler.cs" />
     <Compile Include="DataBaseHandlers\SQLToSharpHandler.cs" />
+    <Compile Include="Data\DashboardCounter.cs" />
+    <Compile Include="Data\ExameCheckOK.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +169,9 @@
     <EmbeddedResource Include="Controls\ViewControls\AddBussViewModel.resx">
       <DependentUpon>AddBussViewModel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ViewControls\Exames\ExameView.resx">
+      <DependentUpon>ExameView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ViewControls\informacoesControl.resx">
       <DependentUpon>informacoesControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +190,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
@@ -191,10 +208,29 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Imagens\content-save.png" />
-    <Content Include="Imagens\delete.png" />
+    <Content Include="Imagens\alert.png" />
+    <Content Include="Imagens\cancel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagens\checked.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagens\content-save.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagens\delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Imagens\ferias.png" />
-    <Content Include="Imagens\pencil.png" />
+    <Content Include="Imagens\move-to-next %281%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagens\move-to-next.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagens\pencil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Calendar\MonthCalendar.csproj">

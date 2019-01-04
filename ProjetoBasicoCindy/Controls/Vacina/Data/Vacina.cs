@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjetoBasicoCindy.Vacina
+﻿namespace ProjetoBasicoCindy.Vacina
 {
     public class Vacina
     {
-        public string _nome;
-        public VacinaInfo _dados = new VacinaInfo();
-        public int _dose;
+        public string Nome;
+        public VacinaInfo Dados = new VacinaInfo();
+        public int Dose;
 
 
         public Vacina(string nome, VacinaInfo dados, int dose)
         {
-            _nome = nome;
-            _dados = dados;
-            _dose = dose;
+            Nome = nome;
+            Dados = dados;
+            Dose = dose;
         }
         //public Vacina()
         //{

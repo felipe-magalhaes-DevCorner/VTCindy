@@ -1,37 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 
 namespace ProjetoBasicoCindy
 {
-    public partial class informacoesControl : UserControl
+    public partial class InformacoesControl : UserControl
     {
         #region Variables
-        public static string matricula = "0";
-        public DataTable _dtb = new DataTable();
-        public OnibusItem onibus = new OnibusItem();
-        private int buslistviewIndexHelper = 0;
+        public static string Matricula = "0";
+        public DataTable Dtb = new DataTable();
+        public OnibusItem Onibus = new OnibusItem();
+        private int _buslistviewIndexHelper = 0;
         #endregion
 
         #region Constructor
-        public informacoesControl(FuncionarioItem _funcionario = null)
+        public InformacoesControl(FuncionarioItem funcionario = null)
         {
             InitializeComponent();
 
-            loadFunc(_funcionario);
+            LoadFunc(funcionario);
         }
 
         #endregion
 
         #region UI Handlers
-        private void OnibusTableHandler(List<OnibusItem> _onibus)
+        private void OnibusTableHandler(List<OnibusItem> onibus)
         {
             listView1.Items.Clear();
             listView1.View = View.Details;
@@ -40,13 +35,13 @@ namespace ProjetoBasicoCindy
             
             listView1.Columns.Add("Preço");
             listView1.Columns.Add("Cartão");
-            foreach (OnibusItem item in _onibus)
+            foreach (OnibusItem item in onibus)
             {
                 ListViewItem lvi = new ListViewItem();
                 
-                lvi.SubItems.Add(item._linha.Trim());
-                lvi.SubItems.Add(String.Format("{0:0.00}", item._preco));
-                lvi.SubItems.Add(item._cartao.Trim());
+                lvi.SubItems.Add(item.Linha.Trim());
+                lvi.SubItems.Add(String.Format("{0:0.00}", item.Preco));
+                lvi.SubItems.Add(item.Cartao.Trim());
                 listView1.Items.Add(lvi);
                 
                 listView1.Columns[0].Width = 0;
@@ -65,53 +60,53 @@ namespace ProjetoBasicoCindy
         #endregion
 
         #region MatiChange
-        public void setMatricula(string _matricula)
+        public void SetMatricula(string matricula)
         {
-            matricula = (Convert.ToInt32(_matricula) + 1).ToString();
-            txtMatricula.Text = matricula.ToString().Trim();
+            Matricula = (Convert.ToInt32(matricula) + 1).ToString();
+            txtMatricula.Text = Matricula.ToString().Trim();
         }
 
         #endregion
 
         #region Load
-        public void loadFunc(FuncionarioItem _funcionario = null)
+        public void LoadFunc(FuncionarioItem funcionario = null)
         {
-            if (_funcionario != null)
+            if (funcionario != null)
             {
-                matricula = _funcionario._idFuncionario.ToString().Trim();
-                txtMatricula.Text = matricula;
-                if (_funcionario._funcPic != null)
+                Matricula = funcionario.IdFuncionario.ToString().Trim();
+                txtMatricula.Text = Matricula;
+                if (funcionario.FuncPic != null)
                 {
-                    pictureBox1.Image = _funcionario._funcPic;
+                    pictureBox1.Image = funcionario.FuncPic;
 
                 }
-                txtIdentidade.Text = _funcionario._identidade.ToString().Trim();
-                mskTel.Text = _funcionario._telefone.ToString().Trim();
-                txtnome.Text = _funcionario._name.ToString().Trim();
-                mskcpf.Text = _funcionario._cpf.ToString().Trim();
-                mskTel.Text = _funcionario._telefone.ToString().Trim();
-                cbSexo.Text = _funcionario._sexo.ToString().Trim();
-                mskDataNasc.Text = _funcionario._dataNascimento.ToString("dd/MM/yyyy");
-                txtrua.Text = _funcionario._rua.ToString().Trim();
-                txtxnumero.Text = _funcionario._numero.ToString().Trim();
-                txtcomplemento.Text = _funcionario._complemento.ToString().Trim();
-                txtbairro.Text = _funcionario._bairro.ToString().Trim();
-                rtxtObs.Text = _funcionario._observacao.ToString().Trim();
-                txtcidade.Text = _funcionario._cidade.ToString().Trim();
-                cbEstado.Text = _funcionario._estado.ToString().Trim();
-                mskcep.Text = _funcionario._cep.ToString().Trim();
+                txtIdentidade.Text = funcionario.Identidade.ToString().Trim();
+                mskTel.Text = funcionario.Telefone.ToString().Trim();
+                txtnome.Text = funcionario.Name.ToString().Trim();
+                mskcpf.Text = funcionario.Cpf.ToString().Trim();
+                mskTel.Text = funcionario.Telefone.ToString().Trim();
+                cbSexo.Text = funcionario.Sexo.ToString().Trim();
+                mskDataNasc.Text = funcionario.DataNascimento.ToString("dd/MM/yyyy");
+                txtrua.Text = funcionario.Rua.ToString().Trim();
+                txtxnumero.Text = funcionario.Numero.ToString().Trim();
+                txtcomplemento.Text = funcionario.Complemento.ToString().Trim();
+                txtbairro.Text = funcionario.Bairro.ToString().Trim();
+                rtxtObs.Text = funcionario.Observacao.ToString().Trim();
+                txtcidade.Text = funcionario.Cidade.ToString().Trim();
+                cbEstado.Text = funcionario.Estado.ToString().Trim();
+                mskcep.Text = funcionario.Cep.ToString().Trim();
                 CultureInfo cult = new CultureInfo("pt-BR");
-                mskAdmissao.Text = _funcionario._adimissao.ToString("dd/MM/yyyy", cult);
+                mskAdmissao.Text = funcionario.Adimissao.ToString("dd/MM/yyyy", cult);
 
-                if (_funcionario._inativo == true)
+                if (funcionario.Inativo == true)
                 {
                     checkInativo.Checked = true;
                     
-                    mskInativoData.Text = _funcionario._inativacao.ToString("dd/MM/yyyy", cult);
+                    mskInativoData.Text = funcionario.Inativacao.ToString("dd/MM/yyyy", cult);
                 }
-                var Getonibus_list = new OnibusItemCollection();
-                List<OnibusItem> onibus_list = Getonibus_list.GetFuncionarioOnibusCollection();
-                OnibusTableHandler(onibus_list);
+                var getonibusList = new OnibusItemCollection();
+                List<OnibusItem> onibusList = getonibusList.GetFuncionarioOnibusCollection();
+                OnibusTableHandler(onibusList);
             }
         }
         #endregion
@@ -123,7 +118,7 @@ namespace ProjetoBasicoCindy
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private void btAddBus_Click(object sender, EventArgs e)
+        private void BtAddBus_Click(object sender, EventArgs e)
         {
             //opens pannel to add bus
             var objAddBus = new AddBussViewModel();
@@ -135,11 +130,11 @@ namespace ProjetoBasicoCindy
             panelAddBus.Controls.Add(objAddBus);
             //bring panel to front
             panelAddBus.BringToFront();
-            var Getonibus_list = new OnibusItemCollection();
+            var getonibusList = new OnibusItemCollection();
 
-            List<OnibusItem> onibus_list = Getonibus_list.GetFuncionarioOnibusCollection();
+            List<OnibusItem> onibusList = getonibusList.GetFuncionarioOnibusCollection();
 
-            OnibusTableHandler(onibus_list);
+            OnibusTableHandler(onibusList);
 
             //always good to dispose
 
@@ -147,35 +142,35 @@ namespace ProjetoBasicoCindy
         #endregion
 
         #region RemoveBus
-        private void btRemoveBus_Click(object sender, EventArgs e)
+        private void BtRemoveBus_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0 )
             {
-                var _getFun = new FuncionarioItemEdit();
-                var _funcionario = _getFun.GetFuncionarioEdit();
-                var GetBus = new OnibusItemCollection();
-                GetBus.SetList(_funcionario._onibus);
+                var getFun = new FuncionarioItemEdit();
+                var funcionario = getFun.GetFuncionarioEdit();
+                var getBus = new OnibusItemCollection();
+                getBus.SetList(funcionario.Onibus);
                 var listonibusEdit = new List<OnibusItem>();
                 var testelist = new List<OnibusItem>();
                 for (int i = 0; i < listView1.SelectedItems.Count; i++)
                 {
-                    ListViewItem _onibusItem = listView1.SelectedItems[i];
-                    var onibusTodelete = new OnibusItem(buslistviewIndexHelper, _onibusItem.SubItems[0].Text, _onibusItem.SubItems[1].Text,Convert.ToDouble( _onibusItem.SubItems[2].Text));
+                    ListViewItem onibusItem = listView1.SelectedItems[i];
+                    var onibusTodelete = new OnibusItem(_buslistviewIndexHelper, onibusItem.SubItems[0].Text, onibusItem.SubItems[1].Text,Convert.ToDouble( onibusItem.SubItems[2].Text));
                     listonibusEdit.Add(onibusTodelete);
                 }
                 foreach (OnibusItem onibusItem in listonibusEdit)
                 {
-                    testelist = GetBus.GetFuncionarioOnibusCollection();
-                    GetBus.RemoveBusbyID(0);
-                    testelist = GetBus.GetFuncionarioOnibusCollection();
+                    testelist = getBus.GetFuncionarioOnibusCollection();
+                    getBus.RemoveBusbyId(0);
+                    testelist = getBus.GetFuncionarioOnibusCollection();
 
                 }
 
                 //final list for visualization testes
-                listonibusEdit = GetBus.GetFuncionarioOnibusCollection();
+                listonibusEdit = getBus.GetFuncionarioOnibusCollection();
                 OnibusTableHandler(listonibusEdit);
-                _funcionario._onibus = GetBus.MakeListTOCollection();
-                _getFun.SetFuncionarioEdit(_funcionario);
+                funcionario.Onibus = getBus.MakeListToCollection();
+                getFun.SetFuncionarioEdit(funcionario);
 
 
 
@@ -198,15 +193,15 @@ namespace ProjetoBasicoCindy
 
         private void AddVisibleChangedEventHandler()
         {
-            panelAddBus.VisibleChanged += new EventHandler(this.Label_VisibleChanged);
+            panelAddBus.VisibleChanged += new EventHandler(Label_VisibleChanged);
         }
 
         private void Label_VisibleChanged(object sender, EventArgs e)
         {
             if (panelAddBus.Visible == false)
             {
-                var Getonibus_list = new OnibusItemCollection();
-                OnibusTableHandler(Getonibus_list.GetFuncionarioOnibusCollection());
+                var getonibusList = new OnibusItemCollection();
+                OnibusTableHandler(getonibusList.GetFuncionarioOnibusCollection());
             }
             
         }
@@ -219,7 +214,7 @@ namespace ProjetoBasicoCindy
         #region HelperClasses
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            buslistviewIndexHelper = e.ItemIndex;
+            _buslistviewIndexHelper = e.ItemIndex;
         }
         private void checkInativo_CheckedChanged(object sender, EventArgs e)
         {

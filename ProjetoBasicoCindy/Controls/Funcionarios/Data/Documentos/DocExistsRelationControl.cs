@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy
 {
-    class DocExistsRelationControl
+    internal class DocExistsRelationControl
     {
         private DocumentosPictureCollection DocumentosExistsControl { get; set; }
         private bool Exists { get; set; }

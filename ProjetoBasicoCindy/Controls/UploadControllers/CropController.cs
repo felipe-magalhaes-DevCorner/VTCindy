@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
@@ -15,12 +9,12 @@ namespace ProjetoBasicoCindy
     {
         #region Variables
         public Panel ParentPanel { get; set; }
-        Boolean bHaveMouse;
-        Point ptOriginal = new Point();
-        Point ptLast = new Point();
-        Rectangle rectCropArea;
-        Image srcImage = null;
-        private static string cfilename;
+        private Boolean _bHaveMouse;
+        private Point _ptOriginal = new Point();
+        private Point _ptLast = new Point();
+        private Rectangle _rectCropArea;
+        private Image _srcImage = null;
+        private static string _cfilename;
         #endregion
 
         #region Contructor  
@@ -64,19 +58,19 @@ namespace ProjetoBasicoCindy
 
                 if ((cord0 < cord2 && cord1 < cord3))
                 {
-                    rectCropArea = new Rectangle(cord0, cord1, cord2 - cord0, cord3 - cord1);
+                    _rectCropArea = new Rectangle(cord0, cord1, cord2 - cord0, cord3 - cord1);
                 }
                 else if (cord2 < cord0 && cord3 > cord1)
                 {
-                    rectCropArea = new Rectangle(cord2, cord1, cord0 - cord2, cord3 - cord1);
+                    _rectCropArea = new Rectangle(cord2, cord1, cord0 - cord2, cord3 - cord1);
                 }
                 else if (cord2 > cord0 && cord3 < cord1)
                 {
-                    rectCropArea = new Rectangle(cord0, cord3, cord2 - cord0, cord1 - cord3);
+                    _rectCropArea = new Rectangle(cord0, cord3, cord2 - cord0, cord1 - cord3);
                 }
                 else
                 {
-                    rectCropArea = new Rectangle(cord2, cord3, cord0 - cord2, cord1 - cord3);
+                    _rectCropArea = new Rectangle(cord2, cord3, cord0 - cord2, cord1 - cord3);
                 }
             }
 
@@ -84,8 +78,8 @@ namespace ProjetoBasicoCindy
 
             //Bitmap teste;
 
-            g.DrawImage(sourceBitmap, rectCropArea,
-                rectCropArea, GraphicsUnit.Pixel);
+            g.DrawImage(sourceBitmap, _rectCropArea,
+                _rectCropArea, GraphicsUnit.Pixel);
             
             
 
@@ -123,7 +117,7 @@ namespace ProjetoBasicoCindy
         {
             Pen drawLine = new Pen(Color.Black);
             drawLine.DashStyle = DashStyle.Dash;
-            e.Graphics.DrawRectangle(drawLine, rectCropArea);
+            e.Graphics.DrawRectangle(drawLine, _rectCropArea);
         }
         private void tbCordinates_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -162,54 +156,54 @@ namespace ProjetoBasicoCindy
             Point ptCurrent = new Point(e.X, e.Y);
 
             // If we "have the mouse", then we draw our lines.
-            if (bHaveMouse)
+            if (_bHaveMouse)
             {
                 // If we have drawn previously, draw again in
                 // that spot to remove the lines.
-                if (ptLast.X != -1)
+                if (_ptLast.X != -1)
                 {
                     // Display Coordinates
-                    lbCordinates.Text = "Coordinates  :  " + ptOriginal.X.ToString() + ", " +
-                        ptOriginal.Y.ToString() + " And " + e.X.ToString() + ", " + e.Y.ToString();
+                    lbCordinates.Text = "Coordinates  :  " + _ptOriginal.X.ToString() + ", " +
+                        _ptOriginal.Y.ToString() + " And " + e.X.ToString() + ", " + e.Y.ToString();
                 }
 
                 // Update last point.
-                ptLast = ptCurrent;
+                _ptLast = ptCurrent;
 
                 // Draw new lines.
 
                 // e.X - rectCropArea.X;
                 // normal
-                if (e.X > ptOriginal.X && e.Y > ptOriginal.Y)
+                if (e.X > _ptOriginal.X && e.Y > _ptOriginal.Y)
                 {
-                    rectCropArea.Width = e.X - ptOriginal.X;
+                    _rectCropArea.Width = e.X - _ptOriginal.X;
 
                     // e.Y - rectCropArea.Height;
-                    rectCropArea.Height = e.Y - ptOriginal.Y;
+                    _rectCropArea.Height = e.Y - _ptOriginal.Y;
                 }
-                else if (e.X < ptOriginal.X && e.Y > ptOriginal.Y)
+                else if (e.X < _ptOriginal.X && e.Y > _ptOriginal.Y)
                 {
-                    rectCropArea.Width = ptOriginal.X - e.X;
-                    rectCropArea.Height = e.Y - ptOriginal.Y;
-                    rectCropArea.X = e.X;
-                    rectCropArea.Y = ptOriginal.Y;
+                    _rectCropArea.Width = _ptOriginal.X - e.X;
+                    _rectCropArea.Height = e.Y - _ptOriginal.Y;
+                    _rectCropArea.X = e.X;
+                    _rectCropArea.Y = _ptOriginal.Y;
                 }
-                else if (e.X > ptOriginal.X && e.Y < ptOriginal.Y)
+                else if (e.X > _ptOriginal.X && e.Y < _ptOriginal.Y)
                 {
-                    rectCropArea.Width = e.X - ptOriginal.X;
-                    rectCropArea.Height = ptOriginal.Y - e.Y;
+                    _rectCropArea.Width = e.X - _ptOriginal.X;
+                    _rectCropArea.Height = _ptOriginal.Y - e.Y;
 
-                    rectCropArea.X = ptOriginal.X;
-                    rectCropArea.Y = e.Y;
+                    _rectCropArea.X = _ptOriginal.X;
+                    _rectCropArea.Y = e.Y;
                 }
                 else
                 {
-                    rectCropArea.Width = ptOriginal.X - e.X;
+                    _rectCropArea.Width = _ptOriginal.X - e.X;
 
                     // e.Y - rectCropArea.Height;
-                    rectCropArea.Height = ptOriginal.Y - e.Y;
-                    rectCropArea.X = e.X;
-                    rectCropArea.Y = e.Y;
+                    _rectCropArea.Height = _ptOriginal.Y - e.Y;
+                    _rectCropArea.X = e.X;
+                    _rectCropArea.Y = e.Y;
                 }
                 SrcPicBox.Refresh();
             }
@@ -217,11 +211,11 @@ namespace ProjetoBasicoCindy
         private void SrcPicBox_MouseDown(object sender, MouseEventArgs e)
         {
             // Make a note that we "have the mouse".
-            bHaveMouse = true;
+            _bHaveMouse = true;
 
             // Store the "starting point" for this rubber-band rectangle.
-            ptOriginal.X = e.X;
-            ptOriginal.Y = e.Y;
+            _ptOriginal.X = e.X;
+            _ptOriginal.Y = e.Y;
 
             // Special value lets us know that no previous
             // rectangle needs to be erased.
@@ -229,34 +223,34 @@ namespace ProjetoBasicoCindy
             // Display coordinates
             lbCordinates.Text = "Coordinates  :  " + e.X.ToString() + ", " + e.Y.ToString();
 
-            ptLast.X = -1;
-            ptLast.Y = -1;
+            _ptLast.X = -1;
+            _ptLast.Y = -1;
 
-            rectCropArea = new Rectangle(new Point(e.X, e.Y), new Size());
+            _rectCropArea = new Rectangle(new Point(e.X, e.Y), new Size());
         }
 
         private void SrcPicBox_MouseUp(object sender, MouseEventArgs e)
         {
             // Set internal flag to know we no longer "have the mouse".
-            bHaveMouse = false;
+            _bHaveMouse = false;
 
             // If we have drawn previously, draw again in that spot
             // to remove the lines.
-            if (ptLast.X != -1)
+            if (_ptLast.X != -1)
             {
                 Point ptCurrent = new Point(e.X, e.Y);
 
                 // Display coordinates
-                lbCordinates.Text = "Coordinates  :  " + ptOriginal.X.ToString() + ", " +
-                    ptOriginal.Y.ToString() + " And " + e.X.ToString() + ", " + e.Y.ToString();
+                lbCordinates.Text = "Coordinates  :  " + _ptOriginal.X.ToString() + ", " +
+                    _ptOriginal.Y.ToString() + " And " + e.X.ToString() + ", " + e.Y.ToString();
 
             }
 
             // Set flags to know that there is no "previous" line to reverse.
-            ptLast.X = -1;
-            ptLast.Y = -1;
-            ptOriginal.X = -1;
-            ptOriginal.Y = -1;
+            _ptLast.X = -1;
+            _ptLast.Y = -1;
+            _ptOriginal.X = -1;
+            _ptOriginal.Y = -1;
 
         }
         #endregion
@@ -267,11 +261,11 @@ namespace ProjetoBasicoCindy
             var dlg = new OpenFileDialog();
             dlg.Multiselect = false;
             dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                cfilename = dlg.FileName;
-                srcImage = Image.FromFile(cfilename);
-                SrcPicBox.Image = srcImage;
+                _cfilename = dlg.FileName;
+                _srcImage = Image.FromFile(_cfilename);
+                SrcPicBox.Image = _srcImage;
 
 
             }
@@ -280,7 +274,7 @@ namespace ProjetoBasicoCindy
         private void button2_Click(object sender, EventArgs e)
         {
             Bitmap imageDone = new Bitmap(TargetPicBox.Image);
-            imageDone.Save(cfilename.Replace(".", "edited."));
+            imageDone.Save(_cfilename.Replace(".", "edited."));
         }
     }
 }

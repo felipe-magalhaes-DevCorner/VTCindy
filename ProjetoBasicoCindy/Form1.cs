@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MonthCalendar = Pabo.Calendar.MonthCalendar;
 
 namespace ProjetoBasicoCindy
 {
     public partial class Form1 : Form
     {
-        private Control buttoncontrol;
+        private Control _buttoncontrol;
         public Form1()
         {
             InitializeComponent();
@@ -31,12 +23,12 @@ namespace ProjetoBasicoCindy
 
         private void button5_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
         private void btDashBoard_Click(object sender, EventArgs e)
@@ -50,7 +42,7 @@ namespace ProjetoBasicoCindy
 
             var objMainform = new Funcionarios();
             container.Controls.Add(objMainform);
-            objMainform.buttonCOntrol = buttoncontrol;
+            objMainform.ButtonCOntrol = _buttoncontrol;
             buttonContainer.Visible = true;
 
 
@@ -58,9 +50,9 @@ namespace ProjetoBasicoCindy
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            buttoncontrol = new ButtonControl();
+            _buttoncontrol = new ButtonControl();
 
-            buttonContainer.Controls.Add(buttoncontrol);
+            buttonContainer.Controls.Add(_buttoncontrol);
             buttonContainer.Visible = false;
         }
     }

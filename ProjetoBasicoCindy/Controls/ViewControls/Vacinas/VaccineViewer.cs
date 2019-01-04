@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoBasicoCindy.ViewControls.Vacinas
@@ -15,8 +9,8 @@ namespace ProjetoBasicoCindy.ViewControls.Vacinas
         public VaccineViewer(string nome, string data, string lote, string unidade)
         {
             InitializeComponent();
-            this.BackColor = Color.LightGray;
-            this.Tag = nome;
+            BackColor = Color.LightGray;
+            Tag = nome;
 
             label1.Text = String.Format("Data:" + data);
             label2.Text = String.Format("Lote:" + lote);
@@ -36,12 +30,12 @@ namespace ProjetoBasicoCindy.ViewControls.Vacinas
             LabelWrap(label1);
             LabelWrap(label2);
             LabelWrap(label3);
-            this.BackColor = Color.Red;
+            BackColor = Color.Red;
         }
-        public void LabelWrap(Label _label)
+        public void LabelWrap(Label label)
         {
-            _label.MaximumSize = new Size(100, 0);
-            _label.AutoSize = true;
+            label.MaximumSize = new Size(100, 0);
+            label.AutoSize = true;
             
         }
     }

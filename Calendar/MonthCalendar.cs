@@ -25,25 +25,20 @@
  */
 
 using System;
-using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.ComponentModel.Design.Serialization;
 using System.Drawing;
 using System.Drawing.Imaging;  
 using System.Drawing.Design; 
 using System.Drawing.Drawing2D;
 using System.Drawing.Printing; 
 using System.Windows.Forms;
-using System.Windows.Forms.Design; 
-using System.Runtime.Serialization;
+using System.Windows.Forms.Design;
 using System.Globalization;
 using System.Threading;
-using System.Reflection;   
-using System.Security;
+using System.Reflection;
 using System.Security.Permissions;
 using System.Windows.Forms.VisualStyles;
-using System.Resources;
 using System.Text;
 
 namespace Pabo.Calendar
@@ -1285,27 +1280,23 @@ namespace Pabo.Calendar
 						}
 						case mcCalendarRegion.Header:
 						{
-							if (HeaderMouseLeave!=null)
-								HeaderMouseLeave(this,new EventArgs());
-							break;
+                                HeaderMouseLeave?.Invoke(this, new EventArgs());
+                                break;
 						}
 						case mcCalendarRegion.Weekdays:
 						{
-							if (WeekdaysMouseLeave!=null)
-								WeekdaysMouseLeave(this,new EventArgs());
-							break;
+                                WeekdaysMouseLeave?.Invoke(this, new EventArgs());
+                                break;
 						}
 						case mcCalendarRegion.Weeknumbers:
 						{
-							if (WeeknumbersMouseLeave!=null)
-								WeeknumbersMouseLeave(this,new EventArgs());
-							break;
+                                WeeknumbersMouseLeave?.Invoke(this, new EventArgs());
+                                break;
 						}
 						case mcCalendarRegion.Footer:
 						{
-							if (FooterMouseLeave!=null)
-								FooterMouseLeave(this,new EventArgs());
-							break;
+                                FooterMouseLeave?.Invoke(this, new EventArgs());
+                                break;
 						}
 					}
 					m_activeRegion = value;
@@ -1583,9 +1574,8 @@ namespace Pabo.Calendar
 				if (value!=m_selectTrailing)
 				{
 					m_selectTrailing = value;
-					if (this.SelectTrailingChanged!=null)
-						this.SelectTrailingChanged(this,new EventArgs());
-					Invalidate();
+                    this.SelectTrailingChanged?.Invoke(this, new EventArgs());
+                    Invalidate();
 				}
 			}
 		}
@@ -1605,8 +1595,7 @@ namespace Pabo.Calendar
 				if (value!=m_useTheme)
 				{
 					m_useTheme = value;
-					if (this.UseThemeChanged!=null)
-						this.UseThemeChanged(this,new EventArgs());
+                    this.UseThemeChanged?.Invoke(this, new EventArgs());
                     if (m_useTheme)
                         GetThemeColors();
                     else
@@ -4140,33 +4129,35 @@ namespace Pabo.Calendar
                     
         public override DesignerActionItemCollection GetSortedActionItems()
         {
-            DesignerActionItemCollection items = new DesignerActionItemCollection();
+            DesignerActionItemCollection items = new DesignerActionItemCollection
+            {
 
-            //Define static section header entries.
-            items.Add(new DesignerActionHeaderItem("Appearance"));
-            items.Add(new DesignerActionHeaderItem("Information"));
+                //Define static section header entries.
+                new DesignerActionHeaderItem("Appearance"),
+                new DesignerActionHeaderItem("Information"),
 
-            items.Add(new DesignerActionPropertyItem("Dates",
+                new DesignerActionPropertyItem("Dates",
                              "Dates", "Appearance",
-                             "Collection with formatted dates."));
+                             "Collection with formatted dates."),
 
-            items.Add(new DesignerActionPropertyItem("ShowHeader",
+                new DesignerActionPropertyItem("ShowHeader",
                              "ShowHeader", "Appearance",
-                             "Indicates wether the header should be visible."));
+                             "Indicates wether the header should be visible."),
 
-            items.Add(new DesignerActionPropertyItem("ShowWeekdays",
+                new DesignerActionPropertyItem("ShowWeekdays",
                              "ShowWeekdays", "Appearance",
-                             "Indicates wether weekdays should be visible."));
-            
-            items.Add(new DesignerActionPropertyItem("ShowWeeknumbers",
+                             "Indicates wether weekdays should be visible."),
+
+                new DesignerActionPropertyItem("ShowWeeknumbers",
                             "ShowWeeknumbers", "Appearance",
-                             "Indicates wether the weeknumbers should be visible."));
-            
-            items.Add(new DesignerActionPropertyItem("ShowFooter",
+                             "Indicates wether the weeknumbers should be visible."),
+
+                new DesignerActionPropertyItem("ShowFooter",
                              "ShowFooter", "Appearance",
-                             "Indicates wether the footer should be visible."));
-                      
-           
+                             "Indicates wether the footer should be visible.")
+            };
+
+
             //Create entries for static Information section.
             StringBuilder version = new StringBuilder("Version: ");
             version.Append(calendar.Version);

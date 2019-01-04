@@ -47,6 +47,7 @@
             this.tabVacinas = new System.Windows.Forms.TabPage();
             this.flowPVacina = new System.Windows.Forms.FlowLayoutPanel();
             this.tabExames = new System.Windows.Forms.TabPage();
+            this.pnExames = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -55,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabFerias.SuspendLayout();
             this.tabVacinas.SuspendLayout();
+            this.tabExames.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -235,12 +237,21 @@
             // 
             // tabExames
             // 
+            this.tabExames.Controls.Add(this.pnExames);
             this.tabExames.Location = new System.Drawing.Point(4, 22);
             this.tabExames.Name = "tabExames";
             this.tabExames.Size = new System.Drawing.Size(779, 604);
             this.tabExames.TabIndex = 4;
             this.tabExames.Text = "Exames";
             this.tabExames.UseVisualStyleBackColor = true;
+            // 
+            // pnExames
+            // 
+            this.pnExames.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnExames.Location = new System.Drawing.Point(0, 0);
+            this.pnExames.Name = "pnExames";
+            this.pnExames.Size = new System.Drawing.Size(779, 604);
+            this.pnExames.TabIndex = 0;
             // 
             // Funcionarios
             // 
@@ -263,6 +274,7 @@
             this.tabFerias.ResumeLayout(false);
             this.tabFerias.PerformLayout();
             this.tabVacinas.ResumeLayout(false);
+            this.tabExames.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -286,6 +298,7 @@
         private System.Windows.Forms.TabPage tabVacinas;
         private System.Windows.Forms.FlowLayoutPanel flowPVacina;
         private System.Windows.Forms.TabPage tabExames;
+        private System.Windows.Forms.Panel pnExames;
     }
 
 }

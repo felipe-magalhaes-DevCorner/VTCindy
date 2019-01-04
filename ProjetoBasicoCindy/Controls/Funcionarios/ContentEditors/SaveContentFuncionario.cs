@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjetoBasicoCindy
+﻿namespace ProjetoBasicoCindy
 {
     public class SaveContentFuncionario
     {
-        public FuncionarioItem funcTosave { get; set; }
+        public FuncionarioItem FuncTosave { get; set; }
 
         
 

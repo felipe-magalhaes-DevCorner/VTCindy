@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy
 {
@@ -12,31 +9,31 @@ namespace ProjetoBasicoCindy
         public static List<FuncionarioItem> FuncionarioCollection { get; set; }
 
 
-        public void SetList(List<FuncionarioItem> _list)
+        public void SetList(List<FuncionarioItem> list)
         {
-            FuncionarioCollection = _list;
+            FuncionarioCollection = list;
         }
-        public void AddFuncionario(FuncionarioItem _funcionario)
+        public void AddFuncionario(FuncionarioItem funcionario)
         {
 
-            FuncionarioCollection.Add(_funcionario);
+            FuncionarioCollection.Add(funcionario);
         }
-        public void RemoveFuncionario(FuncionarioItem _funcionario)
+        public void RemoveFuncionario(FuncionarioItem funcionario)
         {
-            FuncionarioCollection.Remove(_funcionario);
+            FuncionarioCollection.Remove(funcionario);
         }
         public List<FuncionarioItem> GetFuncionariosList()
         {
             List<FuncionarioItem> list = FuncionarioCollection;
             return list;
         }
-        public FuncionarioItem ReturnFuncFromPreview(FuncionarioItemPreview _funcionarioItemPreview)
+        public FuncionarioItem ReturnFuncFromPreview(FuncionarioItemPreview funcionarioItemPreview)
         {
-            foreach (var FuncionarioItem in FuncionarioCollection)
+            foreach (var funcionarioItem in FuncionarioCollection)
             {
-                if (FuncionarioItem._idFuncionario == Convert.ToInt32(_funcionarioItemPreview._idfuncionario))
+                if (funcionarioItem.IdFuncionario == Convert.ToInt32(funcionarioItemPreview.Idfuncionario))
                 {
-                    return FuncionarioItem;
+                    return funcionarioItem;
 
 
                 }
@@ -45,9 +42,9 @@ namespace ProjetoBasicoCindy
 
             return null;
         }
-        public FuncionarioItem GetFuncFromList(int _index)
+        public FuncionarioItem GetFuncFromList(int index)
         {
-            FuncionarioItem currentFunc = FuncionarioCollection[_index];
+            FuncionarioItem currentFunc = FuncionarioCollection[index];
 
             return currentFunc;
 

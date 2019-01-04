@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy
 {
@@ -10,9 +7,9 @@ namespace ProjetoBasicoCindy
     {
         private static List<OnibusItem> OnibusCollection { get; set; }
 
-        public void SetList(List<OnibusItem> _list)
+        public void SetList(List<OnibusItem> list)
         {
-            OnibusCollection = _list;
+            OnibusCollection = list;
         }
 
         public int COuntList()
@@ -23,18 +20,18 @@ namespace ProjetoBasicoCindy
 
 
 
-        public void AddBus(OnibusItem _funcionario)
+        public void AddBus(OnibusItem funcionario)
         {
 
-            OnibusCollection.Add(_funcionario);
+            OnibusCollection.Add(funcionario);
         }
-        public void RemoveBus(OnibusItem _funcionario)
+        public void RemoveBus(OnibusItem funcionario)
         {
-            OnibusCollection.Remove(_funcionario);
+            OnibusCollection.Remove(funcionario);
         }
-        public void RemoveBusbyID(int _idList)
+        public void RemoveBusbyId(int idList)
         {
-            OnibusCollection.RemoveAt(_idList);
+            OnibusCollection.RemoveAt(idList);
         }
         public List<OnibusItem> GetFuncionarioOnibusCollection()
         {
@@ -46,7 +43,7 @@ namespace ProjetoBasicoCindy
 
             return this;
         }
-        public OnibusItemCollection MakeListTOCollection()
+        public OnibusItemCollection MakeListToCollection()
         {
             OnibusItemCollection collection = new OnibusItemCollection();
             foreach (OnibusItem onibus in OnibusCollection)

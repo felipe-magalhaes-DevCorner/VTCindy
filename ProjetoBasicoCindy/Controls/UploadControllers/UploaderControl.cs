@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Omu.Drawing;
 using System.IO;
 
 namespace ProjetoBasicoCindy
@@ -15,31 +10,31 @@ namespace ProjetoBasicoCindy
     public partial class UploaderControl : UserControl
     {
         #region Variables
-        Size size = new Size();
-        Point point = new Point();
-        Bitmap testeimage;
-        List<Bitmap> cropedImages = new List<Bitmap>();
-        private string[] fileNames;
-        private static string cfilename;
-        List<Bitmap> images = new List<Bitmap>();
-        bool isMouseDown = false;
-        private Bitmap insertImage;
-        int index = 0;
+
+        private Size _size = new Size();
+        private Point _point = new Point();
+        private Bitmap _testeimage;
+        private List<Bitmap> _cropedImages = new List<Bitmap>();
+        private string[] _fileNames;
+        private static string _cfilename;
+        private List<Bitmap> _images = new List<Bitmap>();
+        private bool _isMouseDown = false;
+        private Bitmap _insertImage;
+        private int _index = 0;
         public Panel ParentPanel { get; set; }
         #endregion
 
         #region Members
 
 
-        private Container components = null;
-        private string m_sPicName = "";
+        private Container _components = null;
 
         #endregion
 
         #region Constants
 
-        private double ZOOMFACTOR = 1.05;   // = 25% smaller or larger
-        private int MINMAX = 5;             // 5 times bigger or smaller than the ctrl
+        private double _zoomfactor = 1.05;   // = 25% smaller or larger
+        private int _minmax = 5;             // 5 times bigger or smaller than the ctrl
 
         #endregion
         public UploaderControl()
@@ -125,21 +120,21 @@ namespace ProjetoBasicoCindy
 
         private void btUpload_Click_1(object sender, EventArgs e)
         {
-            images.Clear();
-            cropedImages.Clear();
+            _images.Clear();
+            _cropedImages.Clear();
             var dlg = new OpenFileDialog();
             dlg.Multiselect = true;
             dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                fileNames = dlg.FileNames;
+                _fileNames = dlg.FileNames;
                 foreach (var fileName in dlg.FileNames)
                 {
-                    images.Add(new Bitmap(fileName));
-                    cfilename = fileName;
-                    testeimage = new Bitmap(fileName);
+                    _images.Add(new Bitmap(fileName));
+                    _cfilename = fileName;
+                    _testeimage = new Bitmap(fileName);
                 }
-                PicBox.Image = Foo(testeimage);
+                PicBox.Image = Foo(_testeimage);
                 PicBox.SizeMode = PictureBoxSizeMode.AutoSize;
 
 
@@ -155,28 +150,28 @@ namespace ProjetoBasicoCindy
         #region CropHandler
         private void Crop_Release()
         {
-            cropedImages.Clear();
-            foreach (var image in images)
+            _cropedImages.Clear();
+            foreach (var image in _images)
             {
-                var cropedImage = new Bitmap(size.Width, size.Height);
-                for (int i = 0; i < size.Width; i++)
+                var cropedImage = new Bitmap(_size.Width, _size.Height);
+                for (int i = 0; i < _size.Width; i++)
                 {
-                    for (int j = 0; j < size.Height; j++)
+                    for (int j = 0; j < _size.Height; j++)
                     {
-                        cropedImage.SetPixel(i, j, image.GetPixel(i + point.X, j + point.Y));
+                        cropedImage.SetPixel(i, j, image.GetPixel(i + _point.X, j + _point.Y));
                     }
                 }
-                cropedImages.Add(cropedImage);
+                _cropedImages.Add(cropedImage);
             }
             pictureBox2.Visible = true;
-            pictureBox2.Image = cropedImages[0];          
-                cropedImages[0].Save(fileNames[0].Replace(".", "cr."));
-            testeimage = cropedImages[0];
-            pictureBox1.Image = testeimage;
-            pictureBox2.Image = testeimage;
+            pictureBox2.Image = _cropedImages[0];          
+                _cropedImages[0].Save(_fileNames[0].Replace(".", "cr."));
+            _testeimage = _cropedImages[0];
+            pictureBox1.Image = _testeimage;
+            pictureBox2.Image = _testeimage;
             pictureBox2.Visible = true;
             //pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.Image = Foo(cropedImages[0]);
+            pictureBox2.Image = Foo(_cropedImages[0]);
             //pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
 
@@ -197,11 +192,11 @@ namespace ProjetoBasicoCindy
         /// <remarks>Maximum 5 times bigger</remarks>
         private void ZoomIn()
         {
-            if ((PicBox.Width < (MINMAX * OuterPanel.Width)) &&
-                (PicBox.Height < (MINMAX * OuterPanel.Height)))
+            if ((PicBox.Width < (_minmax * OuterPanel.Width)) &&
+                (PicBox.Height < (_minmax * OuterPanel.Height)))
             {
-                PicBox.Width = Convert.ToInt32(PicBox.Width * ZOOMFACTOR);
-                PicBox.Height = Convert.ToInt32(PicBox.Height * ZOOMFACTOR);
+                PicBox.Width = Convert.ToInt32(PicBox.Width * _zoomfactor);
+                PicBox.Height = Convert.ToInt32(PicBox.Height * _zoomfactor);
                 PicBox.SizeMode = PictureBoxSizeMode.AutoSize;
             }
         }
@@ -212,12 +207,12 @@ namespace ProjetoBasicoCindy
         /// <remarks>Minimum 5 times smaller</remarks>
         private void ZoomOut()
         {
-            if ((PicBox.Width > (OuterPanel.Width / MINMAX)) &&
-                (PicBox.Height > (OuterPanel.Height / MINMAX)))
+            if ((PicBox.Width > (OuterPanel.Width / _minmax)) &&
+                (PicBox.Height > (OuterPanel.Height / _minmax)))
             {
 
-                PicBox.Width = Convert.ToInt32(PicBox.Width / ZOOMFACTOR);
-                PicBox.Height = Convert.ToInt32(PicBox.Height / ZOOMFACTOR);
+                PicBox.Width = Convert.ToInt32(PicBox.Width / _zoomfactor);
+                PicBox.Height = Convert.ToInt32(PicBox.Height / _zoomfactor);
                 PicBox.SizeMode = PictureBoxSizeMode.AutoSize;
             }
         }
@@ -228,20 +223,20 @@ namespace ProjetoBasicoCindy
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isMouseDown)
+            if (_isMouseDown)
             {
-                size = new Size(Math.Abs(point.X - e.Location.X), Math.Abs(point.Y - e.Location.Y));
+                _size = new Size(Math.Abs(_point.X - e.Location.X), Math.Abs(_point.Y - e.Location.Y));
                 PicBox.Invalidate();
             }
         }
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            isMouseDown = false;
-            size = new Size(Math.Abs(point.X - e.Location.X), Math.Abs(point.Y - e.Location.Y));
+            _isMouseDown = false;
+            _size = new Size(Math.Abs(_point.X - e.Location.X), Math.Abs(_point.Y - e.Location.Y));
             PicBox.Invalidate();
 
-            var tmpPoint = point;
-            var tmpSize = size;
+            var tmpPoint = _point;
+            var tmpSize = _size;
             Crop_Release();
 
         }
@@ -249,7 +244,7 @@ namespace ProjetoBasicoCindy
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             var pen = new Pen(Color.Red, 2);
-            e.Graphics.DrawRectangle(pen, point.X, point.Y, size.Width, size.Height);
+            e.Graphics.DrawRectangle(pen, _point.X, _point.Y, _size.Width, _size.Height);
         }
 
         private void ValueChanged(object sender, EventArgs e)
@@ -260,18 +255,18 @@ namespace ProjetoBasicoCindy
 
         private void pictureBox1_MouseDown_1(object sender, MouseEventArgs e)
         {
-            cropedImages.Clear();
+            _cropedImages.Clear();
             pictureBox1.Image = null;
-            isMouseDown = true;
-            point = e.Location;
+            _isMouseDown = true;
+            _point = e.Location;
         }
         #endregion
 
         #region New Rezizer teste
 
 
-        private const int BOXWIDTH = 450;
-        public static Bitmap Foo(Bitmap image, int BOXWIDTH = 450)
+        private const int Boxwidth = 450;
+        public static Bitmap Foo(Bitmap image, int boxwidth = 450)
         {
             Bitmap imagedone;
             try
@@ -280,7 +275,7 @@ namespace ProjetoBasicoCindy
                 //Bitmap original = LoadOriginalImage(cfilename);
 
                 if (ImageIsBox(original))
-                    return new Bitmap(original, BOXWIDTH, BOXWIDTH);
+                    return new Bitmap(original, boxwidth, boxwidth);
 
                 var newDimensions = CalculateNewDimensionsForImage(original);
                 imagedone = new Bitmap(original, newDimensions.Width, newDimensions.Height);
@@ -317,21 +312,21 @@ namespace ProjetoBasicoCindy
             int newWidth, newHeight;
 
             //calculate new dimensions based on aspect ratio
-            newWidth = (int)(BOXWIDTH * aspect);
+            newWidth = (int)(Boxwidth * aspect);
             newHeight = (int)(newWidth / aspect);
 
             //if one of the two dimensions exceed the box dimensions
-            if (newWidth > BOXWIDTH || newHeight > BOXWIDTH)
+            if (newWidth > Boxwidth || newHeight > Boxwidth)
             {
                 //depending on which of the two exceeds the box dimensions set it as the box dimension and calculate the other one based on the aspect ratio
                 if (newWidth > newHeight)
                 {
-                    newWidth = BOXWIDTH;
+                    newWidth = Boxwidth;
                     newHeight = (int)(newWidth / aspect);
                 }
                 else
                 {
-                    newHeight = BOXWIDTH;
+                    newHeight = Boxwidth;
                     newWidth = (int)(newHeight * aspect);
                 }
             }

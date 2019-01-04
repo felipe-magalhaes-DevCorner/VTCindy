@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoBasicoCindy
@@ -32,20 +25,20 @@ namespace ProjetoBasicoCindy
         {
             
             
-            var _getFun = new FuncionarioItemEdit();
-            var _funcionario = _getFun.GetFuncionarioEdit();
-            var GetBus = new OnibusItemCollection();
+            var getFun = new FuncionarioItemEdit();
+            var funcionario = getFun.GetFuncionarioEdit();
+            var getBus = new OnibusItemCollection();
 
-            GetBus.SetList(_funcionario._onibus);
-            int id = GetBus.COuntList() + 1;
+            getBus.SetList(funcionario.Onibus);
+            int id = getBus.COuntList() + 1;
             //----------------------working now------------------
             if (txtLinha.Text.Trim() != "" & cbCartao.Text.Trim() != "")
             {
                 var onibus = new OnibusItem(id, txtLinha.Text.Trim(), cbCartao.Text.Trim(), Convert.ToDouble(txtPreco.Text.Trim()));
-                GetBus.AddBus(onibus);
-                int id2 = GetBus.COuntList() + 1;
+                getBus.AddBus(onibus);
+                int id2 = getBus.COuntList() + 1;
             }
-            _funcionario._onibus = GetBus.MakeListTOCollection();
+            funcionario.Onibus = getBus.MakeListToCollection();
             ParentPanel.Visible = false;
             ParentPanel.SendToBack();
             ParentPanel.Controls.Clear();
@@ -71,7 +64,7 @@ namespace ProjetoBasicoCindy
         {
             ParentPanel.Controls.Clear();
             ParentPanel.SendToBack();
-            this.Dispose();
+            Dispose();
         }
         #endregion
 

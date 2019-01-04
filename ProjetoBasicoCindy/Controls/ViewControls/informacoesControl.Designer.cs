@@ -1,6 +1,6 @@
 ﻿namespace ProjetoBasicoCindy
 {
-    partial class informacoesControl
+    partial class InformacoesControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(informacoesControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformacoesControl));
             this.mskDataNasc = new System.Windows.Forms.MaskedTextBox();
             this.txtIdentidade = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -139,7 +139,7 @@
             this.btRemoveBus.Size = new System.Drawing.Size(20, 20);
             this.btRemoveBus.TabIndex = 84;
             this.btRemoveBus.UseVisualStyleBackColor = true;
-            this.btRemoveBus.Click += new System.EventHandler(this.btRemoveBus_Click);
+            this.btRemoveBus.Click += new System.EventHandler(this.BtRemoveBus_Click);
             // 
             // btAddBus
             // 
@@ -151,7 +151,7 @@
             this.btAddBus.Size = new System.Drawing.Size(20, 20);
             this.btAddBus.TabIndex = 83;
             this.btAddBus.UseVisualStyleBackColor = true;
-            this.btAddBus.Click += new System.EventHandler(this.btAddBus_Click);
+            this.btAddBus.Click += new System.EventHandler(this.BtAddBus_Click);
             // 
             // rtxtObs
             // 
@@ -512,7 +512,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panelAddBus);
-            this.Name = "informacoesControl";
+            this.Name = "InformacoesControl";
             this.Size = new System.Drawing.Size(779, 575);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);

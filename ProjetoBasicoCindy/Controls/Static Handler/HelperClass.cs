@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy
 {
@@ -27,12 +24,12 @@ namespace ProjetoBasicoCindy
 
                 if (c.HasChildren)
                 {
-                    var Chiildren = FindTag(c.Controls, tag); //Recursively check all children controls as well; ie groupboxes or 
-                    if (Chiildren == null)
+                    var chiildren = FindTag(c.Controls, tag); //Recursively check all children controls as well; ie groupboxes or 
+                    if (chiildren == null)
                     {
                         continue;
                     }
-                    return Chiildren;
+                    return chiildren;
 
                 }
 
@@ -40,9 +37,9 @@ namespace ProjetoBasicoCindy
             return null;
 
         }
-        public static void ChangeYear(int _change)
+        public static void ChangeYear(int change)
         {
-            YearShown += _change;
+            YearShown += change;
         }
 
 

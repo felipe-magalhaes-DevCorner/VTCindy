@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace ProjetoBasicoCindy
 {
-    class PictureUploadHandler
+    internal class PictureUploadHandler
     {
         /// <summary>
         /// The first argument is the source image,
@@ -19,7 +14,7 @@ namespace ProjetoBasicoCindy
         /// <param name="sourceRectangle"></param>
         /// <param name="destinationRectangle"></param>
         /// <returns></returns>
-        static Bitmap CropImage(Image originalImage, Rectangle sourceRectangle,
+        private static Bitmap CropImage(Image originalImage, Rectangle sourceRectangle,
     Rectangle? destinationRectangle = null)
         {
             if (destinationRectangle == null)

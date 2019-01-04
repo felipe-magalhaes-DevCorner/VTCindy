@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoBasicoCindy
@@ -16,15 +10,15 @@ namespace ProjetoBasicoCindy
         {
             InitializeComponent();
         }
-        public void ButtonVisible(bool _view)
+        public void ButtonVisible(bool view)
         {
-            if (_view)
+            if (view)
             {
-                this.Visible = true;
+                Visible = true;
             }
             else
             {
-                this.Visible = false;
+                Visible = false;
             }
             
         }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy.Vacina
 {
@@ -20,9 +16,9 @@ namespace ProjetoBasicoCindy.Vacina
         }
         public VacinaInfo()
         {
-            this.Data = Convert.ToDateTime("15/03/2018");
-            this.Lote = "00114564";
-            this.Unidade = "Venda Nova";
+            Data = Convert.ToDateTime("15/03/2018");
+            Lote = "00114564";
+            Unidade = "Venda Nova";
         }
         public VacinaInfo(int teste)
         {

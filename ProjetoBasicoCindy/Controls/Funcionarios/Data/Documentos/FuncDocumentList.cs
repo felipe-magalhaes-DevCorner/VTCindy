@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoBasicoCindy
 {
-    class FuncDocumentList : List<DocExistsRelationControl>
+    internal class FuncDocumentList : List<DocExistsRelationControl>
     {
         private List<DocExistsRelationControl> ListOfDocs { get; set; }
 
@@ -18,13 +16,13 @@ namespace ProjetoBasicoCindy
         {
             return ListOfDocs.Count();
         }
-        public void RemoveDOCbyID(int _idList)
+        public void RemoveDoCbyId(int idList)
         {
-            ListOfDocs.RemoveAt(_idList);
+            ListOfDocs.RemoveAt(idList);
         }
-        public void SetList (List<DocExistsRelationControl> _List_docExistsRelationControls)
+        public void SetList (List<DocExistsRelationControl> listDocExistsRelationControls)
         {
-            ListOfDocs = _List_docExistsRelationControls;
+            ListOfDocs = listDocExistsRelationControls;
         }
         public void SetList(DocExistsRelationControl docExistsRelationControls)
         {
@@ -40,7 +38,7 @@ namespace ProjetoBasicoCindy
         {
             return this;
         }
-        public FuncDocumentList MakeListTOCollection()
+        public FuncDocumentList MakeListToCollection()
         {
             FuncDocumentList collection = new FuncDocumentList();
             foreach (DocExistsRelationControl document in ListOfDocs)
